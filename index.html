@@ -100,7 +100,6 @@
     .point-b .nums{font-size:22px; font-weight:900; line-height:1.35; color:var(--navy);}
     .accent{color:var(--green)}
 
-    /* Мягкий градиент для блока "Для кого" */
     #for {
       background: linear-gradient(135deg, #f0f7f2 0%, #ffffff 100%);
       color: var(--text);
@@ -108,7 +107,6 @@
     
     .fit-wrap{display:grid;grid-template-columns:1.25fr .75fr;gap:28px;align-items:stretch}
     
-    /* Оформление карточек на мягком фоне */
     .checks{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:34px;box-shadow:0 14px 40px rgba(12,35,51,.05);}
     .fit-text{padding:34px 0;}
     .check{display:flex;align-items:center;gap:14px;margin:18px 0;font-size:18px;font-weight:800; color: var(--navy);}
@@ -152,16 +150,38 @@
       line-height: 1;
     }
 
+    /* Перелив фона синим цветом справа, начиная с `#diagnostic` */
+    .diagonal-blue-bg {
+      position: relative;
+      background: #ffffff;
+      overflow: visible;
+      z-index: 1; /* Чтобы пятно свечения было за контентом */
+    }
+    .diagonal-blue-bg::before {
+      content: "";
+      position: absolute;
+      width: 80vw;
+      height: 100%;
+      top: 0;
+      right: -20vw;
+      background: rgba(12,35,51, 0.08); /* Синий, очень мягкий */
+      filter: blur(150px);
+      opacity: 0.9;
+      z-index: -1;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
     .reviews{display:grid;grid-template-columns:1fr 1fr;gap:22px}
     .review-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:34px;box-shadow:0 14px 40px rgba(12,35,51,.06)}
     .review-card p{font-size:18px;line-height:1.6;color:#33413b;margin-bottom:20px}
     .person{display:flex;align-items:center;gap:12px;font-weight:800;color:var(--navy)}
     .avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--green2))}
 
-    footer{background:#eef3f0;margin-top:40px;padding:32px 0;color:#4d5b55;font-size:14px;font-weight:700}
+    /* Фон футера стал прозрачным, чтобы синий перелив был виден */
+    footer{background:transparent;margin-top:40px;padding:32px 0;color:#4d5b55;font-size:14px;font-weight:700}
     .foot{display:flex;justify-content:space-between;gap:20px;align-items:center; flex-wrap: wrap;}
     
-    /* Стили для аккуратной кнопки Telegram */
     .support-btn {
       display: inline-flex;
       align-items: center;
@@ -191,7 +211,7 @@
         display:none;
       }
       
-      /* Увеличенные элементы хедера на планшетах/мобилках */
+      /* Увеличенные элементы хедера: Лого стало КРУПНЕЕ (115px) */
       .nav{
         height: auto;
         min-height: 84px;
@@ -204,8 +224,8 @@
         justify-content:flex-start;
       }
       .logo-img{
-        width:105px;
-        height:105px;
+        width:115px; /* Увеличено с 105px */
+        height:115px;
       }
       header .btn.green {
         font-size: 14px;
@@ -252,8 +272,8 @@
         line-height:1.08;
       }
 
-      /* Подгонка хедера под самые узкие экраны */
-      .logo-img { width: 90px; height: 90px; }
+      /* Хедер на самых узких экранах: Лого стало КРУПНЕЕ (100px) */
+      .logo-img { width: 100px; height: 100px; } /* Увеличено с 90px */
       header .btn.green { font-size: 13px; padding: 10px 14px; gap: 6px; }
 
       .hero{
@@ -426,6 +446,9 @@
       </div>
     </section>
 
+  </main>
+
+  <div class="diagonal-blue-bg">
     <section id="diagnostic">
       <div class="container">
         <h2 class="section-title">Формат диагностики</h2>
@@ -454,7 +477,7 @@
         </div>
 
         <div class="hero-actions">
-          <a class="btn green" href="diagnostic-form.html">Забронировать диагностическую сессию</a>
+          <a class="btn green" href="#diagnostic">Забронировать диагностическую сессию</a>
         </div>
       </div>
     </section>
@@ -475,19 +498,18 @@
         </div>
       </div>
     </section>
-  </main>
 
-  <footer>
-    <div class="container foot">
-      <div><strong>PROFITAD, 2026.</strong> all rights are reserved.</div>
-      <a class="support-btn" href="https://t.me/manager_profitad" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="22" y1="2" x2="11" y2="13"></line>
-          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-        </svg>
-        Поддержка Telegram
-      </a>
-    </div>
-  </footer>
-</body>
+    <footer>
+      <div class="container foot">
+        <div><strong>PROFITAD, 2026.</strong> all rights are reserved.</div>
+        <a class="support-btn" href="https://t.me/manager_profitad" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+          Поддержка Telegram
+        </a>
+      </div>
+    </footer>
+  </div> </body>
 </html>
