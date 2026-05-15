@@ -186,7 +186,7 @@
   <header>
     <div class="container">
       <a class="logo" href="index.html" aria-label="PROFITAD">
-        <img src="img/logo.png" class="logo-img" alt="PROFITAD">
+        <img src="logo.png" class="logo-img" alt="PROFITAD">
       </a>
     </div>
   </header>
@@ -195,8 +195,8 @@
     <div class="container">
       <section class="hero">
         <div class="badge"><span class="pulse"></span> Заявка на диагностику</div>
-        <h1>Заполните короткую форму перед диагностикой</h1>
-        <p>Так мы заранее поймём вашу точку А, цель по выручке и текущие источники трафика.</p>
+        <h1>Заполните форму на 30-минутную диагностическую сессию по увеличению выручке в Вашем бизнесе</h1>
+        <p>После заполнения Мы с Вами свяжемся чтобы договориться о времени</p>
       </section>
 
       <section class="form-card">
