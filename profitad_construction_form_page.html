@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PROFITAD — Заявка на диагностику</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --navy:#0c2333;
+      --green:#16a34a;
+      --green2:#9cff38;
+      --soft:#f6faf7;
+      --line:#dbe7df;
+      --text:#101418;
+      --muted:#61706a;
+      --card:#ffffff;
+      --shadow:0 24px 70px rgba(12,35,51,.10);
+      --radius:28px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:linear-gradient(180deg,#ffffff 0%,#f6faf7 52%,#ffffff 100%);
+      color:var(--text);
+      min-height:100vh;
+    }
+    a{color:inherit}
+
+    .noise{
+      position:fixed;inset:0;pointer-events:none;opacity:.35;z-index:-2;
+      background-image:radial-gradient(rgba(12,35,51,.05) 1px,transparent 1px);
+      background-size:22px 22px;
+    }
+    .glow{position:fixed;border-radius:999px;filter:blur(70px);opacity:.35;z-index:-1}
+    .glow.one{width:320px;height:320px;background:var(--green2);top:80px;left:-120px}
+    .glow.two{width:420px;height:420px;background:#9ee7c0;bottom:40px;right:-160px}
+
+    .container{width:min(980px,calc(100% - 40px));margin:0 auto}
+
+    header{padding:24px 0}
+    .logo{display:flex;align-items:center;gap:10px;font-weight:900;color:var(--navy);letter-spacing:.02em;text-decoration:none}
+    .logo-img{width:130px;height:auto;display:block;object-fit:contain}
+    .logo-mark{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--navy),#123c52 50%,var(--green2));display:grid;place-items:center;color:#fff;font-weight:900;box-shadow:0 12px 30px rgba(12,35,51,.18)}
+
+    main{padding:36px 0 70px}
+    .hero{text-align:center;margin-bottom:34px}
+    .badge{display:inline-flex;align-items:center;gap:9px;padding:9px 14px;border-radius:999px;background:#eaf8ef;border:1px solid #ccebd7;color:#0e6e36;font-size:13px;font-weight:800;margin-bottom:20px}
+    .pulse{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 6px rgba(22,163,74,.12)}
+    h1{font-size:clamp(34px,5vw,62px);line-height:1.04;letter-spacing:-.055em;font-weight:900;max-width:820px;margin:0 auto 16px}
+    .hero p{font-size:19px;line-height:1.55;color:var(--muted);max-width:680px;margin:0 auto}
+
+    .form-card{
+      background:rgba(255,255,255,.88);
+      backdrop-filter:blur(18px);
+      border:1px solid var(--line);
+      border-radius:34px;
+      box-shadow:var(--shadow);
+      padding:36px;
+      overflow:hidden;
+      position:relative;
+    }
+    .form-card:before{content:"";position:absolute;width:260px;height:260px;border-radius:50%;background:rgba(156,255,56,.18);right:-110px;top:-110px}
+    form{position:relative;z-index:1}
+
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .field{display:flex;flex-direction:column;gap:8px;margin-bottom:18px}
+    label{font-size:15px;font-weight:800;color:#1a2822}
+    input{
+      width:100%;
+      border:1px solid #d8e5dd;
+      background:#fff;
+      border-radius:18px;
+      padding:17px 18px;
+      font-size:16px;
+      font-family:inherit;
+      outline:none;
+      transition:.2s ease;
+      color:var(--text);
+    }
+    input:focus{border-color:var(--green);box-shadow:0 0 0 4px rgba(22,163,74,.10)}
+    input::placeholder{color:#9aa6a0}
+
+    .traffic-title{font-size:18px;font-weight:900;color:var(--navy);margin:8px 0 16px}
+    .checkbox-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:22px}
+    .check-item{
+      display:flex;align-items:center;gap:12px;
+      padding:15px 16px;
+      background:#f8fbf9;
+      border:1px solid #e5eee8;
+      border-radius:18px;
+      cursor:pointer;
+      font-weight:750;
+      color:#22312b;
+      transition:.2s ease;
+    }
+    .check-item:hover{border-color:#bfe8ca;background:#f1faf4}
+    .check-item input{display:none}
+    .custom-check{
+      width:22px;height:22px;border-radius:50%;
+      border:2px solid #bfd0c6;
+      background:#fff;
+      flex:0 0 auto;
+      position:relative;
+    }
+    .check-item input:checked + .custom-check{
+      border-color:#fff;
+      background:var(--green2);
+      box-shadow:0 0 0 4px #fff,0 0 0 5px rgba(12,35,51,.12);
+    }
+
+    .agreement{
+      margin:8px 0 22px;
+      color:var(--text);
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      cursor:pointer;
+    }
+    .agreement input{display:none}
+    .agreement-dot{
+      width:20px;height:20px;border-radius:50%;
+      background:var(--green2);
+      border:3px solid #fff;
+      box-shadow:0 0 0 1px rgba(12,35,51,.18);
+      flex:0 0 auto;
+      margin-top:1px;
+    }
+    .agreement input:not(:checked) + .agreement-dot{background:#fff}
+    .agreement-text{font-size:13px;line-height:1.35;font-weight:600;color:#1f2924;letter-spacing:0}
+    .agreement-text a{text-decoration:underline;text-underline-offset:2px;font-weight:800}
+
+    .submit-btn{
+      width:100%;
+      border:0;
+      border-radius:999px;
+      padding:18px 24px;
+      background:linear-gradient(135deg,var(--green),var(--green2));
+      color:#062313;
+      font-family:inherit;
+      font-size:17px;
+      font-weight:900;
+      cursor:pointer;
+      box-shadow:0 18px 38px rgba(22,163,74,.22);
+      transition:.25s ease;
+    }
+    .submit-btn:hover{transform:translateY(-2px);box-shadow:0 24px 48px rgba(22,163,74,.26)}
+
+    .small-note{text-align:center;color:var(--muted);font-size:14px;margin-top:16px;line-height:1.45}
+
+    @media(max-width:760px){
+      header{padding:18px 0}
+      .logo{justify-content:center}
+      main{padding:22px 0 46px}
+      .container{width:min(100% - 24px,980px)}
+      h1{font-size:36px;line-height:1.06}
+      .hero{text-align:left;margin-bottom:24px}
+      .hero .badge{margin-bottom:16px}
+      .hero p{font-size:16px}
+      .form-card{padding:22px;border-radius:28px}
+      .grid{grid-template-columns:1fr;gap:0}
+      input{font-size:16px;padding:16px;border-radius:16px}
+      .checkbox-grid{grid-template-columns:1fr;gap:10px}
+      .check-item{padding:15px;border-radius:16px;font-size:15px}
+      .agreement{gap:10px}
+      .agreement-dot{width:20px;height:20px;border-width:3px}
+      .agreement-text{font-size:12px;line-height:1.35}
+      .submit-btn{padding:17px 20px;font-size:16px}
+    }
+
+    @media(max-width:390px){
+      h1{font-size:32px}
+      .agreement-text{font-size:12px}
+      .form-card{padding:18px}
+    }
+  </style>
+</head>
+<body>
+  <div class="noise"></div>
+  <div class="glow one"></div>
+  <div class="glow two"></div>
+
+  <header>
+    <div class="container">
+      <a class="logo" href="index.html" aria-label="PROFITAD">
+        <img src="img/logo.png" class="logo-img" alt="PROFITAD">
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <section class="hero">
+        <div class="badge"><span class="pulse"></span> Заявка на диагностику</div>
+        <h1>Заполните короткую форму перед диагностикой</h1>
+        <p>Так мы заранее поймём вашу точку А, цель по выручке и текущие источники трафика.</p>
+      </section>
+
+      <section class="form-card">
+        <form action="#" method="POST" id="diagnosticForm">
+          <div class="grid">
+            <div class="field">
+              <label for="name">Ваше имя:</label>
+              <input id="name" name="name" type="text" placeholder="Например: Сергей" required>
+            </div>
+
+            <div class="field">
+              <label for="telegram">Ваш Telegram NickName:</label>
+              <input id="telegram" name="telegram" type="text" placeholder="@username" required>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="product">Ссылка на Ваш продукт:</label>
+            <input id="product" name="product" type="url" placeholder="https://example.com" required>
+          </div>
+
+          <div class="grid">
+            <div class="field">
+              <label for="revenue_now">Какая у Вас выручка сейчас? (точка А):</label>
+              <input id="revenue_now" name="revenue_now" type="text" placeholder="Например: 30 000€ / мес" required>
+            </div>
+
+            <div class="field">
+              <label for="revenue_goal">Какая цель по выручке? (точка Б):</label>
+              <input id="revenue_goal" name="revenue_goal" type="text" placeholder="Например: 100 000€ / мес" required>
+            </div>
+          </div>
+
+          <div class="traffic-title">Какие источники трафика используете сейчас?</div>
+          <div class="checkbox-grid">
+            <label class="check-item">
+              <input type="checkbox" name="traffic[]" value="Партнерский трафик" required>
+              <span class="custom-check"></span>
+              Партнерский трафик
+            </label>
+
+            <label class="check-item">
+              <input type="checkbox" name="traffic[]" value="Meta Ads">
+              <span class="custom-check"></span>
+              Meta Ads
+            </label>
+
+            <label class="check-item">
+              <input type="checkbox" name="traffic[]" value="Google Ads">
+              <span class="custom-check"></span>
+              Google Ads
+            </label>
+
+            <label class="check-item">
+              <input type="checkbox" name="traffic[]" value="TikTok Ads">
+              <span class="custom-check"></span>
+              TikTok Ads
+            </label>
+
+            <label class="check-item">
+              <input type="checkbox" name="traffic[]" value="Bing">
+              <span class="custom-check"></span>
+              Bing
+            </label>
+
+            <label class="check-item">
+              <input type="checkbox" name="traffic[]" value="Twitter">
+              <span class="custom-check"></span>
+              Twitter
+            </label>
+
+            <label class="check-item">
+              <input type="checkbox" name="traffic[]" value="Pinterest">
+              <span class="custom-check"></span>
+              Pinterest
+            </label>
+
+            <label class="check-item">
+              <input type="checkbox" name="traffic[]" value="Другие">
+              <span class="custom-check"></span>
+              Другие
+            </label>
+          </div>
+
+          <label class="agreement">
+            <input type="checkbox" name="agreement" required checked>
+            <span class="agreement-dot"></span>
+            <span class="agreement-text">
+              Ознакомлен(а) с <a href="#" target="_blank">договором-оферты</a>, <a href="#" target="_blank">политикой конфиденциальности</a>, выражаю согласие на обработку персональных данных.
+            </span>
+          </label>
+
+          <button class="submit-btn" type="submit">Отправить заявку на диагностику</button>
+          <div class="small-note">После отправки заявки мы свяжемся с вами в Telegram.</div>
+        </form>
+      </section>
+    </div>
+  </main>
+  <script>
+    const trafficCheckboxes = document.querySelectorAll('input[name="traffic[]"]');
+
+    function validateTrafficCheckboxes(){
+      const checked = Array.from(trafficCheckboxes).some(checkbox => checkbox.checked);
+      trafficCheckboxes.forEach(checkbox => {
+        checkbox.required = !checked;
+      });
+    }
+
+    trafficCheckboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', validateTrafficCheckboxes);
+    });
+
+    validateTrafficCheckboxes();
+  </script>
+</body>
+</html>
