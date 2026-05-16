@@ -172,11 +172,25 @@
       pointer-events: none;
     }
 
-    .reviews{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-    .review-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:34px;box-shadow:0 14px 40px rgba(12,35,51,.06)}
-    .review-card p{font-size:18px;line-height:1.6;color:#33413b;margin-bottom:20px}
-    .person{display:flex;align-items:center;gap:12px;font-weight:800;color:var(--navy)}
-    .avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--green2))}
+    /* БЛОК ОТЗЫВОВ СО СКРИНШОТАМИ */
+    .reviews {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+    .review-img {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: 0 14px 40px rgba(12,35,51,.06);
+    }
+    .review-img img {
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      display: block;
+    }
 
     /* Фон футера стал прозрачным, чтобы синий перелив был виден */
     footer{background:transparent;margin-top:40px;padding:32px 0;color:#4d5b55;font-size:14px;font-weight:700}
@@ -318,7 +332,7 @@
       .case-card,
       .checks,
       .diagnostic-box,
-      .review-card{
+      .review-img{
         padding:22px;
         border-radius:22px;
       }
@@ -349,10 +363,6 @@
 
       .reviews{
         gap:16px;
-      }
-
-      .review-card p{
-        font-size:16px;
       }
 
       footer{
@@ -484,17 +494,19 @@
     <section id="reviews-anchor">
       <div class="container">
         <h2 class="section-title">Отзывы</h2>
-        <p class="section-sub">Здесь можно поставить скриншоты отзывов или короткие текстовые подтверждения от клиентов.</p>
+        
         <div class="reviews">
-          <article class="review-card">
-            <p>“Реклама начала приносить заявки уже в первую неделю. Понравилось, что команда смотрит не только на лиды, а на деньги и продажи.”</p>
-            <div class="person"><span class="avatar"></span> Строительная компания</div>
-          </article>
-          <article class="review-card">
-            <p>“Быстро разобрали воронку, нашли слабые места и запустили понятную систему привлечения клиентов. Продолжаем работу.”</p>
-            <div class="person"><span class="avatar"></span> Производство / Home Improvement</div>
-          </article>
+          <div class="review-img">
+             <img src="review1.jpeg" alt="Отзыв клиента 1">
+          </div>
+          <div class="review-img">
+             <img src="review2.jpeg" alt="Отзыв клиента 2">
+          </div>
+          <div class="review-img">
+             <img src="review3.jpeg" alt="Отзыв клиента 3">
+          </div>
         </div>
+
       </div>
     </section>
 
