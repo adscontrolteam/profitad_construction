@@ -13,11 +13,13 @@ t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '1683649462959481');
+fbq('init', '1363214802441174');
 fbq('track', 'PageView');
 </script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1683649462959481&ev=PageView&noscript=1"
-/></noscript>
+<noscript>
+  <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1683649462959481&ev=PageView&noscript=1" />
+  <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1363214802441174&ev=PageView&noscript=1" />
+</noscript>
 <!-- End Meta Pixel Code -->
 
   
@@ -170,12 +172,11 @@ src="https://www.facebook.com/tr?id=1683649462959481&ev=PageView&noscript=1"
       line-height: 1;
     }
 
-    /* Перелив фона синим цветом справа, начиная с `#diagnostic` */
     .diagonal-blue-bg {
       position: relative;
       background: #ffffff;
       overflow: visible;
-      z-index: 1; /* Чтобы пятно свечения было за контентом */
+      z-index: 1;
     }
     .diagonal-blue-bg::before {
       content: "";
@@ -184,7 +185,7 @@ src="https://www.facebook.com/tr?id=1683649462959481&ev=PageView&noscript=1"
       height: 100%;
       top: 0;
       right: -20vw;
-      background: rgba(12,35,51, 0.08); /* Синий, очень мягкий */
+      background: rgba(12,35,51, 0.08);
       filter: blur(150px);
       opacity: 0.9;
       z-index: -1;
@@ -192,7 +193,6 @@ src="https://www.facebook.com/tr?id=1683649462959481&ev=PageView&noscript=1"
       pointer-events: none;
     }
 
-    /* БЛОК ОТЗЫВОВ СО СКРИНШОТАМИ */
     .reviews {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -212,7 +212,6 @@ src="https://www.facebook.com/tr?id=1683649462959481&ev=PageView&noscript=1"
       display: block;
     }
 
-    /* Фон футера стал прозрачным, чтобы синий перелив был виден */
     footer{background:transparent;margin-top:40px;padding:32px 0;color:#4d5b55;font-size:14px;font-weight:700}
     .foot{display:flex;justify-content:space-between;gap:20px;align-items:center; flex-wrap: wrap;}
     
@@ -245,7 +244,6 @@ src="https://www.facebook.com/tr?id=1683649462959481&ev=PageView&noscript=1"
         display:none;
       }
       
-      /* Увеличенные элементы хедера: Лого стало КРУПНЕЕ (115px) */
       .nav{
         height: auto;
         min-height: 84px;
@@ -258,7 +256,7 @@ src="https://www.facebook.com/tr?id=1683649462959481&ev=PageView&noscript=1"
         justify-content:flex-start;
       }
       .logo-img{
-        width:115px; /* Увеличено с 105px */
+        width:115px;
         height:115px;
       }
       header .btn.green {
@@ -306,8 +304,7 @@ src="https://www.facebook.com/tr?id=1683649462959481&ev=PageView&noscript=1"
         line-height:1.08;
       }
 
-      /* Хедер на самых узких экранах: Лого стало КРУПНЕЕ (100px) */
-      .logo-img { width: 100px; height: 100px; } /* Увеличено с 90px */
+      .logo-img { width: 100px; height: 100px; }
       header .btn.green { font-size: 13px; padding: 10px 14px; gap: 6px; }
 
       .hero{
