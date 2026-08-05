@@ -286,6 +286,17 @@
       letter-spacing:-.065em;
       text-wrap:balance;
     }
+    .hero-line{display:inline}
+    .more-cases-arrow{
+      display:inline-block;
+      width:.72em;
+      height:.72em;
+      margin-left:.18em;
+      vertical-align:-.06em;
+      stroke:currentColor;
+      fill:none;
+      color:#8a8f97;
+    }
     .hero p{
       max-width:760px;
       margin:0 auto 36px;
@@ -364,6 +375,7 @@
       color:#171717;
     }
     .more-cases span{color:#8a8f97;font-weight:500}
+    .more-cases .more-cases-arrow{color:#8a8f97}
     .case-link{display:flex;height:100%;border-radius:28px;outline:none}
     .case-card{
       background:var(--dark);
@@ -701,9 +713,19 @@
       .case-growth{min-width:0;width:220px}
       .reviews{grid-template-columns:1fr}
       .case-overlay{width:46%}
-      .nav{gap:12px}
-      .nav-actions{gap:8px}
-      .lang-switch{padding:3px}
+      .nav{
+        display:grid;
+        grid-template-columns:auto minmax(0,1fr) auto;
+        align-items:center;
+        gap:10px;
+      }
+      .nav-actions{display:contents}
+      .lang-switch{
+        grid-column:2;
+        justify-self:center;
+        padding:3px;
+      }
+      .nav-actions .btn{grid-column:3;justify-self:end}
       .lang-switch__item{min-width:30px;min-height:30px;padding:0 8px;font-size:10px}
     }
 
@@ -1031,6 +1053,16 @@
 
     @media (max-width: 700px){
       :root{--radius:24px}
+      html{
+        scroll-behavior:auto;
+        overflow-x:clip;
+        overscroll-behavior-y:none;
+      }
+      body{
+        overflow-x:clip;
+        overscroll-behavior-y:none;
+        -webkit-overflow-scrolling:touch;
+      }
       .container{width:min(100% - 24px,560px)}
       .ambient-shape.three,
       .ambient-shape.four,
@@ -1043,7 +1075,6 @@
       .ambient-shape.one,.ambient-shape.two{display:none}
       .scene-3d{display:none}
       .analytics-float{display:none!important}
-      .contact-plate{animation:none!important}
       .fit-copy,.fit-list,.diagnostic,.review-img,.lang-switch,header{
         backdrop-filter:none!important;
         -webkit-backdrop-filter:none!important;
@@ -1055,13 +1086,29 @@
       .case-link:hover .case-card,.case-link:focus-visible .case-card{transform:none}
       .review-img:hover{transform:none}
 
-      .nav{min-height:68px}
+      .nav{min-height:68px;gap:8px}
       .logo-img{width:84px;height:48px}
       header .btn{min-height:42px;padding:0 13px;font-size:11px;letter-spacing:-.01em}
 
       .hero{padding:54px 0 46px}
       .eyebrow{font-size:9px;padding:8px 11px;margin-bottom:20px;letter-spacing:.07em}
-      .hero h1{font-size:clamp(39px,12vw,54px);line-height:.95;letter-spacing:-.058em;margin-bottom:20px}
+      .hero h1{
+        max-width:100%;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        gap:.12em;
+        font-size:clamp(28px,7.6vw,38px);
+        line-height:1.08;
+        letter-spacing:-.045em;
+        margin-bottom:18px;
+        text-wrap:pretty;
+      }
+      .hero-line{
+        display:block;
+        width:100%;
+        text-align:center;
+      }
       .hero p{font-size:16px;line-height:1.55;margin-bottom:28px}
       .hero-actions{display:grid;grid-template-columns:1fr;gap:10px}
       .hero-actions .btn{width:100%;min-height:52px}
@@ -1078,9 +1125,17 @@
 
       .cases{grid-template-columns:1fr;gap:14px;max-width:520px}
       .case-link{border-radius:22px}
-      .case-card{padding:15px;border-radius:22px}
+      .case-card{padding:15px 15px 58px;border-radius:22px}
       .case-link:hover .case-card,.case-link:focus-visible .case-card{transform:translateY(-4px)}
-      .case-card::after{opacity:1;transform:none;right:13px;bottom:13px;padding:9px 12px;font-size:10px;background:rgba(185,239,28,.94)}
+      .case-card::after{
+        opacity:1;
+        transform:none;
+        right:13px;
+        bottom:12px;
+        padding:9px 12px;
+        font-size:10px;
+        background:rgba(185,239,28,.94);
+      }
       .case-top{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:start;gap:10px;margin-bottom:13px;min-height:0}
       .case-label{font-size:9px}
       .case-title{font-size:27px;margin-top:6px}
@@ -1123,9 +1178,30 @@
       .diagnostic-box li+li{margin-top:7px}
       .diagnostic-box .btn{width:100%;margin-top:22px;min-height:52px;padding:0 16px}
 
-      .reviews{grid-template-columns:1fr;gap:12px}
-      .review-img,.review-img:last-child{grid-column:auto;max-width:none;padding:8px;border-radius:20px}
+      .reviews{
+        grid-template-columns:1fr;
+        gap:28px;
+        padding-bottom:36px;
+        overflow:visible;
+      }
+      .review-img,.review-img:last-child{
+        grid-column:auto;
+        max-width:none;
+        padding:8px 8px 28px;
+        border-radius:20px;
+        overflow:visible;
+      }
       .review-img img{border-radius:15px}
+      .contact-plate{
+        left:14px;
+        bottom:6px;
+        padding:8px 12px 8px 8px;
+        gap:8px;
+        border-radius:14px;
+        animation:contact-drift-mobile 7.2s ease-in-out infinite;
+      }
+      .review-img:nth-child(2) .contact-plate{animation-delay:-2.6s;animation-duration:8.4s}
+      .review-img:nth-child(3) .contact-plate{animation-delay:-4.3s;animation-duration:7.8s}
 
       .final-cta{padding:70px 0 54px}
       .cta-box{padding:44px 20px;border-radius:25px}
@@ -1137,22 +1213,42 @@
       .foot{gap:15px;align-items:stretch;text-align:center}
       .foot>div{width:100%}
       .support-btn{width:100%;justify-content:center;min-height:46px}
-      .contact-plate{left:14px;bottom:-14px;padding:8px 12px 8px 8px;gap:8px;border-radius:14px}
       .contact-avatar{width:34px;height:34px}
       .contact-name{font-size:12px}
       .contact-role{font-size:10px}
+
+      @keyframes contact-drift-mobile{
+        0%,100%{transform:translate3d(0,0,0)}
+        50%{transform:translate3d(0,2px,0)}
+      }
+      @keyframes live-nudge{
+        0%,100%{transform:translate3d(0,0,0)}
+        50%{transform:translate3d(0,-2px,0)}
+      }
+      @keyframes live-nudge-x{
+        0%,100%{transform:translate3d(0,0,0)}
+        50%{transform:translate3d(2px,0,0)}
+      }
+      @media (prefers-reduced-motion:no-preference){
+        .eyebrow{animation:live-nudge 5.8s ease-in-out infinite}
+        .hero-tag{animation:live-nudge 6.4s ease-in-out infinite}
+        .case-growth{animation:live-nudge 7s ease-in-out infinite}
+        .more-cases-arrow{animation:live-nudge-x 4.8s ease-in-out infinite}
+        .cta-box .btn{animation:live-nudge 6.8s ease-in-out infinite}
+      }
     }
 
     @media (max-width: 390px){
       .container{width:calc(100% - 18px)}
       .logo-img{width:74px}
       header .btn{padding:0 10px;font-size:10px}
-      .hero h1{font-size:38px}
+      .hero h1{font-size:clamp(24px,7.2vw,32px);letter-spacing:-.04em}
       .case-title{font-size:24px}
       .case-growth{min-width:82px;padding:9px 10px}
       .case-growth strong{font-size:27px}
       .metric{padding:10px}
       .metric strong{font-size:22px}
+      .case-card{padding-bottom:54px}
       .case-card::after{font-size:9px;padding:8px 10px}
     }
 
@@ -1164,7 +1260,7 @@
     }
 
     @media(prefers-reduced-motion:reduce){
-      .contact-plate{animation:none!important}
+      .contact-plate,.eyebrow,.hero-tag,.case-growth,.more-cases-arrow,.cta-box .btn{animation:none!important}
     }
 
   </style>
@@ -1220,7 +1316,7 @@
       </div>
       <div class="container">
         <div class="eyebrow">Growth system for European e-commerce</div>
-        <h1>Werbung, die wirkt. Umsatz, der wächst.</h1>
+        <h1><span class="hero-line">Werbung, die wirkt.</span> <span class="hero-line">Umsatz, der wächst.</span></h1>
         <p>Wir bauen Wachstumssysteme für E-Commerce-Unternehmen in Europa: Angebot, Creatives, Funnel, Analytics und Skalierung.</p>
 
         <div class="hero-actions">
@@ -1318,7 +1414,7 @@
           </a>
         </div>
 
-        <div class="more-cases reveal">Und viele mehr <span>↗</span></div>
+        <div class="more-cases reveal">Und viele mehr<svg class="more-cases-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </div>
     </section>
 
@@ -1527,11 +1623,12 @@
             if (entry.isIntersecting) {
               loadVideo(video);
               if (!reduced) playSafe(video);
-            } else if (!video.paused) {
+            } else if (!lite && !video.paused) {
+              // Avoid play/pause thrash on mobile rubber-band scroll
               video.pause();
             }
           });
-        }, { rootMargin: '200px 0px', threshold: 0.15 });
+        }, { rootMargin: lite ? '120px 0px' : '200px 0px', threshold: lite ? 0.01 : 0.15 });
         videos.forEach(v => vio.observe(v));
       } else {
         videos.forEach((video) => {
