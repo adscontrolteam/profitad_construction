@@ -47,7 +47,7 @@
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth;overflow-x:hidden}
+    html{scroll-behavior:auto;overflow-x:hidden;scroll-padding-top:92px}
     body{
       font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       background:
@@ -1055,6 +1055,7 @@
       html{
         scroll-behavior:auto;
         overflow-x:clip;
+        scroll-padding-top:72px;
       }
       body{
         overflow-x:clip;
@@ -1619,6 +1620,44 @@
       } else {
         revealItems.forEach(el => el.classList.add('is-visible'));
       }
+
+      const getHeaderOffset = () => {
+        const header = document.querySelector('header');
+        return header ? Math.ceil(header.getBoundingClientRect().height) + 8 : 80;
+      };
+
+      const easeInOutCubic = (t) => (t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+
+      const smoothScrollTo = (targetY, duration = 900) => {
+        const startY = window.pageYOffset || document.documentElement.scrollTop;
+        const delta = targetY - startY;
+        if (Math.abs(delta) < 2) return;
+        const start = performance.now();
+        const step = (now) => {
+          const t = Math.min(1, (now - start) / duration);
+          window.scrollTo(0, startY + delta * easeInOutCubic(t));
+          if (t < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      };
+
+      document.addEventListener('click', (e) => {
+        const link = e.target.closest('a[href^="#"]');
+        if (!link) return;
+        const hash = link.getAttribute('href');
+        if (!hash || hash === '#') return;
+        const id = hash.slice(1);
+        const target = document.getElementById(id) || document.querySelector(hash);
+        if (!target) return;
+        e.preventDefault();
+        const top = target.getBoundingClientRect().top + (window.pageYOffset || document.documentElement.scrollTop) - getHeaderOffset();
+        if (reduced) {
+          window.scrollTo(0, top);
+        } else {
+          smoothScrollTo(Math.max(0, top), 920);
+        }
+        if (history.pushState) history.pushState(null, '', hash);
+      });
 
       const pickVideoSrc = (video) => {
         const mobileSrc = video.dataset.srcMobile;
