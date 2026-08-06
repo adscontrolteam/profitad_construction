@@ -136,6 +136,7 @@ TRANSLATIONS = {
         "footer_case": "Case: E-commerce / Pools / Germany",
         "close": "Close",
         "mln_label": "€60k → €1M",
+        "aov_label": "€4.5k → €6.3k",
     },
     "de": {
         "lang": "de",
@@ -243,6 +244,7 @@ TRANSLATIONS = {
         "footer_case": "Case: E-Commerce / Pools / Germany",
         "close": "Schließen",
         "mln_label": "€60k → €1 Mio.",
+        "aov_label": "€4,5k → €6,3k",
     },
     "pl": {
         "lang": "pl",
@@ -350,6 +352,7 @@ TRANSLATIONS = {
         "footer_case": "Case: E-commerce / Pools / Germany",
         "close": "Zamknij",
         "mln_label": "€60k → €1 mln",
+        "aov_label": "€4,5k → €6,3k",
     },
 }
 
@@ -397,6 +400,7 @@ def translate(html: str, t: dict) -> str:
             t["spoiler_p"],
         ),
         (">€60к → €1 млн<", f'>{t["mln_label"]}<'),
+        (">€4,5к → €6,3к<", f'>{t["aov_label"]}<'),
         (">выручка за период<", f'>{t["stat1"]}<'),
         (">продажи<", f'>{t["stat2"]}<'),
         (">средний чек<", f'>{t["stat3"]}<'),
@@ -412,13 +416,13 @@ def translate(html: str, t: dict) -> str:
         ),
         (">🚩 Точка А — до PROFITAD<", f'>{t["flag_a"]}<'),
         (">🏆 Точка Б — с PROFITAD<", f'>{t["flag_b"]}<'),
-        (">Каналы<", f'>{t["dt_channels"]}<'),
-        (">Реклама<", f'>{t["dt_ads"]}<'),
-        (">Услуги<", f'>{t["dt_services"]}<'),
-        (">Продажи<", f'>{t["dt_sales"]}<'),
-        (">Средний чек<", f'>{t["dt_aov"]}<'),
-        (">Выручка<", f'>{t["dt_revenue"]}<'),
-        (">ROMI<", f'>{t["dt_romi"]}<'),
+        (">Каналы<", f'>{t["dt_channels"]}<', True),
+        (">Реклама<", f'>{t["dt_ads"]}<', True),
+        (">Услуги<", f'>{t["dt_services"]}<', True),
+        (">Продажи<", f'>{t["dt_sales"]}<', True),
+        (">Средний чек<", f'>{t["dt_aov"]}<', True),
+        (">Выручка<", f'>{t["dt_revenue"]}<', True),
+        (">ROMI<", f'>{t["dt_romi"]}<', True),
         (">Модель работы<", f'>{t["dt_model"]}<'),
         (">$1 800 / месяц<", f'>$1 800 {t["dd_month"].strip()}<'),
         (">$500 / месяц<", f'>$500 {t["dd_month"].strip()}<'),
@@ -582,8 +586,15 @@ def translate(html: str, t: dict) -> str:
         ('aria-label="Закрыть"', f'aria-label="{t["close"]}"'),
     ]
 
-    for old, new in pairs:
-        html = replace_once(html, old, new)
+    for item in pairs:
+        if len(item) == 3:
+            old, new, replace_all = item
+            if old not in html:
+                continue
+            html = html.replace(old, new) if replace_all else html.replace(old, new, 1)
+        else:
+            old, new = item
+            html = replace_once(html, old, new)
 
     for old, new in ASSET_FIXES:
         html = html.replace(old, new)
