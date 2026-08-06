@@ -375,7 +375,7 @@ def replace_once(html: str, old: str, new: str, required: bool = True) -> str:
     return html.replace(old, new, 1)
 
 
-def translate(html: str, t: dict) -> str:
+def translate(html: str, t: dict, code: str) -> str:
     html = html.replace('<html lang="ru">', f'<html lang="{t["lang"]}">', 1)
     html = replace_once(
         html,
@@ -568,13 +568,15 @@ def translate(html: str, t: dict) -> str:
         html = html.replace(old, new)
 
     html = apply_common_path_fixes(html)
+    html = html.replace('href="../case-pools/"', f'href="../case-pools/{code}/"')
+    html = html.replace('href="../case-pools.html"', f'href="../case-pools/{code}/"')
     return html
 
 
 def main():
     source = SRC.read_text(encoding="utf-8")
     for code, t in TRANSLATIONS.items():
-        out = translate(source, t)
+        out = translate(source, t, code)
         dest = ROOT / code / "index.html"
         dest.write_text(out, encoding="utf-8")
         print(f"Wrote {dest.relative_to(ROOT)}")
