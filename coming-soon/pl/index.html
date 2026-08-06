@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#f4f4f1" />
+  <title>PROFITAD — Coming soon...</title>
+  <meta name="description" content="Ten case jest jeszcze w przygotowaniu. Pełny opis wkrótce opublikujemy." />
+  <style>
+    :root{
+      --ink:#101112;
+      --muted:#70747b;
+      --line:rgba(16,17,18,.10);
+      --dark:#0a0a0b;
+      --lime:#c9ff2f;
+      --bg:#f4f4f1;
+    }
+    *{box-sizing:border-box}
+    html{overflow-x:clip}
+    body{
+      margin:0;
+      min-height:100vh;
+      min-height:100dvh;
+      overflow-x:clip;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 12% 18%,rgba(255,255,255,.95),transparent 34%),
+        radial-gradient(circle at 88% 12%,rgba(213,217,223,.55),transparent 36%),
+        linear-gradient(180deg,#f8f8f6 0%,#f1f1ee 100%);
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      -webkit-text-size-adjust:100%;
+      text-size-adjust:100%;
+    }
+    a{color:inherit;text-decoration:none}
+    .container{
+      width:min(1160px,calc(100% - 40px));
+      max-width:100%;
+      margin:0 auto;
+      padding-left:env(safe-area-inset-left);
+      padding-right:env(safe-area-inset-right);
+    }
+    header{
+      position:sticky;top:0;z-index:50;
+      border-bottom:1px solid rgba(16,17,18,.07);
+      background:rgba(244,244,241,.96);
+      backdrop-filter:saturate(1.1) blur(10px);
+      -webkit-backdrop-filter:saturate(1.1) blur(10px);
+      padding-top:env(safe-area-inset-top);
+    }
+    .nav{
+      min-height:78px;padding:14px 0;
+      display:flex;align-items:center;justify-content:space-between;gap:16px;
+    }
+    .brand{
+      font:800 21px/1 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      letter-spacing:-.04em;
+    }
+    .brand span{
+      display:inline-block;width:8px;height:8px;margin-left:5px;border-radius:50%;
+      background:var(--lime);box-shadow:0 0 0 5px rgba(201,255,47,.18);
+    }
+    .back-link{
+      display:inline-flex;align-items:center;gap:8px;color:#3f4349;
+      font-size:14px;font-weight:650;white-space:nowrap;
+      max-width:min(52vw,280px);overflow:hidden;text-overflow:ellipsis;
+      transition:color .15s ease,transform .15s ease;
+    }
+    .back-link:hover{color:#000;transform:translateX(-2px)}
+
+    main{
+      position:relative;
+      min-height:calc(100dvh - 78px);
+      display:grid;place-items:center;
+      padding:48px 0 calc(64px + env(safe-area-inset-bottom));
+      isolation:isolate;overflow:clip;
+    }
+    .orb{
+      position:absolute;pointer-events:none;z-index:-1;border-radius:50%;
+      width:min(42vw,280px);height:min(42vw,280px);
+      right:-8%;top:12%;
+      background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.95),rgba(213,217,223,.45) 48%,rgba(180,185,192,.12) 72%);
+      border:1px solid rgba(255,255,255,.85);
+      box-shadow:0 24px 55px rgba(28,31,37,.08);
+    }
+    .orb-b{
+      left:-10%;bottom:8%;right:auto;top:auto;
+      width:min(36vw,220px);height:min(36vw,220px);opacity:.7;
+    }
+
+    .panel{
+      width:min(640px,100%);
+      text-align:center;
+      padding:42px 28px;
+      border-radius:30px;
+      border:1px solid rgba(255,255,255,.92);
+      background:rgba(255,255,255,.86);
+      box-shadow:0 18px 48px rgba(20,23,29,.08);
+    }
+
+    .loader{
+      --size:88px;
+      width:var(--size);height:var(--size);
+      margin:0 auto 28px;
+      position:relative;
+    }
+    .loader-ring,.loader-ring-soft,.loader-core{
+      position:absolute;inset:0;border-radius:50%;
+    }
+    .loader-ring-soft{
+      border:1.5px solid rgba(16,17,18,.08);
+    }
+    .loader-ring{
+      border:2.5px solid transparent;
+      border-top-color:var(--dark);
+      border-right-color:var(--lime);
+      animation:spin 1.05s cubic-bezier(.55,.1,.35,.95) infinite;
+    }
+    .loader-core{
+      inset:22%;
+      background:
+        radial-gradient(circle at 35% 30%,#fff,rgba(255,255,255,.55) 55%,rgba(201,255,47,.35));
+      border:1px solid rgba(255,255,255,.95);
+      box-shadow:0 10px 24px rgba(20,23,29,.08), inset 0 0 0 1px rgba(16,17,18,.04);
+      animation:pulse 1.6s ease-in-out infinite;
+    }
+    .loader-dot{
+      position:absolute;width:9px;height:9px;border-radius:50%;
+      background:var(--lime);
+      box-shadow:0 0 0 5px rgba(201,255,47,.18);
+      top:50%;left:50%;
+      transform:translate(-50%,-50%);
+      animation:blink 1.6s ease-in-out infinite;
+    }
+
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:8px;
+      margin:0 0 16px;padding:8px 12px;border-radius:999px;
+      border:1px solid rgba(16,17,18,.09);background:rgba(255,255,255,.72);
+      color:#4f5359;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    }
+    .eyebrow i{
+      width:7px;height:7px;border-radius:50%;background:var(--lime);
+      box-shadow:0 0 0 5px rgba(201,255,47,.18);
+      animation:blink 1.6s ease-in-out infinite;
+    }
+    h1{
+      margin:0;
+      font:700 clamp(36px,7vw,56px)/.98 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      letter-spacing:-.06em;
+    }
+    .sub{
+      margin:16px auto 0;max-width:34ch;
+      color:var(--muted);font-size:clamp(16px,2.4vw,19px);line-height:1.55;
+    }
+    .actions{margin-top:28px;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      min-height:48px;padding:12px 20px;border-radius:999px;
+      background:var(--dark);color:#fff;font-weight:700;font-size:14px;
+      box-shadow:0 14px 30px rgba(10,10,11,.18);
+      transition:transform .15s ease,box-shadow .15s ease;
+    }
+    .btn:hover{transform:translateY(-2px);box-shadow:0 18px 36px rgba(10,10,11,.22)}
+    .btn-ghost{
+      background:rgba(255,255,255,.7);color:var(--ink);
+      border:1px solid var(--line);box-shadow:none;
+    }
+    .btn-ghost:hover{box-shadow:0 10px 22px rgba(20,23,29,.06)}
+
+    @keyframes spin{to{transform:rotate(360deg)}}
+    @keyframes pulse{
+      0%,100%{transform:scale(.96);opacity:.88}
+      50%{transform:scale(1);opacity:1}
+    }
+    @keyframes blink{
+      0%,100%{opacity:.45}
+      50%{opacity:1}
+    }
+
+    @media(max-width:720px){
+      .container{width:min(100% - 28px,1160px)}
+      .nav{min-height:64px;padding:12px 0}
+      .brand{font-size:18px}
+      .back-link{font-size:12px}
+      main{padding:36px 0 52px}
+      .panel{padding:32px 20px;border-radius:24px}
+      .loader{--size:76px;margin-bottom:22px}
+      .orb{opacity:.35}
+    }
+    @media(max-width:380px){
+      .container{width:min(100% - 20px,1160px)}
+      .panel{padding:28px 16px;border-radius:20px}
+      h1{font-size:clamp(30px,9vw,40px)}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .loader-ring,.loader-core,.loader-dot,.eyebrow i{animation:none}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="../../pl/" aria-label="PROFITAD — wróć na stronę główną">PROFITAD<span></span></a>
+      <a class="back-link" href="../../pl/">← Strona główna</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="orb" aria-hidden="true"></div>
+    <div class="orb orb-b" aria-hidden="true"></div>
+    <div class="container">
+      <section class="panel" aria-labelledby="page-title">
+        <div class="loader" aria-hidden="true">
+          <span class="loader-ring-soft"></span>
+          <span class="loader-ring"></span>
+          <span class="loader-core"></span>
+          <span class="loader-dot"></span>
+        </div>
+        <div class="eyebrow"><i></i> Case w przygotowaniu</div>
+        <h1 id="page-title">Coming soon...</h1>
+        <p class="sub">Jeszcze nie przygotowaliśmy tego case'u</p>
+        <div class="actions">
+          <a class="btn" href="../../pl/#cases">Zobacz inne case'y</a>
+          <a class="btn btn-ghost" href="../../diagnostic/pl/">Zostaw zgłoszenie</a>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

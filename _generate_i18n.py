@@ -29,13 +29,9 @@ ASSET_FIXES = [
     ('href="diagnostic/"', 'href="../diagnostic/"'),
     ('href="diagnostic-form.html"', 'href="../diagnostic-form.html"'),
     ('href="team.html"', 'href="../team.html"'),
-    ('href="case-luxury-brand.html"', 'href="../case-luxury-brand.html"'),
-    ('href="case-saunas.html"', 'href="../case-saunas.html"'),
+    ('href="coming-soon/"', 'href="../coming-soon/"'),
     ('href="case-pools/"', 'href="../case-pools/"'),
     ('href="case-pools.html"', 'href="../case-pools/"'),
-    ('href="case-terraces.html"', 'href="../case-terraces.html"'),
-    ('href="case-home-living.html"', 'href="../case-home-living.html"'),
-    ('href="case-windows-b2b.html"', 'href="../case-windows-b2b.html"'),
     ('poster="logo.png"', 'poster="../logo.png"'),
 ]
 
@@ -580,6 +576,7 @@ def translate(html: str, t: dict, code: str) -> str:
     html = html.replace('href="../case-pools/"', f'href="../case-pools/{code}/"')
     html = html.replace('href="../case-pools.html"', f'href="../case-pools/{code}/"')
     html = html.replace('href="../diagnostic/"', f'href="../diagnostic/{code}/"')
+    html = html.replace('href="../coming-soon/"', f'href="../coming-soon/{code}/"')
     return html
 
 
