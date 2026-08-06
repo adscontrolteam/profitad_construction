@@ -26,7 +26,7 @@ ASSET_FIXES = [
     ('src="image(5).png"', 'src="../image(5).png"'),
     ('src="image.png"', 'src="../image.png"'),
     ('src="image(1).png"', 'src="../image(1).png"'),
-    ('href="diagnostic-form-profitad-new-style.html"', 'href="../diagnostic-form-profitad-new-style.html"'),
+    ('href="diagnostic/"', 'href="../diagnostic/"'),
     ('href="diagnostic-form.html"', 'href="../diagnostic-form.html"'),
     ('href="team.html"', 'href="../team.html"'),
     ('href="case-luxury-brand.html"', 'href="../case-luxury-brand.html"'),
@@ -579,6 +579,7 @@ def translate(html: str, t: dict, code: str) -> str:
     html = apply_common_path_fixes(html)
     html = html.replace('href="../case-pools/"', f'href="../case-pools/{code}/"')
     html = html.replace('href="../case-pools.html"', f'href="../case-pools/{code}/"')
+    html = html.replace('href="../diagnostic/"', f'href="../diagnostic/{code}/"')
     return html
 
 

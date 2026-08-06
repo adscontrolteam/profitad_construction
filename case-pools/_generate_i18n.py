@@ -19,7 +19,6 @@ ASSET_FIXES = [
     ('data-lightbox-src="google-ads-statics.webp"', 'data-lightbox-src="../google-ads-statics.webp"'),
     ('data-lightbox-src="ai-funnel.gif"', 'data-lightbox-src="../ai-funnel.gif"'),
     ('<a class="brand" href="../"', '<a class="brand" href="../../"'),
-    ('href="../diagnostic-form-profitad-new-style.html"', 'href="../../diagnostic-form-profitad-new-style.html"'),
 ]
 
 RU_LANG = """        <nav class="lang-switch" aria-label="Language">
@@ -363,7 +362,7 @@ def replace_once(html: str, old: str, new: str) -> str:
     return html.replace(old, new, 1)
 
 
-def translate(html: str, t: dict) -> str:
+def translate(html: str, t: dict, code: str) -> str:
     html = html.replace('lang="ru"', f'lang="{t["lang"]}"', 1)
     html = replace_once(
         html,
@@ -599,6 +598,7 @@ def translate(html: str, t: dict) -> str:
     for old, new in ASSET_FIXES:
         html = html.replace(old, new)
 
+    html = html.replace('href="../diagnostic/"', f'href="../../diagnostic/{code}/"')
     return html
 
 
@@ -607,7 +607,7 @@ def main():
     for code, t in TRANSLATIONS.items():
         dest_dir = ROOT / code
         dest_dir.mkdir(parents=True, exist_ok=True)
-        out = translate(source, t)
+        out = translate(source, t, code)
         dest = dest_dir / "index.html"
         dest.write_text(out, encoding="utf-8")
         print(f"Wrote {dest.relative_to(ROOT.parent)}")
