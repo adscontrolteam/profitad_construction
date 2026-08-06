@@ -178,7 +178,7 @@
     }
     @media(prefers-reduced-motion:reduce){
       .ambient-shape,.ambient-ring,.ambient-glow{animation:none!important}
-      .case-card,.case-media img,.case-card::after{transition:none!important}
+      .case-card,.case-media img,.case-cta{transition:none!important}
       .case-link:hover .case-card,.case-link:focus-visible .case-card{transform:none}
     }
 
@@ -397,21 +397,33 @@
       border-color:rgba(185,239,28,.34);
     }
     .case-link:focus-visible{box-shadow:0 0 0 4px rgba(185,239,28,.28)}
-    .case-card::after{
-      content:"Смотреть кейс ↗";
-      position:absolute;right:18px;bottom:18px;z-index:8;
-      padding:11px 15px;border-radius:999px;
-      background:rgba(185,239,28,.96);color:#0a0c05;
-      font-size:12px;font-weight:850;letter-spacing:.01em;
-      opacity:0;transform:translateY(10px);
-      transition:opacity .3s ease,transform .3s ease;
-      box-shadow:0 10px 30px rgba(0,0,0,.22);
-      pointer-events:none;
+    .case-cta{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      align-self:flex-end;
+      margin-top:12px;
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(185,239,28,.96);
+      color:#0a0c05;
+      font-size:12px;
+      font-weight:850;
+      letter-spacing:.01em;
+      box-shadow:0 10px 28px rgba(0,0,0,.18);
+      transition:transform .3s ease,box-shadow .3s ease,background .3s ease;
+      white-space:nowrap;
+      max-width:100%;
     }
-    html[lang="en"] .case-card::after{content:"View case ↗"}
-    html[lang="de"] .case-card::after{content:"Case ansehen ↗"}
-    html[lang="pl"] .case-card::after{content:"Zobacz case ↗"}
-    .case-link:hover .case-card::after,.case-link:focus-visible .case-card::after{opacity:1;transform:translateY(0)}
+    .case-cta::before{content:"Смотреть кейс ↗"}
+    html[lang="en"] .case-cta::before{content:"View case ↗"}
+    html[lang="de"] .case-cta::before{content:"Case ansehen ↗"}
+    html[lang="pl"] .case-cta::before{content:"Zobacz case ↗"}
+    .case-link:hover .case-cta,.case-link:focus-visible .case-cta{
+      transform:translateY(-2px);
+      box-shadow:0 14px 32px rgba(0,0,0,.24);
+      background:#c8f73a;
+    }
     .case-top{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;margin-bottom:20px;min-height:132px}
     .case-label{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#858585}
     .case-title{font-family:Manrope,Inter,sans-serif;font-size:clamp(25px,3.2vw,40px);line-height:1.05;letter-spacing:-.045em;font-weight:600;margin-top:9px;min-height:calc(2 * 1.05em)}
@@ -454,10 +466,17 @@
     }
     .case-overlay video{width:100%;aspect-ratio:16/9;object-fit:cover}
 
-    .case-numbers{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:auto;padding-top:12px;align-items:stretch}
+    .case-numbers{
+      display:grid;
+      grid-template-columns:minmax(0,.92fr) minmax(0,1.14fr);
+      gap:10px;
+      margin-top:auto;
+      padding-top:12px;
+      align-items:stretch;
+    }
     .metric{
-      background:#1d1d1d;
-      border:1px solid rgba(255,255,255,.04);
+      background:#1a1a1a;
+      border:1px solid rgba(255,255,255,.05);
       border-radius:16px;
       padding:14px 15px 17px;
       display:flex;
@@ -466,6 +485,18 @@
       justify-content:flex-start;
       min-height:100%;
       min-width:0;
+      transition:border-color .3s ease,background .3s ease,box-shadow .3s ease;
+    }
+    .metric-a{
+      color:#d5d5d5;
+      background:#171717;
+      border-color:rgba(255,255,255,.04);
+    }
+    .metric-b{
+      background:linear-gradient(165deg,#232820 0%,#1b1d18 55%,#1a1a1a 100%);
+      border:1px solid rgba(185,239,28,.42);
+      box-shadow:0 10px 28px rgba(0,0,0,.18), inset 0 1px 0 rgba(185,239,28,.12);
+      padding:16px 16px 18px;
     }
     .metric-head{
       display:flex;
@@ -487,6 +518,17 @@
       min-height:0;
       height:auto;
     }
+    .metric-a .metric-head{
+      color:#8f949b;
+      border-bottom-color:rgba(255,255,255,.1);
+      font-weight:650;
+    }
+    .metric-b .metric-head{
+      color:var(--acid);
+      border-bottom-color:rgba(185,239,28,.55);
+      font-weight:850;
+      font-size:clamp(9.5px,1.1vw,12px);
+    }
     .metric-head span{
       white-space:nowrap;
       overflow:hidden;
@@ -506,6 +548,22 @@
       color:#fff;
       font-weight:600;
       align-self:flex-start;
+      overflow-wrap:anywhere;
+      word-break:break-word;
+      max-width:100%;
+    }
+    .metric-a strong{
+      font-size:clamp(22px,2.35vw,32px);
+      font-weight:500;
+      color:#c4c7cc;
+      margin-top:14px;
+    }
+    .metric-b strong{
+      font-size:clamp(28px,3.05vw,44px);
+      font-weight:750;
+      color:#fff;
+      margin-top:15px;
+      text-shadow:0 0 24px rgba(185,239,28,.12);
     }
     .metric small{
       display:block;
@@ -514,7 +572,11 @@
       margin-top:8px;
       line-height:1.35;
       align-self:flex-start;
+      overflow-wrap:anywhere;
+      max-width:100%;
     }
+    .metric-a small{color:#6f747c;font-weight:500}
+    .metric-b small{color:#c5d39a;font-weight:650;font-size:13.5px}
 
 
     @media(min-width:901px){
@@ -1038,9 +1100,13 @@
       .case-media{aspect-ratio:16/10;min-height:0;border-radius:16px}
       .case-overlay{left:12px;bottom:12px;width:54%;border-radius:14px}
       .metric{padding:13px 13px 15px;border-radius:14px}
+      .metric-b{padding:14px 14px 16px}
       .metric-head{font-size:clamp(8px,1.2vw,11px);padding-bottom:12px;height:auto}
-      .metric strong{font-size:29px;margin-top:14px}
+      .metric-a strong{font-size:24px;margin-top:12px}
+      .metric-b strong{font-size:31px;margin-top:13px}
       .metric small{font-size:11px;line-height:1.35}
+      .metric-b small{font-size:11.5px}
+      .case-cta{margin-top:11px;padding:9px 12px;font-size:11px}
 
       .fit-copy,.fit-list{padding:34px;border-radius:28px}
       .diagnostic{border-radius:32px}
@@ -1174,16 +1240,15 @@
 
       .cases{grid-template-columns:1fr;gap:14px;max-width:520px}
       .case-link{border-radius:22px}
-      .case-card{padding:15px 15px 58px;border-radius:22px}
+      .case-card{padding:15px;border-radius:22px}
       .case-link:hover .case-card,.case-link:focus-visible .case-card{transform:translateY(-4px)}
-      .case-card::after{
-        opacity:1;
-        transform:none;
-        right:13px;
-        bottom:12px;
-        padding:9px 12px;
-        font-size:10px;
-        background:rgba(185,239,28,.94);
+      .case-cta{
+        align-self:stretch;
+        width:100%;
+        margin-top:10px;
+        padding:11px 12px;
+        font-size:11px;
+        justify-content:center;
       }
       .case-top{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:start;gap:10px;margin-bottom:13px;min-height:0}
       .case-label{font-size:9px}
@@ -1194,8 +1259,9 @@
       .case-growth strong{font-size:31px}
       .case-media{min-height:0;aspect-ratio:16/10;border-radius:14px}
       .case-overlay{width:50%;left:10px;bottom:10px;border-radius:11px}
-      .case-numbers{grid-template-columns:1fr 1fr;gap:8px;margin-top:auto;padding-top:9px}
+      .case-numbers{grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr);gap:8px;margin-top:auto;padding-top:9px}
       .metric{padding:12px;border-radius:13px;min-width:0}
+      .metric-b{padding:13px 12px 14px}
       .metric-head{
         display:flex;
         align-items:center;
@@ -1205,9 +1271,12 @@
         gap:4px;
         letter-spacing:.01em;
       }
+      .metric-b .metric-head{font-size:clamp(8px,2.5vw,9.5px)}
       .metric-head span:last-child{display:inline;color:inherit;margin-top:0}
-      .metric strong{font-size:clamp(23px,7vw,31px);overflow-wrap:anywhere;margin-top:12px}
+      .metric-a strong{font-size:clamp(18px,5.6vw,24px);overflow-wrap:anywhere;margin-top:10px}
+      .metric-b strong{font-size:clamp(22px,6.8vw,30px);overflow-wrap:anywhere;margin-top:11px}
       .metric small{font-size:9px;line-height:1.35;margin-top:6px}
+      .metric-b small{font-size:9.5px;line-height:1.35}
       .more-cases{margin-top:28px;font-size:27px}
 
       .fit-grid{gap:12px}
@@ -1276,14 +1345,15 @@
       .case-growth{min-width:82px;padding:9px 10px}
       .case-growth strong{font-size:27px}
       .metric{padding:10px}
-      .metric strong{font-size:22px}
-      .case-card{padding-bottom:54px}
-      .case-card::after{font-size:9px;padding:8px 10px}
+      .metric-b{padding:11px 10px 12px}
+      .metric-a strong{font-size:18px}
+      .metric-b strong{font-size:22px}
+      .case-cta{padding:10px 11px;font-size:10px}
     }
 
     @media (hover:none) and (pointer:coarse){
-      .case-card::after{opacity:1;transform:none}
       .case-link:active .case-card{transform:scale(.985);border-color:rgba(185,239,28,.4)}
+      .case-link:active .case-cta{background:#c8f73a}
       .btn:active{transform:scale(.985)}
       .review-img:hover{transform:none}
     }
@@ -1397,7 +1467,8 @@
             <article class="case-card">
               <div class="case-top"><div><div class="case-label">Case 01 / E-commerce</div><h3 class="case-title">Luxury Brand</h3><div class="case-market">10+ рынков Европы</div></div><div class="case-growth"><span>Выручка</span><strong>×6.3</strong></div></div>
               <div class="case-media case-dark"><img src="image(6).png" alt="Кейс Luxury Brand" loading="lazy" decoding="async"></div>
-              <div class="case-numbers"><div class="metric"><div class="metric-head"><span>Точка А</span><span>Доход в мес.</span></div><strong>$16 000</strong><small>До системной работы с воронкой</small></div><div class="metric"><div class="metric-head"><span>Точка Б</span><span>Доход в мес.</span></div><strong>$101 000</strong><small>После масштабирования</small></div></div>
+              <div class="case-numbers"><div class="metric metric-a"><div class="metric-head"><span>Точка А</span><span>Доход в мес.</span></div><strong>$16 000</strong><small>До системной работы с воронкой</small></div><div class="metric metric-b"><div class="metric-head"><span>Точка Б</span><span>Доход в мес.</span></div><strong>$101 000</strong><small>После масштабирования</small></div></div>
+              <span class="case-cta" aria-hidden="true"></span>
             </article>
           </a>
 
@@ -1405,7 +1476,8 @@
             <article class="case-card">
               <div class="case-top"><div><div class="case-label">Case 02 / Home & Living</div><h3 class="case-title">Бани и сауны</h3><div class="case-market">новое направление в Европе</div></div><div class="case-growth"><span>ROAS</span><strong>×20.8</strong></div></div>
               <div class="case-media"><img src="image(2).png" alt="Кейс Бани и сауны" loading="lazy" decoding="async"></div>
-              <div class="case-numbers"><div class="metric"><div class="metric-head"><span>Точка А</span><span>Выручка</span></div><strong>€0</strong><small>Новое направление без продаж</small></div><div class="metric"><div class="metric-head"><span>Точка Б</span><span>Выручка</span></div><strong>€25 000</strong><small>При вложении €1 200 в рекламу</small></div></div>
+              <div class="case-numbers"><div class="metric metric-a"><div class="metric-head"><span>Точка А</span><span>Выручка</span></div><strong>€0</strong><small>Новое направление без продаж</small></div><div class="metric metric-b"><div class="metric-head"><span>Точка Б</span><span>Выручка</span></div><strong>€25 000</strong><small>При вложении €1 200 в рекламу</small></div></div>
+              <span class="case-cta" aria-hidden="true"></span>
             </article>
           </a>
 
@@ -1413,7 +1485,8 @@
             <article class="case-card">
               <div class="case-top"><div><div class="case-label">Case 03 / Production</div><h3 class="case-title">Бассейны</h3><div class="case-market">Германия</div></div><div class="case-growth"><span>Выручка</span><strong>×17</strong></div></div>
               <div class="case-media case-dark"><img src="image(3).png" alt="Кейс Производство бассейнов" loading="lazy" decoding="async"></div>
-              <div class="case-numbers"><div class="metric"><div class="metric-head"><span>Точка А</span><span>Доход</span></div><strong>€58 000</strong><small></small></div><div class="metric"><div class="metric-head"><span>Точка Б</span><span>Доход</span></div><strong>Более €1MLN</strong><small></small></div></div>
+              <div class="case-numbers"><div class="metric metric-a"><div class="metric-head"><span>Точка А</span><span>Доход</span></div><strong>€58 000</strong><small></small></div><div class="metric metric-b"><div class="metric-head"><span>Точка Б</span><span>Доход</span></div><strong>Более €1MLN</strong><small></small></div></div>
+              <span class="case-cta" aria-hidden="true"></span>
             </article>
           </a>
 
@@ -1421,7 +1494,8 @@
             <article class="case-card">
               <div class="case-top"><div><div class="case-label">Case 04 / Construction</div><h3 class="case-title">Террасы и ремонты</h3><div class="case-market">строительные услуги в Европе</div></div><div class="case-growth"><span>Выручка</span><strong>€85K</strong></div></div>
               <div class="case-media"><img src="image(5).png" alt="Кейс Террасы и ремонты" loading="lazy" decoding="async"></div>
-              <div class="case-numbers"><div class="metric"><div class="metric-head"><span>Точка А</span><span>Выручка</span></div><strong>€0</strong><small>Без системного канала привлечения</small></div><div class="metric"><div class="metric-head"><span>Точка Б</span><span>Выручка</span></div><strong>€85 000</strong><small>При вложении €7 000 в рекламу</small></div></div>
+              <div class="case-numbers"><div class="metric metric-a"><div class="metric-head"><span>Точка А</span><span>Выручка</span></div><strong>€0</strong><small>Без системного канала привлечения</small></div><div class="metric metric-b"><div class="metric-head"><span>Точка Б</span><span>Выручка</span></div><strong>€85 000</strong><small>При вложении €7 000 в рекламу</small></div></div>
+              <span class="case-cta" aria-hidden="true"></span>
             </article>
           </a>
 
@@ -1429,7 +1503,8 @@
             <article class="case-card">
               <div class="case-top"><div><div class="case-label">Case 05 / Home & Living</div><h3 class="case-title">Мебель и интерьер</h3><div class="case-market">рост спроса через Meta и Google</div></div><div class="case-growth"><span>Система</span><strong>360°</strong></div></div>
               <div class="case-media case-dark"><img src="image.png" alt="Кейс Мебель и интерьер" loading="lazy" decoding="async"></div>
-              <div class="case-numbers"><div class="metric"><div class="metric-head"><span>Точка А</span><span>Маркетинг</span></div><strong>Фрагменты</strong><small>Разрозненные каналы и слабая аналитика</small></div><div class="metric"><div class="metric-head"><span>Точка Б</span><span>Маркетинг</span></div><strong>Система</strong><small>Оффер, креативы, воронка и аналитика</small></div></div>
+              <div class="case-numbers"><div class="metric metric-a"><div class="metric-head"><span>Точка А</span><span>Маркетинг</span></div><strong>Фрагменты</strong><small>Разрозненные каналы и слабая аналитика</small></div><div class="metric metric-b"><div class="metric-head"><span>Точка Б</span><span>Маркетинг</span></div><strong>Система</strong><small>Оффер, креативы, воронка и аналитика</small></div></div>
+              <span class="case-cta" aria-hidden="true"></span>
             </article>
           </a>
 
@@ -1437,7 +1512,8 @@
             <article class="case-card">
               <div class="case-top"><div><div class="case-label">Case 06 / B2B Leadgen</div><h3 class="case-title">European Windows</h3><div class="case-market">выход на рынок США</div></div><div class="case-growth"><span>Канал</span><strong>B2B</strong></div></div>
               <div class="case-media"><img src="image(1).png" alt="Кейс European Windows B2B" loading="lazy" decoding="async"></div>
-              <div class="case-numbers"><div class="metric"><div class="metric-head"><span>Точка А</span><span>Продажи</span></div><strong>Нет канала</strong><small>Без предсказуемого привлечения дилеров</small></div><div class="metric"><div class="metric-head"><span>Точка Б</span><span>Продажи</span></div><strong>Новая воронка</strong><small>Реклама, посадочная и квалификация лидов</small></div></div>
+              <div class="case-numbers"><div class="metric metric-a"><div class="metric-head"><span>Точка А</span><span>Продажи</span></div><strong>Нет канала</strong><small>Без предсказуемого привлечения дилеров</small></div><div class="metric metric-b"><div class="metric-head"><span>Точка Б</span><span>Продажи</span></div><strong>Новая воронка</strong><small>Реклама, посадочная и квалификация лидов</small></div></div>
+              <span class="case-cta" aria-hidden="true"></span>
             </article>
           </a>
         </div>
