@@ -54,9 +54,9 @@
       display:flex;align-items:center;justify-content:space-between;gap:20px;
     }
     .brand{
-      font-family:Manrope,sans-serif;font-weight:800;letter-spacing:-.05em;font-size:24px;
-      text-decoration:none;
+      display:inline-flex;align-items:center;text-decoration:none;flex:0 0 auto;
     }
+    .brand img{width:112px;height:72px;object-fit:contain;display:block}
     nav{display:flex;gap:24px;font-size:12px;font-weight:700;color:#676b72;flex-wrap:wrap}
     nav a{text-decoration:none;transition:.2s;white-space:nowrap}
     nav a:hover{color:#111;transform:translateY(-1px)}
@@ -160,10 +160,26 @@
     .media-frame video,.media-frame img.funnel-anim{
       width:100%;aspect-ratio:16/9;object-fit:cover;background:#0f1011;
     }
-    .media-caption{
-      margin-top:10px;font-size:12px;font-weight:700;letter-spacing:.04em;
-      text-transform:uppercase;color:#8a8f97;
+    .media-zoom{
+      display:block;width:100%;padding:0;border:0;background:transparent;cursor:zoom-in;
+      border-radius:inherit;
     }
+    .media-zoom:focus-visible{outline:2px solid var(--acid);outline-offset:3px}
+    .lightbox{
+      position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;
+      padding:24px;background:rgba(10,12,14,.88);backdrop-filter:blur(8px);
+    }
+    .lightbox.is-open{display:flex}
+    .lightbox img{
+      max-width:min(1200px,100%);max-height:min(92vh,100%);width:auto;height:auto;
+      object-fit:contain;border-radius:16px;box-shadow:0 24px 80px rgba(0,0,0,.45);
+    }
+    .lightbox-close{
+      position:absolute;top:16px;right:16px;width:44px;height:44px;border:0;border-radius:999px;
+      background:rgba(255,255,255,.92);color:#111;font-size:24px;line-height:1;cursor:pointer;
+      display:grid;place-items:center;
+    }
+    .lightbox-close:hover{background:#fff}
     .problem{
       display:grid;grid-template-columns:68px minmax(0,1fr);gap:22px;margin:22px 0;padding:32px;
       background:rgba(255,255,255,.65);border:1px solid #fff;border-radius:28px;
@@ -229,7 +245,7 @@
       body:before{display:none}
       .page{padding:54px 16px 64px;width:100%;max-width:100%}
       .topbar-inner{min-height:64px;padding:0 14px;gap:10px}
-      .brand{font-size:20px}
+      .brand img{width:84px;height:48px}
       nav{display:none}
       .eyebrow{font-size:10px;padding:8px 12px;letter-spacing:.08em;margin-bottom:18px;max-width:100%}
       .hero h1{
@@ -262,7 +278,6 @@
       }
       .media.filled,.media.video{padding:8px}
       .media-frame{border-radius:14px}
-      .media-caption{font-size:11px}
       .problem{grid-template-columns:42px minmax(0,1fr);padding:18px 14px;gap:12px;margin:14px 0}
       .problem .index{width:40px;height:40px;font-size:12px}
       .solution-list{gap:10px;margin:20px 0}
@@ -304,7 +319,9 @@
   <div class="progress" id="progress"></div>
   <header class="topbar">
     <div class="topbar-inner">
-      <a class="brand" href="../">PROFIT<span>AD</span></a>
+      <a class="brand" href="../" aria-label="PROFITAD">
+        <img src="logo.png" alt="PROFITAD" width="112" height="72" decoding="async" fetchpriority="high">
+      </a>
       <nav>
         <a href="#before-after">До / После</a>
         <a href="#diagnostics">Диагностика</a>
@@ -428,18 +445,19 @@
         <h3>3. Построили AI-воронку в Meta</h3>
         <p>Вместо одинакового предложения для всех запустили короткий опрос. Человек отвечал на несколько вопросов, а система рекомендовала подходящие варианты бассейнов. Так реклама не просто собирала контакт, а помогала пользователю сделать первый шаг к выбору продукта.</p>
         <div class="media video filled">
-          <div class="media-frame">
-            <img
-              class="funnel-anim"
-              src="ai-funnel.webp"
-              alt="AI-воронка Meta: реклама, вопросы, персональная рекомендация бассейна и заявка"
-              width="960"
-              height="540"
-              loading="lazy"
-              decoding="async"
-            >
-          </div>
-          <div class="media-caption">AI-воронка · screen recording</div>
+          <button class="media-zoom" type="button" data-lightbox-src="ai-funnel.gif" aria-label="Открыть AI-воронку крупнее">
+            <div class="media-frame">
+              <img
+                class="funnel-anim"
+                src="ai-funnel.gif"
+                alt="AI-воронка Meta: реклама, вопросы, персональная рекомендация бассейна и заявка"
+                width="1280"
+                height="720"
+                loading="lazy"
+                decoding="async"
+              >
+            </div>
+          </button>
         </div>
 
         <h3>4. Связали маркетинг с продажами</h3>
@@ -462,17 +480,18 @@
           <p>выручки за один месяц с трёх магазинов при рекламных вложениях около €30 000. Пиковый результат был достигнут в апреле 2026 года.</p>
         </div>
         <div class="media filled">
-          <div class="media-frame">
-            <img
-              src="pools-sales.webp"
-              alt="Скриншот пикового апреля: выручка и рекламные расходы по трём магазинам"
-              width="1445"
-              height="468"
-              loading="lazy"
-              decoding="async"
-            >
-          </div>
-          <div class="media-caption">Скриншот №6 — пиковый апрель</div>
+          <button class="media-zoom" type="button" data-lightbox-src="pools-sales.webp" aria-label="Открыть скриншот крупнее">
+            <div class="media-frame">
+              <img
+                src="pools-sales.webp"
+                alt="Скриншот пикового апреля: выручка и рекламные расходы по трём магазинам"
+                width="1445"
+                height="468"
+                loading="lazy"
+                decoding="async"
+              >
+            </div>
+          </button>
         </div>
 
         <h3>Почему этот результат нельзя объяснить только ростом бюджета</h3>
@@ -495,6 +514,11 @@
       </footer>
     </article>
   </main>
+
+  <div class="lightbox" id="lightbox" hidden>
+    <button class="lightbox-close" type="button" aria-label="Закрыть">×</button>
+    <img src="" alt="">
+  </div>
 
   <script>
     const progress = document.getElementById('progress');
@@ -532,6 +556,35 @@
       const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
       window.scrollTo({ top: Math.max(0, top), behavior: reduced ? 'auto' : 'smooth' });
       if (history.pushState) history.pushState(null, '', hash);
+    });
+
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('img');
+    const openLightbox = (src, alt) => {
+      lightboxImg.src = src;
+      lightboxImg.alt = alt || '';
+      lightbox.hidden = false;
+      lightbox.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    };
+    const closeLightbox = () => {
+      lightbox.classList.remove('is-open');
+      lightbox.hidden = true;
+      lightboxImg.removeAttribute('src');
+      document.body.style.overflow = '';
+    };
+    document.querySelectorAll('[data-lightbox-src]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const img = btn.querySelector('img');
+        openLightbox(btn.dataset.lightboxSrc, img ? img.alt : '');
+      });
+    });
+    lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+    addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
     });
   </script>
 </body>
