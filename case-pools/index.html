@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Кейс PROFITAD: масштабирование интернет-магазина бассейнов в Германии до €1,06 млн выручки за 12 месяцев.">
+  <title>Кейс PROFITAD — более €1 млн выручки для производства бассейнов</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --ink:#111214;
+      --muted:#7b8088;
+      --line:rgba(17,18,20,.08);
+      --paper:#f3f3f1;
+      --soft:rgba(255,255,255,.68);
+      --acid:#b9ef1c;
+      --radius:34px;
+      --shadow:0 24px 70px rgba(16,20,28,.08);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:88px;overflow-x:clip}
+    body{
+      margin:0;
+      background:
+        radial-gradient(circle at 10% 0%,#fff,transparent 28%),
+        radial-gradient(circle at 90% 18%,rgba(215,220,226,.5),transparent 32%),
+        linear-gradient(180deg,#f7f7f5,#efefed);
+      color:var(--ink);
+      font-family:Inter,system-ui,sans-serif;
+      font-size:18px;
+      line-height:1.68;
+      overflow-x:clip;
+      -webkit-text-size-adjust:100%;
+    }
+    body:before{
+      content:"";
+      position:fixed;inset:0;pointer-events:none;opacity:.18;z-index:-1;
+      background-image:radial-gradient(rgba(17,18,20,.15) .6px,transparent .6px);
+      background-size:18px 18px;
+      mask-image:linear-gradient(to bottom,#000,transparent 78%);
+    }
+    img,video{max-width:100%;height:auto;display:block}
+    a{color:inherit}
+    .progress{position:fixed;inset:0 auto auto 0;height:3px;background:var(--acid);width:0;z-index:30}
+    .topbar{
+      position:sticky;top:0;z-index:20;
+      background:#f7f7f5;
+      border-bottom:1px solid var(--line);
+    }
+    .topbar-inner{
+      max-width:1180px;margin:auto;min-height:82px;padding:0 26px;
+      display:flex;align-items:center;justify-content:space-between;gap:20px;
+    }
+    .brand{
+      font-family:Manrope,sans-serif;font-weight:800;letter-spacing:-.05em;font-size:24px;
+      text-decoration:none;
+    }
+    nav{display:flex;gap:24px;font-size:12px;font-weight:700;color:#676b72;flex-wrap:wrap}
+    nav a{text-decoration:none;transition:.2s;white-space:nowrap}
+    nav a:hover{color:#111;transform:translateY(-1px)}
+    .page{max-width:1180px;margin:auto;padding:96px 28px 110px;width:100%}
+    .hero{text-align:center}
+    .eyebrow{
+      display:inline-flex;padding:10px 15px;border-radius:999px;
+      background:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.95);
+      box-shadow:0 10px 28px rgba(22,25,31,.05);
+      font-size:12px;text-transform:uppercase;letter-spacing:.12em;font-weight:800;color:#70757d;margin-bottom:28px;
+    }
+    .hero h1{
+      font-family:Manrope,sans-serif;
+      font-size:clamp(36px,6.4vw,92px);
+      line-height:.98;letter-spacing:-.065em;margin:0 auto 30px;max-width:1080px;
+      font-weight:700;text-wrap:balance;overflow-wrap:anywhere;
+    }
+    .hero h1 em{font-style:normal;position:relative}
+    .hero h1 em:after{
+      content:"";position:absolute;left:0;right:0;bottom:.03em;height:.14em;
+      background:var(--acid);border-radius:99px;z-index:-1;
+    }
+    .lead{font-size:clamp(17px,2vw,22px);color:var(--muted);max-width:790px;margin:0 auto 34px}
+    .meta{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin:28px 0 50px}
+    .pill{
+      background:rgba(255,255,255,.7);border:1px solid #fff;border-radius:999px;
+      padding:9px 15px;font-size:13px;font-weight:700;box-shadow:0 10px 24px rgba(16,20,28,.04);
+    }
+    .callout{
+      background:rgba(255,255,255,.72);border:1px solid #fff;box-shadow:var(--shadow);
+      border-radius:var(--radius);padding:38px 42px;margin:34px 0;text-align:left;
+    }
+    .callout h2,.callout h3{margin-top:0}
+    .callout p:last-child{margin-bottom:0}
+    .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:18px 0 34px}
+    .stat{
+      background:#111;color:#fff;border-radius:28px;padding:30px 26px;min-height:178px;
+      text-align:left;display:flex;flex-direction:column;justify-content:flex-end;min-width:0;
+    }
+    .stat:first-child{background:var(--acid);color:#111}
+    .stat .num{
+      font-family:Manrope,sans-serif;font-size:clamp(26px,3.2vw,42px);font-weight:800;
+      letter-spacing:-.055em;line-height:1.08;margin-bottom:12px;overflow-wrap:anywhere;
+    }
+    .stat .label{font-size:14px;color:#bfc1c3;line-height:1.4}
+    .stat:first-child .label{color:#333}
+    .section{padding-top:120px}
+    .section>h2{
+      font-family:Manrope,sans-serif;font-size:clamp(32px,5vw,64px);line-height:1.05;
+      letter-spacing:-.055em;margin:0 0 26px;max-width:900px;overflow-wrap:anywhere;
+    }
+    .section .subtitle{
+      font-size:clamp(20px,3vw,32px);line-height:1.3;font-weight:700;
+      letter-spacing:-.035em;color:#111;margin:-8px 0 24px;
+    }
+    .section>p{max-width:820px}
+    .section h3{
+      font-family:Manrope,sans-serif;font-size:clamp(22px,2.4vw,27px);
+      line-height:1.25;letter-spacing:-.035em;margin:44px 0 13px;overflow-wrap:anywhere;
+    }
+    .section p{margin:0 0 18px}
+    .section ul{padding-left:27px}
+    .section li{margin:9px 0}
+    .comparison{display:grid;grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);gap:18px;margin:40px 0;align-items:stretch}
+    .point{
+      border:1px solid #fff;border-radius:var(--radius);padding:34px;
+      background:rgba(255,255,255,.58);box-shadow:0 18px 50px rgba(16,20,28,.05);min-width:0;
+    }
+    .point.before{color:#62666d;transform:scale(.96)}
+    .point.after{background:#111;color:#fff;padding:42px;box-shadow:0 30px 70px rgba(17,17,17,.18)}
+    .point.after .flag{font-size:clamp(18px,2vw,25px);color:var(--acid)}
+    .point.after dt{color:#909397}
+    .point.after .row{border-color:rgba(255,255,255,.12)}
+    .point.after dd{font-size:clamp(18px,2vw,25px)}
+    .point .flag{font-family:Manrope,sans-serif;font-weight:800;margin-bottom:18px;overflow-wrap:anywhere}
+    .point dl{margin:0}
+    .point .row{padding:13px 0;border-bottom:1px solid var(--line)}
+    .point .row:last-child{border-bottom:0}
+    .point dt{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:800}
+    .point dd{margin:3px 0 0;font-size:20px;font-weight:800;overflow-wrap:anywhere}
+    .media{
+      margin:34px 0 10px;border:1px dashed #adb1b6;border-radius:30px;
+      background:rgba(255,255,255,.42);min-height:220px;
+      display:grid;place-items:center;text-align:center;padding:18px;color:#777;
+      box-shadow:inset 0 1px 0 #fff;overflow:hidden;
+    }
+    .media.filled{
+      border-style:solid;border-color:rgba(17,18,20,.08);
+      background:#fff;padding:10px;min-height:0;
+    }
+    .media.video{
+      min-height:0;background:#111;color:#aaa;border-color:#3b3d3f;padding:10px;
+    }
+    .media.video strong,.media strong{display:block;color:#303236;font-size:17px;margin-bottom:8px;letter-spacing:.03em}
+    .media.video strong{color:var(--acid)}
+    .media small{display:block;max-width:450px;margin:0 auto}
+    .media-frame{width:100%;border-radius:22px;overflow:hidden;background:#0f1011}
+    .media-frame img,.media-frame video{
+      width:100%;height:auto;display:block;
+    }
+    .media-frame video,.media-frame img.funnel-anim{
+      width:100%;aspect-ratio:16/9;object-fit:cover;background:#0f1011;
+    }
+    .media-caption{
+      margin-top:10px;font-size:12px;font-weight:700;letter-spacing:.04em;
+      text-transform:uppercase;color:#8a8f97;
+    }
+    .problem{
+      display:grid;grid-template-columns:68px minmax(0,1fr);gap:22px;margin:22px 0;padding:32px;
+      background:rgba(255,255,255,.65);border:1px solid #fff;border-radius:28px;
+    }
+    .problem .index{
+      width:56px;height:56px;border-radius:50%;background:#111;color:var(--acid);
+      display:grid;place-items:center;font-weight:900;flex:0 0 auto;
+    }
+    .problem h3{margin:5px 0 9px}
+    .solution-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:32px 0}
+    .solution{
+      padding:28px;border:1px solid #fff;border-radius:26px;background:rgba(255,255,255,.7);
+      box-shadow:0 16px 42px rgba(16,20,28,.05);transition:.25s;min-width:0;overflow-wrap:anywhere;
+    }
+    .solution:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+    .solution b{display:block;margin-bottom:8px}
+    .highlight{
+      margin:54px 0;background:#111;color:#fff;border-radius:38px;padding:56px;
+      position:relative;overflow:hidden;
+    }
+    .highlight:after{
+      content:"↗";position:absolute;right:35px;top:15px;color:var(--acid);
+      font-size:90px;line-height:1;opacity:.9;pointer-events:none;
+    }
+    .highlight .mini{color:var(--acid);text-transform:uppercase;letter-spacing:.14em;font-size:12px;font-weight:900}
+    .highlight .big{
+      font-family:Manrope,sans-serif;font-size:clamp(42px,9vw,100px);line-height:.95;
+      letter-spacing:-.065em;font-weight:800;margin:18px 0;overflow-wrap:anywhere;
+    }
+    .highlight p{color:#c7c9cb;font-size:clamp(17px,2vw,21px);margin:0;max-width:720px;position:relative;z-index:1}
+    .note{font-size:13px;color:#73767c;border-left:3px solid var(--acid);padding-left:15px;margin-top:18px}
+    .quote{
+      font-family:Manrope,sans-serif;font-size:clamp(22px,3vw,30px);font-weight:700;
+      line-height:1.35;letter-spacing:-.035em;margin:38px 0;padding:28px 30px;
+      background:#111;color:#fff;border-radius:24px;overflow-wrap:anywhere;
+    }
+    .cta{margin-top:120px;background:var(--acid);border-radius:38px;padding:62px;text-align:center}
+    .cta h2{
+      font-family:Manrope,sans-serif;font-size:clamp(30px,5vw,58px);line-height:1.05;
+      letter-spacing:-.05em;margin:0 0 18px;overflow-wrap:anywhere;
+    }
+    .cta p{max-width:650px;margin:0 auto 28px}
+    .button{
+      display:inline-flex;background:#111;color:#fff;text-decoration:none;border-radius:999px;
+      padding:17px 28px;font-weight:800;transition:.25s;
+    }
+    .button:hover{transform:translateY(-2px);box-shadow:0 18px 38px rgba(17,17,17,.2)}
+    .footer{
+      margin-top:80px;padding-top:26px;border-top:1px solid var(--line);color:#777;
+      font-size:13px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
+    }
+    .reveal{opacity:0;transform:translateY(18px);transition:.6s ease}
+    .reveal.visible{opacity:1;transform:none}
+
+    @media (max-width:900px){
+      .stats,.comparison,.solution-list{grid-template-columns:1fr}
+      .point.before{transform:none}
+    }
+
+    @media (max-width:760px){
+      html{scroll-padding-top:72px;overflow-x:clip}
+      body{font-size:16px;overflow-x:clip}
+      body:before{display:none}
+      .page{padding:54px 16px 64px;width:100%;max-width:100%}
+      .topbar-inner{min-height:64px;padding:0 14px;gap:10px}
+      .brand{font-size:20px}
+      nav{display:none}
+      .eyebrow{font-size:10px;padding:8px 12px;letter-spacing:.08em;margin-bottom:18px;max-width:100%}
+      .hero h1{
+        font-size:clamp(28px,8.4vw,38px);
+        line-height:1.08;letter-spacing:-.045em;margin-bottom:18px;
+      }
+      .hero h1 em{white-space:normal}
+      .lead{font-size:16px;line-height:1.55;margin-bottom:22px}
+      .meta{gap:8px;margin:18px 0 28px}
+      .pill{font-size:12px;padding:8px 12px}
+      .callout,.highlight,.cta,.point,.problem,.solution{border-radius:22px}
+      .callout{padding:22px 18px;margin:22px 0}
+      .stats{gap:10px;margin:12px 0 22px}
+      .stat{min-height:0;padding:20px 18px;border-radius:20px}
+      .stat .num{font-size:clamp(22px,7vw,30px);margin-bottom:8px}
+      .stat .label{font-size:13px}
+      .section{padding-top:64px}
+      .section>h2{font-size:clamp(28px,8vw,36px);margin-bottom:16px}
+      .section .subtitle{font-size:20px;margin:0 0 16px}
+      .section h3{font-size:20px;margin:28px 0 10px}
+      .section ul{padding-left:20px}
+      .comparison{gap:12px;margin:24px 0}
+      .point{padding:22px 18px}
+      .point.after{padding:22px 18px}
+      .point .flag{font-size:16px;margin-bottom:12px}
+      .point dd{font-size:17px}
+      .point.after dd{font-size:17px}
+      .media{
+        margin:22px 0 8px;padding:8px;border-radius:20px;min-height:0;
+      }
+      .media.filled,.media.video{padding:8px}
+      .media-frame{border-radius:14px}
+      .media-caption{font-size:11px}
+      .problem{grid-template-columns:42px minmax(0,1fr);padding:18px 14px;gap:12px;margin:14px 0}
+      .problem .index{width:40px;height:40px;font-size:12px}
+      .solution-list{gap:10px;margin:20px 0}
+      .solution{padding:18px 16px;border-radius:18px}
+      .quote{font-size:18px;padding:18px 16px;margin:22px 0;border-radius:18px}
+      .highlight{padding:28px 18px;margin:32px 0;border-radius:24px}
+      .highlight:after{font-size:42px;right:14px;top:10px;opacity:.55}
+      .highlight .big{font-size:clamp(36px,12vw,52px);margin:12px 0}
+      .highlight p{font-size:15px;line-height:1.5}
+      .cta{margin-top:72px;padding:36px 18px;border-radius:24px}
+      .cta h2{font-size:clamp(26px,8vw,34px)}
+      .cta p{font-size:15px;margin-bottom:22px}
+      .button{width:100%;justify-content:center;min-height:52px;padding:14px 18px}
+      .footer{display:grid;gap:8px;margin-top:48px;text-align:center}
+      .reveal{opacity:1;transform:none;transition:none}
+    }
+
+    @media (max-width:390px){
+      .page{padding:48px 12px 56px}
+      .hero h1{font-size:26px}
+      .stat .num{font-size:20px}
+      .point dd,.point.after dd{font-size:15px}
+    }
+
+    @media (hover:none) and (pointer:coarse){
+      .solution:hover{transform:none}
+      .button:hover{transform:none}
+    }
+
+    @media print{
+      .topbar,.progress{display:none}
+      .page{padding-top:20px}
+      .reveal{opacity:1;transform:none}
+      .section,.media{break-inside:avoid}
+    }
+  </style>
+</head>
+<body>
+  <div class="progress" id="progress"></div>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="../">PROFIT<span>AD</span></a>
+      <nav>
+        <a href="#before-after">До / После</a>
+        <a href="#diagnostics">Диагностика</a>
+        <a href="#work">Что сделали</a>
+        <a href="#result">Результат</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <article>
+      <section class="hero reveal">
+        <div class="eyebrow">📈 Кейс · E-commerce · Германия</div>
+        <h1>Масштабировали продажу бассейнов с €60,000 до <em>выручки в более €1 млн</em> за 12 месяцев</h1>
+        <p class="lead">Превратили один интернет-магазин в систему роста для трёх магазинов.</p>
+        <div class="meta">
+          <span class="pill">Ниша: бассейны</span>
+          <span class="pill">География: Германия</span>
+          <span class="pill">Период: 12 месяцев</span>
+          <span class="pill">WordPress + WooCommerce</span>
+        </div>
+        <div class="callout">
+          <h2>📌 Спойлер результатов</h2>
+          <p>До нас бизнес получил 13 продаж и около €60 000 выручки за год. За следующие 12 месяцев совместной работы — <strong>170 покупок и более €1 млн выручки</strong>.</p>
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="num">€60к → €1 млн</div><div class="label">выручка за период</div></div>
+          <div class="stat"><div class="num">13 → 170</div><div class="label">продажи</div></div>
+          <div class="stat"><div class="num">€4,5к → €6,3к</div><div class="label">средний чек</div></div>
+        </div>
+        <div class="media"><div><strong>МЕСТО ДЛЯ ОБЛОЖКИ / СКРИНШОТА</strong><small>Добавьте фото бассейна, магазина или общий скриншот результата за 12 месяцев</small></div></div>
+      </section>
+
+      <section class="section reveal" id="before-after">
+        <h2>🚩 Точка А → 🏆 Точка Б</h2>
+        <p>Сравниваем два одинаковых периода по 12 месяцев: работу с предыдущим специалистом и работу с нашей командой.</p>
+        <div class="comparison">
+          <div class="point before">
+            <div class="flag">🚩 Точка А — до PROFITAD</div>
+            <dl>
+              <div class="row"><dt>Каналы</dt><dd>Facebook + eBay</dd></div>
+              <div class="row"><dt>Реклама</dt><dd>$1 800 / месяц</dd></div>
+              <div class="row"><dt>Услуги</dt><dd>$500 / месяц</dd></div>
+              <div class="row"><dt>Продажи</dt><dd>13</dd></div>
+              <div class="row"><dt>Средний чек</dt><dd>€4 500</dd></div>
+              <div class="row"><dt>Выручка</dt><dd>≈ €58 500</dd></div>
+              <div class="row"><dt>ROMI</dt><dd>≈ 112%</dd></div>
+            </dl>
+          </div>
+          <div class="point after">
+            <div class="flag">🏆 Точка Б — с PROFITAD</div>
+            <dl>
+              <div class="row"><dt>Каналы</dt><dd>Google + Meta Ads</dd></div>
+              <div class="row"><dt>Реклама</dt><dd>€5 500 / месяц</dd></div>
+              <div class="row"><dt>Модель работы</dt><dd>$1 000 + % от выручки</dd></div>
+              <div class="row"><dt>Продажи</dt><dd>170</dd></div>
+              <div class="row"><dt>Средний чек</dt><dd>€6 300</dd></div>
+              <div class="row"><dt>Выручка</dt><dd>≈ €1,06 млн</dd></div>
+              <div class="row"><dt>ROMI</dt><dd>≈ 1 209%*</dd></div>
+            </dl>
+          </div>
+        </div>
+        <p class="note"></p>
+        <div class="media"><div><strong>СКРИНШОТ №1 — СРАВНЕНИЕ ПЕРИОДОВ</strong><small>Таблица или CRM: продажи, средний чек, выручка и расходы «до / после»</small></div></div>
+      </section>
+
+      <section class="section reveal" id="diagnostics">
+        <h2>🔎 Что показала диагностическая сессия</h2>
+        <p>Мы начали не с запуска новых кампаний, а с аудита бизнеса и всей цепочки данных: от рекламного клика до фактической покупки. Нашли три системных ограничения.</p>
+        <div class="problem">
+          <div class="index">01</div>
+          <div>
+            <h3>Не было единой системы управления</h3>
+            <p>Команда не видела, из какого источника пришла конкретная продажа и сколько она реально стоила. Не было прозрачной отчётности, сквозной аналитики, CRM, которая не связывала маркетинг с отделом продаж вовсе.</p>
+            <ul>
+              <li>Нет единого отчёта по расходам, заявкам и продажам;</li>
+              <li>Не определено, кто отвечает за каждый участок воронки;</li>
+              <li>Невозможно безопасно масштабировать бюджет.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="problem">
+          <div class="index">02</div>
+          <div>
+            <h3>Неправильное распределение бюджета</h3>
+            <p>Google ADS был исключен как источник трафика, бюджет распределялся между Facebook и eBay. При этом расходы и продажи из eBay нельзя было корректно сопоставить. Фактическая стоимость клиента оставалась неизвестной, основные продажи приходили органически.</p>
+          </div>
+        </div>
+        <div class="problem">
+          <div class="index">03</div>
+          <div>
+            <h3>Google Ads и аналитика передавали неполные данные, или вовсе не передавали</h3>
+            <p>Часть бюджета уходила в кампании без понятного результата. При этом нельзя было исключить, что именно они участвовали в ключевых продажах. До исправления работы передачи данных, отслеживания конверсий, любая оптимизация была бы работой вслепую.</p>
+            <blockquote class="quote">Нельзя масштабировать то, что бизнес не умеет точно измерять.</blockquote>
+          </div>
+        </div>
+        <div class="media"><div><strong>СКРИНШОТ №2 — АУДИТ / СТАРАЯ СТРУКТУРА</strong><small>Старый рекламный кабинет, ошибки аналитики или схема передачи данных до исправления</small></div></div>
+      </section>
+
+      <section class="section reveal" id="work">
+        <h2>🛠 Что мы предложили</h2>
+        <p class="subtitle">Не одного таргетолога, а команду роста</p>
+        <p>Под проект собрали отдельную связку специалистов. Google специалист, Meta специалист, техническую часть закрывал технический специалист, после перевели на АИ, во главе команды был Project Manager с четким руководством и планом результата.</p>
+        <div class="solution-list">
+          <div class="solution"><b>01. Google + Meta Ads</b>Пересобрали структуру кампаний и распределили роли каналов внутри одной воронки.</div>
+          <div class="solution"><b>02. Техническая оптимизация</b>Исправили передачу событий с WooCommerce в Google и Meta.</div>
+          <div class="solution"><b>03. Аналитика и CRM</b>Настроили учёт расходов, заявок, звонков, покупок, ROAS и ROMI.</div>
+          <div class="solution"><b>04. Ежедневное управление</b>Отслеживание результатов через основной дашборд и поддерживаемая связь с отделом продаж.</div>
+          <div class="solution"><b>05. Работа с продуктом</b>Тестировали новые УТП, промо, позиционирование и сегменты аудитории.</div>
+          <div class="solution"><b>06. Сайт и SEO-база</b>Оптимизировали сайт под платный трафик и выполнили базовые SEO и GEO работы.</div>
+        </div>
+
+        <h3>1. Вернули рекламе корректные данные</h3>
+        <p>Настроили отслеживание ключевых действий и передачу данных в Google и Meta. После этого стало видно, какие кампании приводят звонки, формы и покупки, а какие только расходуют бюджет.</p>
+        <div class="media"><div><strong>СКРИНШОТ №3 — АНАЛИТИКА</strong><small>GA4 / GTM / Google Ads conversions / Meta Events Manager / WooCommerce</small></div></div>
+
+        <h3>2. Пересобрали Google Ads вокруг продаж</h3>
+        <p>Почистили старую структуру, убрали очевидные потери и сосредоточили управление на запросах и кампаниях, которые влияли на коммерческий результат. Бюджет перестал распределяться без понимания вклада каждого направления.</p>
+        <div class="media"><div><strong>СКРИНШОТ №4 — GOOGLE ADS</strong><small>Структура кампаний, конверсии, расходы и ценность покупок</small></div></div>
+
+        <h3>3. Построили AI-воронку в Meta</h3>
+        <p>Вместо одинакового предложения для всех запустили короткий опрос. Человек отвечал на несколько вопросов, а система рекомендовала подходящие варианты бассейнов. Так реклама не просто собирала контакт, а помогала пользователю сделать первый шаг к выбору продукта.</p>
+        <div class="media video filled">
+          <div class="media-frame">
+            <img
+              class="funnel-anim"
+              src="ai-funnel.webp"
+              alt="AI-воронка Meta: реклама, вопросы, персональная рекомендация бассейна и заявка"
+              width="960"
+              height="540"
+              loading="lazy"
+              decoding="async"
+            >
+          </div>
+          <div class="media-caption">AI-воронка · screen recording</div>
+        </div>
+
+        <h3>4. Связали маркетинг с продажами</h3>
+        <p>Основная часть заказов приходила через телефонные звонки и формы на сайте. Дополнительно клиенты оформляли заказ непосредственно через WooCommerce, после чего отдел продаж связывался с ними для уточнения комплектации и деталей.</p>
+        <div class="media"><div><strong>СКРИНШОТ №5 — CRM / ЗВОНКИ / ЗАКАЗЫ</strong><small>Обезличенный список сделок, звонков или заказов WooCommerce</small></div></div>
+      </section>
+
+      <section class="section reveal" id="result">
+        <h2>🏆 Что получили за 12 месяцев</h2>
+        <ul>
+          <li><strong>170 покупок</strong> (прирост в 13 раз)</li>
+          <li>средний чек вырос с <strong>€4 500 до €6 300</strong>;</li>
+          <li>выручка выросла примерно в 17 раз (с <strong>€60 000 до более €1 млн)</strong>;</li>
+          <li>появилась прозрачная аналитика по каждому источнику и дню;</li>
+          <li>производство выросло, а наша работа расширилась с одного магазина до трёх.</li>
+        </ul>
+        <div class="highlight">
+          <div class="mini">Главный результат проекта</div>
+          <div class="big">€500 000+</div>
+          <p>выручки за один месяц с трёх магазинов при рекламных вложениях около €30 000. Пиковый результат был достигнут в апреле 2026 года.</p>
+        </div>
+        <div class="media filled">
+          <div class="media-frame">
+            <img
+              src="pools-sales.webp"
+              alt="Скриншот пикового апреля: выручка и рекламные расходы по трём магазинам"
+              width="1445"
+              height="468"
+              loading="lazy"
+              decoding="async"
+            >
+          </div>
+          <div class="media-caption">Скриншот №6 — пиковый апрель</div>
+        </div>
+
+        <h3>Почему этот результат нельзя объяснить только ростом бюджета</h3>
+        <p>Рекламные вложения действительно выросли. Но одновременно количество продаж увеличилось более чем в 13 раз, средний чек — на 40%, а бизнес получил систему, в которой можно видеть вклад каждого канала и управлять масштабированием на основе фактической выручки.</p>
+        <div class="callout">
+          <h3>Что стало главным рычагом</h3>
+          <p><strong>Корректные данные → правильная структура кампаний → персонализированная воронка → ежедневный контроль экономики.</strong> Не одна «секретная настройка», а связанная система маркетинга и продаж.</p>
+        </div>
+        <div class="media"><div><strong>СКРИНШОТ №7 — ОТЗЫВ КЛИЕНТА</strong><small>Текстовый или видеоотзыв собственника / руководителя проекта</small></div></div>
+      </section>
+
+      <section class="cta reveal">
+        <h2>Как увеличить выручку в твоем бизнесе?</h2>
+        <p>Проведём диагностическую сессию, найдём точки усиления и покажем как вырасти твоему E-commerce проекту.</p>
+        <a class="button" href="../diagnostic-form-profitad-new-style.html">Обсудить проект ↗</a>
+      </section>
+      <footer class="footer">
+        <span>© PROFITAD · Ads that make profit</span>
+        <span>Кейс: E-commerce / Pools / Germany</span>
+      </footer>
+    </article>
+  </main>
+
+  <script>
+    const progress = document.getElementById('progress');
+    const update = () => {
+      const h = document.documentElement;
+      const max = h.scrollHeight - h.clientHeight;
+      progress.style.width = (max ? 100 * h.scrollTop / max : 0) + '%';
+    };
+    addEventListener('scroll', update, { passive: true });
+    update();
+
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const revealItems = document.querySelectorAll('.reveal');
+    if (!reduced && 'IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) e.target.classList.add('visible');
+        });
+      }, { threshold: .08 });
+      revealItems.forEach((el) => io.observe(el));
+    } else {
+      revealItems.forEach((el) => el.classList.add('visible'));
+    }
+
+    document.addEventListener('click', (e) => {
+      const link = e.target.closest('a[href^="#"]');
+      if (!link) return;
+      const hash = link.getAttribute('href');
+      if (!hash || hash === '#') return;
+      const target = document.getElementById(hash.slice(1));
+      if (!target) return;
+      e.preventDefault();
+      const header = document.querySelector('.topbar');
+      const offset = header ? header.getBoundingClientRect().height + 8 : 72;
+      const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top: Math.max(0, top), behavior: reduced ? 'auto' : 'smooth' });
+      if (history.pushState) history.pushState(null, '', hash);
+    });
+  </script>
+</body>
+</html>
