@@ -273,121 +273,51 @@
     .reveal{opacity:0;transform:translateY(18px);transition:.6s ease}
     .reveal.visible{opacity:1;transform:none}
 
-    /* Full-bleed dark bands */
+    /* Full-bleed inverted (dark) bands — light cards/text on charcoal */
     .band-dark{
-      --band-ink:#f2f2f0;
-      --band-muted:#9aa0a8;
-      --band-card:#141416;
-      --band-line:rgba(255,255,255,.1);
       width:100vw;
       max-width:100vw;
       margin:56px 0 0;
       margin-left:calc(50% - 50vw);
       padding:72px 0 84px;
       background:
-        radial-gradient(circle at 12% 0%,rgba(185,239,28,.08),transparent 34%),
-        radial-gradient(circle at 88% 18%,rgba(255,255,255,.04),transparent 30%),
-        linear-gradient(180deg,#0c0c0e 0%,#080809 100%);
-      color:var(--band-ink);
+        radial-gradient(circle at 14% 0%,rgba(185,239,28,.14),transparent 36%),
+        radial-gradient(circle at 90% 20%,rgba(255,255,255,.07),transparent 34%),
+        linear-gradient(180deg,#2c2d31 0%,#222326 100%);
+      color:#f4f4f2;
       position:relative;
       overflow:clip;
-    }
-    .band-dark + .section,
-    .band-dark + .band-dark{margin-top:0}
-    .band-dark + .band-dark{
-      margin-top:0;
-      border-top:1px solid rgba(255,255,255,.06);
     }
     .band-inner{
       width:min(1180px,calc(100% - 56px));
       max-width:100%;
       margin:0 auto;
     }
-    .band-dark .section-in-band{padding-top:72px}
-    .band-dark .section-in-band:first-child{padding-top:0}
-    .band-dark .section>h2,
-    .band-dark .section h3,
-    .band-dark .callout h2,
-    .band-dark .callout h3{color:#fff}
-    .band-dark .section .subtitle{color:#e8e8e6}
-    .band-dark .section>p,
-    .band-dark .section p,
-    .band-dark .section li{color:var(--band-muted)}
-    .band-dark .section li strong,
-    .band-dark .section p strong{color:#fff}
-    .band-dark .callout{
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.1);
-      box-shadow:none;
-      color:var(--band-ink);
-    }
-    .band-dark .callout p{color:var(--band-muted)}
-    .band-dark .stat{
-      background:var(--band-card);
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.04);
-    }
-    .band-dark .stat:first-child{background:var(--acid);color:#111}
-    .band-dark .stat .label{color:#a7abb2}
-    .band-dark .stat:first-child .label{color:#333}
-    .band-dark .point{
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.1);
-      box-shadow:none;
-    }
-    .band-dark .point.before{
-      color:#a0a4ab;
-      background:rgba(255,255,255,.03);
-    }
-    .band-dark .point.before .flag{color:#d0d2d6}
-    .band-dark .point.before dt{color:#7d828a}
-    .band-dark .point.before .row{border-color:rgba(255,255,255,.08)}
-    .band-dark .point.after{
-      background:#161618;
-      border:1px solid rgba(185,239,28,.28);
-      box-shadow:0 24px 60px rgba(0,0,0,.35);
+    .band-dark .section-in-band{padding-top:0}
+    .band-dark .section>h2{
       color:#fff;
     }
-    .band-dark .media.filled,
-    .band-dark .media.video{
-      border-color:rgba(255,255,255,.28);
-      box-shadow:0 16px 40px rgba(0,0,0,.35);
-      background:transparent;
+    .band-dark .section .subtitle{
+      color:#fff;
     }
-    .band-dark .media:not(.filled):not(.video):not(.after-card){
-      background:rgba(255,255,255,.03);
-      border-color:rgba(255,255,255,.18);
-      color:#9aa0a8;
+    .band-dark .section>p,
+    .band-dark .section p{
+      color:rgba(244,244,242,.78);
     }
-    .band-dark .media strong{color:#e8e8e6}
-    .band-dark .media.video strong{color:var(--acid)}
-    .band-dark .media.after-card{
-      background:#161618;
-      box-shadow:0 24px 60px rgba(0,0,0,.4);
+    .band-dark .section p strong{
+      color:#fff;
     }
-    .band-dark .problem{
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.1);
+    .band-dark .solution{
+      background:#f7f7f5;
+      border:1px solid rgba(255,255,255,.95);
+      color:#111214;
+      box-shadow:0 18px 44px rgba(0,0,0,.22);
     }
-    .band-dark .problem .index{
-      background:var(--acid);
-      color:#111;
+    .band-dark .solution b{
+      color:#111214;
     }
-    .band-dark .problem h3{color:#fff}
-    .band-dark .problem p,
-    .band-dark .problem li{color:var(--band-muted)}
-    .band-dark .quote{
-      background:#161618;
-      border:1px solid rgba(185,239,28,.22);
-      box-shadow:0 18px 40px rgba(0,0,0,.28);
-    }
-    .band-dark .highlight{
-      background:#161618;
-      border:1px solid rgba(185,239,28,.22);
-      box-shadow:0 24px 60px rgba(0,0,0,.35);
-    }
-    .band-dark .note{
-      color:#8b9098;
-      border-left-color:var(--acid);
+    .band-dark .solution:hover{
+      box-shadow:0 24px 56px rgba(0,0,0,.28);
     }
 
     @media (max-width:900px){
@@ -524,133 +454,130 @@
           <span class="pill">Период: 12 месяцев</span>
           <span class="pill">WordPress + WooCommerce</span>
         </div>
+        <div class="callout">
+          <h2>📌 Спойлер результатов</h2>
+          <p>До нас бизнес получил 13 продаж и около €60 000 выручки за год. За следующие 12 месяцев совместной работы — <strong>170 покупок и более €1 млн выручки</strong>.</p>
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="num">€60к → €1 млн</div><div class="label">выручка за период</div></div>
+          <div class="stat"><div class="num">13 → 170</div><div class="label">продажи</div></div>
+          <div class="stat"><div class="num">€4,5к → €6,3к</div><div class="label">средний чек</div></div>
+        </div>
+        <div class="media filled">
+          <button class="media-zoom" type="button" data-lightbox-src="pool-image.webp" aria-label="Открыть обложку крупнее">
+            <div class="media-frame">
+              <img
+                src="pool-image.webp"
+                alt="Фото проекта: производство бассейнов"
+                width="1600"
+                height="900"
+                loading="eager"
+                decoding="async"
+                fetchpriority="high"
+              >
+            </div>
+          </button>
+        </div>
+      </section>
+
+      <section class="section reveal" id="before-after">
+        <h2>🚩 Точка А → 🏆 Точка Б</h2>
+        <p>Сравниваем два одинаковых периода по 12 месяцев: работу с предыдущим специалистом и работу с нашей командой.</p>
+        <div class="comparison">
+          <div class="point before">
+            <div class="flag">🚩 Точка А — до PROFITAD</div>
+            <dl>
+              <div class="row"><dt>Каналы</dt><dd>Facebook + eBay</dd></div>
+              <div class="row"><dt>Реклама</dt><dd>$1 800 / месяц</dd></div>
+              <div class="row"><dt>Услуги</dt><dd>$500 / месяц</dd></div>
+              <div class="row"><dt>Продажи</dt><dd>13</dd></div>
+              <div class="row"><dt>Средний чек</dt><dd>€4 500</dd></div>
+              <div class="row"><dt>Выручка</dt><dd>≈ €58 500</dd></div>
+              <div class="row"><dt>ROMI</dt><dd>≈ 112%</dd></div>
+            </dl>
+          </div>
+          <div class="point after">
+            <div class="flag">🏆 Точка Б — с PROFITAD</div>
+            <dl>
+              <div class="row"><dt>Каналы</dt><dd>Google + Meta Ads</dd></div>
+              <div class="row"><dt>Реклама</dt><dd>€5 500 / месяц</dd></div>
+              <div class="row"><dt>Модель работы</dt><dd>$1 000 + % от выручки</dd></div>
+              <div class="row"><dt>Продажи</dt><dd>170</dd></div>
+              <div class="row"><dt>Средний чек</dt><dd>€6 300</dd></div>
+              <div class="row"><dt>Выручка</dt><dd>≈ €1,06 млн</dd></div>
+              <div class="row"><dt>ROMI</dt><dd>≈ 1 209%*</dd></div>
+            </dl>
+          </div>
+        </div>
+        <p class="note"></p>
+        <div class="media after-card">
+          <button class="media-zoom" type="button" data-lightbox-src="sales-compare-grafic.webp" aria-label="Открыть сравнение периодов крупнее">
+            <div class="media-frame">
+              <img
+                src="sales-compare-grafic.webp"
+                alt="Сравнение периодов: продажи, средний чек, выручка и расходы до и после"
+                width="1672"
+                height="941"
+                loading="lazy"
+                decoding="async"
+              >
+            </div>
+          </button>
+        </div>
+      </section>
+
+      <section class="section reveal" id="diagnostics">
+        <h2>🔎 Что показала диагностическая сессия</h2>
+        <p>Мы начали не с запуска новых кампаний, а с аудита бизнеса и всей цепочки данных: от рекламного клика до фактической покупки. Нашли три системных ограничения.</p>
+        <div class="problem">
+          <div class="index">01</div>
+          <div>
+            <h3>Не было единой системы управления</h3>
+            <p>Команда не видела, из какого источника пришла конкретная продажа и сколько она реально стоила. Не было прозрачной отчётности, сквозной аналитики, CRM, которая не связывала маркетинг с отделом продаж вовсе.</p>
+            <ul>
+              <li>Нет единого отчёта по расходам, заявкам и продажам;</li>
+              <li>Не определено, кто отвечает за каждый участок воронки;</li>
+              <li>Невозможно безопасно масштабировать бюджет.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="problem">
+          <div class="index">02</div>
+          <div>
+            <h3>Неправильное распределение бюджета</h3>
+            <p>Google ADS был исключен как источник трафика, бюджет распределялся между Facebook и eBay. При этом расходы и продажи из eBay нельзя было корректно сопоставить. Фактическая стоимость клиента оставалась неизвестной, основные продажи приходили органически.</p>
+          </div>
+        </div>
+        <div class="problem">
+          <div class="index">03</div>
+          <div>
+            <h3>Google Ads и аналитика передавали неполные данные, или вовсе не передавали</h3>
+            <p>Часть бюджета уходила в кампании без понятного результата. При этом нельзя было исключить, что именно они участвовали в ключевых продажах. До исправления работы передачи данных, отслеживания конверсий, любая оптимизация была бы работой вслепую.</p>
+            <blockquote class="quote">Нельзя масштабировать то, что бизнес не умеет точно измерять.</blockquote>
+          </div>
+        </div>
+        <div class="media"><div><strong>СКРИНШОТ №2 — АУДИТ / СТАРАЯ СТРУКТУРА</strong><small>Старый рекламный кабинет, ошибки аналитики или схема передачи данных до исправления</small></div></div>
       </section>
 
       <div class="band band-dark reveal">
         <div class="band-inner">
-          <div class="callout">
-            <h2>📌 Спойлер результатов</h2>
-            <p>До нас бизнес получил 13 продаж и около €60 000 выручки за год. За следующие 12 месяцев совместной работы — <strong>170 покупок и более €1 млн выручки</strong>.</p>
-          </div>
-          <div class="stats">
-            <div class="stat"><div class="num">€60к → €1 млн</div><div class="label">выручка за период</div></div>
-            <div class="stat"><div class="num">13 → 170</div><div class="label">продажи</div></div>
-            <div class="stat"><div class="num">€4,5к → €6,3к</div><div class="label">средний чек</div></div>
-          </div>
-          <div class="media filled">
-            <button class="media-zoom" type="button" data-lightbox-src="pool-image.webp" aria-label="Открыть обложку крупнее">
-              <div class="media-frame">
-                <img
-                  src="pool-image.webp"
-                  alt="Фото проекта: производство бассейнов"
-                  width="1600"
-                  height="900"
-                  loading="eager"
-                  decoding="async"
-                  fetchpriority="high"
-                >
-              </div>
-            </button>
-          </div>
-
-          <section class="section section-in-band" id="before-after">
-            <h2>🚩 Точка А → 🏆 Точка Б</h2>
-            <p>Сравниваем два одинаковых периода по 12 месяцев: работу с предыдущим специалистом и работу с нашей командой.</p>
-            <div class="comparison">
-              <div class="point before">
-                <div class="flag">🚩 Точка А — до PROFITAD</div>
-                <dl>
-                  <div class="row"><dt>Каналы</dt><dd>Facebook + eBay</dd></div>
-                  <div class="row"><dt>Реклама</dt><dd>$1 800 / месяц</dd></div>
-                  <div class="row"><dt>Услуги</dt><dd>$500 / месяц</dd></div>
-                  <div class="row"><dt>Продажи</dt><dd>13</dd></div>
-                  <div class="row"><dt>Средний чек</dt><dd>€4 500</dd></div>
-                  <div class="row"><dt>Выручка</dt><dd>≈ €58 500</dd></div>
-                  <div class="row"><dt>ROMI</dt><dd>≈ 112%</dd></div>
-                </dl>
-              </div>
-              <div class="point after">
-                <div class="flag">🏆 Точка Б — с PROFITAD</div>
-                <dl>
-                  <div class="row"><dt>Каналы</dt><dd>Google + Meta Ads</dd></div>
-                  <div class="row"><dt>Реклама</dt><dd>€5 500 / месяц</dd></div>
-                  <div class="row"><dt>Модель работы</dt><dd>$1 000 + % от выручки</dd></div>
-                  <div class="row"><dt>Продажи</dt><dd>170</dd></div>
-                  <div class="row"><dt>Средний чек</dt><dd>€6 300</dd></div>
-                  <div class="row"><dt>Выручка</dt><dd>≈ €1,06 млн</dd></div>
-                  <div class="row"><dt>ROMI</dt><dd>≈ 1 209%*</dd></div>
-                </dl>
-              </div>
-            </div>
-            <p class="note"></p>
-            <div class="media after-card">
-              <button class="media-zoom" type="button" data-lightbox-src="sales-compare-grafic.webp" aria-label="Открыть сравнение периодов крупнее">
-                <div class="media-frame">
-                  <img
-                    src="sales-compare-grafic.webp"
-                    alt="Сравнение периодов: продажи, средний чек, выручка и расходы до и после"
-                    width="1672"
-                    height="941"
-                    loading="lazy"
-                    decoding="async"
-                  >
-                </div>
-              </button>
+          <section class="section section-in-band" id="work">
+            <h2>🛠 Что мы предложили</h2>
+            <p class="subtitle">Не одного таргетолога, а команду роста</p>
+            <p>Под проект собрали отдельную связку специалистов. Google специалист, Meta специалист, техническую часть закрывал технический специалист, после перевели на АИ, во главе команды был Project Manager с четким руководством и планом результата.</p>
+            <div class="solution-list">
+              <div class="solution"><b>01. Google + Meta Ads</b>Пересобрали структуру кампаний и распределили роли каналов внутри одной воронки.</div>
+              <div class="solution"><b>02. Техническая оптимизация</b>Исправили передачу событий с WooCommerce в Google и Meta.</div>
+              <div class="solution"><b>03. Аналитика и CRM</b>Настроили учёт расходов, заявок, звонков, покупок, ROAS и ROMI.</div>
+              <div class="solution"><b>04. Ежедневное управление</b>Отслеживание результатов через основной дашборд и поддерживаемая связь с отделом продаж.</div>
+              <div class="solution"><b>05. Работа с продуктом</b>Тестировали новые УТП, промо, позиционирование и сегменты аудитории.</div>
+              <div class="solution"><b>06. Сайт и SEO-база</b>Оптимизировали сайт под платный трафик и выполнили базовые SEO и GEO работы.</div>
             </div>
           </section>
         </div>
       </div>
 
-      <div class="band band-dark reveal">
-        <div class="band-inner">
-          <section class="section section-in-band" id="diagnostics">
-            <h2>🔎 Что показала диагностическая сессия</h2>
-            <p>Мы начали не с запуска новых кампаний, а с аудита бизнеса и всей цепочки данных: от рекламного клика до фактической покупки. Нашли три системных ограничения.</p>
-            <div class="problem">
-              <div class="index">01</div>
-              <div>
-                <h3>Не было единой системы управления</h3>
-                <p>Команда не видела, из какого источника пришла конкретная продажа и сколько она реально стоила. Не было прозрачной отчётности, сквозной аналитики, CRM, которая не связывала маркетинг с отделом продаж вовсе.</p>
-                <ul>
-                  <li>Нет единого отчёта по расходам, заявкам и продажам;</li>
-                  <li>Не определено, кто отвечает за каждый участок воронки;</li>
-                  <li>Невозможно безопасно масштабировать бюджет.</li>
-                </ul>
-              </div>
-            </div>
-            <div class="problem">
-              <div class="index">02</div>
-              <div>
-                <h3>Неправильное распределение бюджета</h3>
-                <p>Google ADS был исключен как источник трафика, бюджет распределялся между Facebook и eBay. При этом расходы и продажи из eBay нельзя было корректно сопоставить. Фактическая стоимость клиента оставалась неизвестной, основные продажи приходили органически.</p>
-              </div>
-            </div>
-            <div class="problem">
-              <div class="index">03</div>
-              <div>
-                <h3>Google Ads и аналитика передавали неполные данные, или вовсе не передавали</h3>
-                <p>Часть бюджета уходила в кампании без понятного результата. При этом нельзя было исключить, что именно они участвовали в ключевых продажах. До исправления работы передачи данных, отслеживания конверсий, любая оптимизация была бы работой вслепую.</p>
-                <blockquote class="quote">Нельзя масштабировать то, что бизнес не умеет точно измерять.</blockquote>
-              </div>
-            </div>
-            <div class="media"><div><strong>СКРИНШОТ №2 — АУДИТ / СТАРАЯ СТРУКТУРА</strong><small>Старый рекламный кабинет, ошибки аналитики или схема передачи данных до исправления</small></div></div>
-          </section>
-        </div>
-      </div>
-
-      <section class="section reveal" id="work">
-        <h2>🛠 Что мы предложили</h2>
-        <p class="subtitle">Не одного таргетолога, а команду роста</p>
-        <p>Под проект собрали отдельную связку специалистов. Google специалист, Meta специалист, техническую часть закрывал технический специалист, после перевели на АИ, во главе команды был Project Manager с четким руководством и планом результата.</p>
-        <div class="solution-list">
-          <div class="solution"><b>01. Google + Meta Ads</b>Пересобрали структуру кампаний и распределили роли каналов внутри одной воронки.</div>
-          <div class="solution"><b>02. Техническая оптимизация</b>Исправили передачу событий с WooCommerce в Google и Meta.</div>
-          <div class="solution"><b>03. Аналитика и CRM</b>Настроили учёт расходов, заявок, звонков, покупок, ROAS и ROMI.</div>
-          <div class="solution"><b>04. Ежедневное управление</b>Отслеживание результатов через основной дашборд и поддерживаемая связь с отделом продаж.</div>
-          <div class="solution"><b>05. Работа с продуктом</b>Тестировали новые УТП, промо, позиционирование и сегменты аудитории.</div>
-          <div class="solution"><b>06. Сайт и SEO-база</b>Оптимизировали сайт под платный трафик и выполнили базовые SEO и GEO работы.</div>
-        </div>
-
+      <section class="section reveal">
         <h3>1. Вернули рекламе корректные данные</h3>
         <p>Настроили отслеживание ключевых действий и передачу данных в Google и Meta. После этого стало видно, какие кампании приводят звонки, формы и покупки, а какие только расходуют бюджет.</p>
         <div class="media filled">
@@ -708,44 +635,37 @@
         <div class="media"><div><strong>СКРИНШОТ №5 — CRM / ЗВОНКИ / ЗАКАЗЫ</strong><small>Обезличенный список сделок, звонков или заказов WooCommerce</small></div></div>
       </section>
 
-      <div class="band band-dark reveal">
-        <div class="band-inner">
-          <section class="section section-in-band" id="result">
-            <h2>🏆 Что получили за 12 месяцев</h2>
-            <ul>
-              <li><strong>170 покупок</strong> (прирост в 13 раз)</li>
-              <li>средний чек вырос с <strong>€4 500 до €6 300</strong>;</li>
-              <li>выручка выросла примерно в 17 раз (с <strong>€60 000 до более €1 млн)</strong>;</li>
-              <li>появилась прозрачная аналитика по каждому источнику и дню;</li>
-              <li>производство выросло, а наша работа расширилась с одного магазина до трёх.</li>
-            </ul>
-            <div class="highlight">
-              <div class="mini">Главный результат проекта</div>
-              <div class="big">€500 000+</div>
-              <p>выручки за один месяц с трёх магазинов при рекламных вложениях около €30 000. Пиковый результат был достигнут в апреле 2026 года.</p>
-            </div>
-            <div class="media filled">
-              <button class="media-zoom" type="button" data-lightbox-src="pools-sales.webp" aria-label="Открыть скриншот крупнее">
-                <div class="media-frame">
-                  <img
-                    src="pools-sales.webp"
-                    alt="Скриншот пикового апреля: выручка и рекламные расходы по трём магазинам"
-                    width="1445"
-                    height="468"
-                    loading="lazy"
-                    decoding="async"
-                  >
-                </div>
-              </button>
-            </div>
-
-            <h3>Почему этот результат нельзя объяснить только ростом бюджета</h3>
-            <p>Рекламные вложения действительно выросли. Но одновременно количество продаж увеличилось более чем в 13 раз, средний чек — на 40%, а бизнес получил систему, в которой можно видеть вклад каждого канала и управлять масштабированием на основе фактической выручки.</p>
-          </section>
+      <section class="section reveal" id="result">
+        <h2>🏆 Что получили за 12 месяцев</h2>
+        <ul>
+          <li><strong>170 покупок</strong> (прирост в 13 раз)</li>
+          <li>средний чек вырос с <strong>€4 500 до €6 300</strong>;</li>
+          <li>выручка выросла примерно в 17 раз (с <strong>€60 000 до более €1 млн)</strong>;</li>
+          <li>появилась прозрачная аналитика по каждому источнику и дню;</li>
+          <li>производство выросло, а наша работа расширилась с одного магазина до трёх.</li>
+        </ul>
+        <div class="highlight">
+          <div class="mini">Главный результат проекта</div>
+          <div class="big">€500 000+</div>
+          <p>выручки за один месяц с трёх магазинов при рекламных вложениях около €30 000. Пиковый результат был достигнут в апреле 2026 года.</p>
         </div>
-      </div>
+        <div class="media filled">
+          <button class="media-zoom" type="button" data-lightbox-src="pools-sales.webp" aria-label="Открыть скриншот крупнее">
+            <div class="media-frame">
+              <img
+                src="pools-sales.webp"
+                alt="Скриншот пикового апреля: выручка и рекламные расходы по трём магазинам"
+                width="1445"
+                height="468"
+                loading="lazy"
+                decoding="async"
+              >
+            </div>
+          </button>
+        </div>
 
-      <section class="section reveal">
+        <h3>Почему этот результат нельзя объяснить только ростом бюджета</h3>
+        <p>Рекламные вложения действительно выросли. Но одновременно количество продаж увеличилось более чем в 13 раз, средний чек — на 40%, а бизнес получил систему, в которой можно видеть вклад каждого канала и управлять масштабированием на основе фактической выручки.</p>
         <div class="callout">
           <h3>Что стало главным рычагом</h3>
           <p><strong>Корректные данные → правильная структура кампаний → персонализированная воронка → ежедневный контроль экономики.</strong> Не одна «секретная настройка», а связанная система маркетинга и продаж.</p>

@@ -273,121 +273,51 @@
     .reveal{opacity:0;transform:translateY(18px);transition:.6s ease}
     .reveal.visible{opacity:1;transform:none}
 
-    /* Full-bleed dark bands */
+    /* Full-bleed inverted (dark) bands — light cards/text on charcoal */
     .band-dark{
-      --band-ink:#f2f2f0;
-      --band-muted:#9aa0a8;
-      --band-card:#141416;
-      --band-line:rgba(255,255,255,.1);
       width:100vw;
       max-width:100vw;
       margin:56px 0 0;
       margin-left:calc(50% - 50vw);
       padding:72px 0 84px;
       background:
-        radial-gradient(circle at 12% 0%,rgba(185,239,28,.08),transparent 34%),
-        radial-gradient(circle at 88% 18%,rgba(255,255,255,.04),transparent 30%),
-        linear-gradient(180deg,#0c0c0e 0%,#080809 100%);
-      color:var(--band-ink);
+        radial-gradient(circle at 14% 0%,rgba(185,239,28,.14),transparent 36%),
+        radial-gradient(circle at 90% 20%,rgba(255,255,255,.07),transparent 34%),
+        linear-gradient(180deg,#2c2d31 0%,#222326 100%);
+      color:#f4f4f2;
       position:relative;
       overflow:clip;
-    }
-    .band-dark + .section,
-    .band-dark + .band-dark{margin-top:0}
-    .band-dark + .band-dark{
-      margin-top:0;
-      border-top:1px solid rgba(255,255,255,.06);
     }
     .band-inner{
       width:min(1180px,calc(100% - 56px));
       max-width:100%;
       margin:0 auto;
     }
-    .band-dark .section-in-band{padding-top:72px}
-    .band-dark .section-in-band:first-child{padding-top:0}
-    .band-dark .section>h2,
-    .band-dark .section h3,
-    .band-dark .callout h2,
-    .band-dark .callout h3{color:#fff}
-    .band-dark .section .subtitle{color:#e8e8e6}
-    .band-dark .section>p,
-    .band-dark .section p,
-    .band-dark .section li{color:var(--band-muted)}
-    .band-dark .section li strong,
-    .band-dark .section p strong{color:#fff}
-    .band-dark .callout{
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.1);
-      box-shadow:none;
-      color:var(--band-ink);
-    }
-    .band-dark .callout p{color:var(--band-muted)}
-    .band-dark .stat{
-      background:var(--band-card);
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.04);
-    }
-    .band-dark .stat:first-child{background:var(--acid);color:#111}
-    .band-dark .stat .label{color:#a7abb2}
-    .band-dark .stat:first-child .label{color:#333}
-    .band-dark .point{
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.1);
-      box-shadow:none;
-    }
-    .band-dark .point.before{
-      color:#a0a4ab;
-      background:rgba(255,255,255,.03);
-    }
-    .band-dark .point.before .flag{color:#d0d2d6}
-    .band-dark .point.before dt{color:#7d828a}
-    .band-dark .point.before .row{border-color:rgba(255,255,255,.08)}
-    .band-dark .point.after{
-      background:#161618;
-      border:1px solid rgba(185,239,28,.28);
-      box-shadow:0 24px 60px rgba(0,0,0,.35);
+    .band-dark .section-in-band{padding-top:0}
+    .band-dark .section>h2{
       color:#fff;
     }
-    .band-dark .media.filled,
-    .band-dark .media.video{
-      border-color:rgba(255,255,255,.28);
-      box-shadow:0 16px 40px rgba(0,0,0,.35);
-      background:transparent;
+    .band-dark .section .subtitle{
+      color:#fff;
     }
-    .band-dark .media:not(.filled):not(.video):not(.after-card){
-      background:rgba(255,255,255,.03);
-      border-color:rgba(255,255,255,.18);
-      color:#9aa0a8;
+    .band-dark .section>p,
+    .band-dark .section p{
+      color:rgba(244,244,242,.78);
     }
-    .band-dark .media strong{color:#e8e8e6}
-    .band-dark .media.video strong{color:var(--acid)}
-    .band-dark .media.after-card{
-      background:#161618;
-      box-shadow:0 24px 60px rgba(0,0,0,.4);
+    .band-dark .section p strong{
+      color:#fff;
     }
-    .band-dark .problem{
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.1);
+    .band-dark .solution{
+      background:#f7f7f5;
+      border:1px solid rgba(255,255,255,.95);
+      color:#111214;
+      box-shadow:0 18px 44px rgba(0,0,0,.22);
     }
-    .band-dark .problem .index{
-      background:var(--acid);
-      color:#111;
+    .band-dark .solution b{
+      color:#111214;
     }
-    .band-dark .problem h3{color:#fff}
-    .band-dark .problem p,
-    .band-dark .problem li{color:var(--band-muted)}
-    .band-dark .quote{
-      background:#161618;
-      border:1px solid rgba(185,239,28,.22);
-      box-shadow:0 18px 40px rgba(0,0,0,.28);
-    }
-    .band-dark .highlight{
-      background:#161618;
-      border:1px solid rgba(185,239,28,.22);
-      box-shadow:0 24px 60px rgba(0,0,0,.35);
-    }
-    .band-dark .note{
-      color:#8b9098;
-      border-left-color:var(--acid);
+    .band-dark .solution:hover{
+      box-shadow:0 24px 56px rgba(0,0,0,.28);
     }
 
     @media (max-width:900px){
@@ -524,133 +454,130 @@
           <span class="pill">Period: 12 months</span>
           <span class="pill">WordPress + WooCommerce</span>
         </div>
+        <div class="callout">
+          <h2>📌 Results spoiler</h2>
+          <p>Before us the business had 13 sales and about €60,000 revenue for the year. Over the next 12 months of joint work — <strong>170 purchases and more than €1M in revenue</strong>.</p>
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="num">€60k → €1M</div><div class="label">revenue for the period</div></div>
+          <div class="stat"><div class="num">13 → 170</div><div class="label">sales</div></div>
+          <div class="stat"><div class="num">€4.5k → €6.3k</div><div class="label">average order value</div></div>
+        </div>
+        <div class="media filled">
+          <button class="media-zoom" type="button" data-lightbox-src="../pool-image.webp" aria-label="Open cover image larger">
+            <div class="media-frame">
+              <img
+                src="../pool-image.webp"
+                alt="Project photo: pool manufacturing"
+                width="1600"
+                height="900"
+                loading="eager"
+                decoding="async"
+                fetchpriority="high"
+              >
+            </div>
+          </button>
+        </div>
+      </section>
+
+      <section class="section reveal" id="before-after">
+        <h2>🚩 Point A → 🏆 Point B</h2>
+        <p>We compare two identical 12-month periods: work with the previous specialist and work with our team.</p>
+        <div class="comparison">
+          <div class="point before">
+            <div class="flag">🚩 Point A — before PROFITAD</div>
+            <dl>
+              <div class="row"><dt>Channels</dt><dd>Facebook + eBay</dd></div>
+              <div class="row"><dt>Ads</dt><dd>$1 800 / month</dd></div>
+              <div class="row"><dt>Services</dt><dd>$500 / month</dd></div>
+              <div class="row"><dt>Sales</dt><dd>13</dd></div>
+              <div class="row"><dt>Average order value</dt><dd>€4 500</dd></div>
+              <div class="row"><dt>Revenue</dt><dd>≈ €58 500</dd></div>
+              <div class="row"><dt>ROMI</dt><dd>≈ 112%</dd></div>
+            </dl>
+          </div>
+          <div class="point after">
+            <div class="flag">🏆 Point B — with PROFITAD</div>
+            <dl>
+              <div class="row"><dt>Channels</dt><dd>Google + Meta Ads</dd></div>
+              <div class="row"><dt>Ads</dt><dd>€5 500 / month</dd></div>
+              <div class="row"><dt>Engagement model</dt><dd>$1,000 + % of revenue</dd></div>
+              <div class="row"><dt>Sales</dt><dd>170</dd></div>
+              <div class="row"><dt>Average order value</dt><dd>€6 300</dd></div>
+              <div class="row"><dt>Revenue</dt><dd>≈ €1.06M</dd></div>
+              <div class="row"><dt>ROMI</dt><dd>≈ 1 209%*</dd></div>
+            </dl>
+          </div>
+        </div>
+        <p class="note"></p>
+        <div class="media after-card">
+          <button class="media-zoom" type="button" data-lightbox-src="../sales-compare-grafic.webp" aria-label="Open period comparison larger">
+            <div class="media-frame">
+              <img
+                src="../sales-compare-grafic.webp"
+                alt="Period comparison: sales, AOV, revenue and spend before and after"
+                width="1672"
+                height="941"
+                loading="lazy"
+                decoding="async"
+              >
+            </div>
+          </button>
+        </div>
+      </section>
+
+      <section class="section reveal" id="diagnostics">
+        <h2>🔎 What the diagnostic session showed</h2>
+        <p>We did not start by launching new campaigns. We audited the business and the full data chain: from ad click to actual purchase. We found three systemic constraints.</p>
+        <div class="problem">
+          <div class="index">01</div>
+          <div>
+            <h3>There was no unified management system</h3>
+            <p>The team could not see which source drove a specific sale or what it really cost. There was no transparent reporting, end-to-end analytics, or a CRM linking marketing to sales.</p>
+            <ul>
+              <li>No single report on spend, leads, and sales;</li>
+              <li>No clear ownership for each funnel stage;</li>
+              <li>Impossible to scale budget safely.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="problem">
+          <div class="index">02</div>
+          <div>
+            <h3>Budget was allocated incorrectly</h3>
+            <p>Google Ads was excluded as a traffic source; budget was split between Facebook and eBay. Spend and sales from eBay could not be matched correctly. True customer cost stayed unknown, and most sales came organically.</p>
+          </div>
+        </div>
+        <div class="problem">
+          <div class="index">03</div>
+          <div>
+            <h3>Google Ads and analytics sent incomplete data — or none at all</h3>
+            <p>Part of the budget went into campaigns with no clear result. At the same time, those campaigns may still have contributed to key sales. Until data transfer and conversion tracking were fixed, any optimization would have been blind.</p>
+            <blockquote class="quote">You cannot scale what a business cannot measure accurately.</blockquote>
+          </div>
+        </div>
+        <div class="media"><div><strong>SCREENSHOT #2 — AUDIT / OLD STRUCTURE</strong><small>Old ad account, analytics errors, or data-transfer scheme before the fix</small></div></div>
       </section>
 
       <div class="band band-dark reveal">
         <div class="band-inner">
-          <div class="callout">
-            <h2>📌 Results spoiler</h2>
-            <p>Before us the business had 13 sales and about €60,000 revenue for the year. Over the next 12 months of joint work — <strong>170 purchases and more than €1M in revenue</strong>.</p>
-          </div>
-          <div class="stats">
-            <div class="stat"><div class="num">€60k → €1M</div><div class="label">revenue for the period</div></div>
-            <div class="stat"><div class="num">13 → 170</div><div class="label">sales</div></div>
-            <div class="stat"><div class="num">€4.5k → €6.3k</div><div class="label">average order value</div></div>
-          </div>
-          <div class="media filled">
-            <button class="media-zoom" type="button" data-lightbox-src="../pool-image.webp" aria-label="Open cover image larger">
-              <div class="media-frame">
-                <img
-                  src="../pool-image.webp"
-                  alt="Project photo: pool manufacturing"
-                  width="1600"
-                  height="900"
-                  loading="eager"
-                  decoding="async"
-                  fetchpriority="high"
-                >
-              </div>
-            </button>
-          </div>
-
-          <section class="section section-in-band" id="before-after">
-            <h2>🚩 Point A → 🏆 Point B</h2>
-            <p>We compare two identical 12-month periods: work with the previous specialist and work with our team.</p>
-            <div class="comparison">
-              <div class="point before">
-                <div class="flag">🚩 Point A — before PROFITAD</div>
-                <dl>
-                  <div class="row"><dt>Channels</dt><dd>Facebook + eBay</dd></div>
-                  <div class="row"><dt>Ads</dt><dd>$1 800 / month</dd></div>
-                  <div class="row"><dt>Services</dt><dd>$500 / month</dd></div>
-                  <div class="row"><dt>Sales</dt><dd>13</dd></div>
-                  <div class="row"><dt>Average order value</dt><dd>€4 500</dd></div>
-                  <div class="row"><dt>Revenue</dt><dd>≈ €58 500</dd></div>
-                  <div class="row"><dt>ROMI</dt><dd>≈ 112%</dd></div>
-                </dl>
-              </div>
-              <div class="point after">
-                <div class="flag">🏆 Point B — with PROFITAD</div>
-                <dl>
-                  <div class="row"><dt>Channels</dt><dd>Google + Meta Ads</dd></div>
-                  <div class="row"><dt>Ads</dt><dd>€5 500 / month</dd></div>
-                  <div class="row"><dt>Engagement model</dt><dd>$1,000 + % of revenue</dd></div>
-                  <div class="row"><dt>Sales</dt><dd>170</dd></div>
-                  <div class="row"><dt>Average order value</dt><dd>€6 300</dd></div>
-                  <div class="row"><dt>Revenue</dt><dd>≈ €1.06M</dd></div>
-                  <div class="row"><dt>ROMI</dt><dd>≈ 1 209%*</dd></div>
-                </dl>
-              </div>
-            </div>
-            <p class="note"></p>
-            <div class="media after-card">
-              <button class="media-zoom" type="button" data-lightbox-src="../sales-compare-grafic.webp" aria-label="Open period comparison larger">
-                <div class="media-frame">
-                  <img
-                    src="../sales-compare-grafic.webp"
-                    alt="Period comparison: sales, AOV, revenue and spend before and after"
-                    width="1672"
-                    height="941"
-                    loading="lazy"
-                    decoding="async"
-                  >
-                </div>
-              </button>
+          <section class="section section-in-band" id="work">
+            <h2>🛠 What we proposed</h2>
+            <p class="subtitle">Not a single media buyer — a growth team</p>
+            <p>We assembled a dedicated specialist stack for the project: Google specialist, Meta specialist, a technical specialist (later moved to AI), led by a Project Manager with clear direction and a results plan.</p>
+            <div class="solution-list">
+              <div class="solution"><b>01. Google + Meta Ads</b>Rebuilt campaign structure and assigned channel roles inside one funnel.</div>
+              <div class="solution"><b>02. Technical optimization</b>Fixed event transfer from WooCommerce to Google and Meta.</div>
+              <div class="solution"><b>03. Analytics and CRM</b>Set up tracking for spend, leads, calls, purchases, ROAS, and ROMI.</div>
+              <div class="solution"><b>04. Daily management</b>Results monitoring via the main dashboard and ongoing sales-team coordination.</div>
+              <div class="solution"><b>05. Product work</b>Tested new USPs, promos, positioning, and audience segments.</div>
+              <div class="solution"><b>06. Website and SEO base</b>Optimized the site for paid traffic and ran basic SEO and GEO work.</div>
             </div>
           </section>
         </div>
       </div>
 
-      <div class="band band-dark reveal">
-        <div class="band-inner">
-          <section class="section section-in-band" id="diagnostics">
-            <h2>🔎 What the diagnostic session showed</h2>
-            <p>We did not start by launching new campaigns. We audited the business and the full data chain: from ad click to actual purchase. We found three systemic constraints.</p>
-            <div class="problem">
-              <div class="index">01</div>
-              <div>
-                <h3>There was no unified management system</h3>
-                <p>The team could not see which source drove a specific sale or what it really cost. There was no transparent reporting, end-to-end analytics, or a CRM linking marketing to sales.</p>
-                <ul>
-                  <li>No single report on spend, leads, and sales;</li>
-                  <li>No clear ownership for each funnel stage;</li>
-                  <li>Impossible to scale budget safely.</li>
-                </ul>
-              </div>
-            </div>
-            <div class="problem">
-              <div class="index">02</div>
-              <div>
-                <h3>Budget was allocated incorrectly</h3>
-                <p>Google Ads was excluded as a traffic source; budget was split between Facebook and eBay. Spend and sales from eBay could not be matched correctly. True customer cost stayed unknown, and most sales came organically.</p>
-              </div>
-            </div>
-            <div class="problem">
-              <div class="index">03</div>
-              <div>
-                <h3>Google Ads and analytics sent incomplete data — or none at all</h3>
-                <p>Part of the budget went into campaigns with no clear result. At the same time, those campaigns may still have contributed to key sales. Until data transfer and conversion tracking were fixed, any optimization would have been blind.</p>
-                <blockquote class="quote">You cannot scale what a business cannot measure accurately.</blockquote>
-              </div>
-            </div>
-            <div class="media"><div><strong>SCREENSHOT #2 — AUDIT / OLD STRUCTURE</strong><small>Old ad account, analytics errors, or data-transfer scheme before the fix</small></div></div>
-          </section>
-        </div>
-      </div>
-
-      <section class="section reveal" id="work">
-        <h2>🛠 What we proposed</h2>
-        <p class="subtitle">Not a single media buyer — a growth team</p>
-        <p>We assembled a dedicated specialist stack for the project: Google specialist, Meta specialist, a technical specialist (later moved to AI), led by a Project Manager with clear direction and a results plan.</p>
-        <div class="solution-list">
-          <div class="solution"><b>01. Google + Meta Ads</b>Rebuilt campaign structure and assigned channel roles inside one funnel.</div>
-          <div class="solution"><b>02. Technical optimization</b>Fixed event transfer from WooCommerce to Google and Meta.</div>
-          <div class="solution"><b>03. Analytics and CRM</b>Set up tracking for spend, leads, calls, purchases, ROAS, and ROMI.</div>
-          <div class="solution"><b>04. Daily management</b>Results monitoring via the main dashboard and ongoing sales-team coordination.</div>
-          <div class="solution"><b>05. Product work</b>Tested new USPs, promos, positioning, and audience segments.</div>
-          <div class="solution"><b>06. Website and SEO base</b>Optimized the site for paid traffic and ran basic SEO and GEO work.</div>
-        </div>
-
+      <section class="section reveal">
         <h3>1. Gave ads accurate data again</h3>
         <p>We set up tracking for key actions and data transfer into Google and Meta. After that it became clear which campaigns drive calls, forms, and purchases — and which only spend budget.</p>
         <div class="media filled">
@@ -708,44 +635,37 @@
         <div class="media"><div><strong>SCREENSHOT #5 — CRM / CALLS / ORDERS</strong><small>Anonymized list of deals, calls, or WooCommerce orders</small></div></div>
       </section>
 
-      <div class="band band-dark reveal">
-        <div class="band-inner">
-          <section class="section section-in-band" id="result">
-            <h2>🏆 What we achieved in 12 months</h2>
-            <ul>
-              <li><strong>170 purchases</strong> (13× growth)</li>
-              <li>average order value grew from <strong>€4,500 to €6,300</strong>;</li>
-              <li>revenue grew about 17× (from <strong>€60,000 to over €1M</strong>);</li>
-              <li>transparent analytics appeared for every source and day;</li>
-              <li>production grew, and our work expanded from one store to three.</li>
-            </ul>
-            <div class="highlight">
-              <div class="mini">Main project result</div>
-              <div class="big">€500 000+</div>
-              <p>in revenue in one month across three stores with about €30,000 in ad spend. Peak result was reached in April 2026.</p>
-            </div>
-            <div class="media filled">
-              <button class="media-zoom" type="button" data-lightbox-src="../pools-sales.webp" aria-label="Open screenshot larger">
-                <div class="media-frame">
-                  <img
-                    src="../pools-sales.webp"
-                    alt="Peak April screenshot: revenue and ad spend across three stores"
-                    width="1445"
-                    height="468"
-                    loading="lazy"
-                    decoding="async"
-                  >
-                </div>
-              </button>
-            </div>
-
-            <h3>Why this result cannot be explained by budget growth alone</h3>
-            <p>Ad spend did grow. But sales grew more than 13× at the same time, AOV rose 40%, and the business got a system where every channel’s contribution is visible and scaling is managed from actual revenue.</p>
-          </section>
+      <section class="section reveal" id="result">
+        <h2>🏆 What we achieved in 12 months</h2>
+        <ul>
+          <li><strong>170 purchases</strong> (13× growth)</li>
+          <li>average order value grew from <strong>€4,500 to €6,300</strong>;</li>
+          <li>revenue grew about 17× (from <strong>€60,000 to over €1M</strong>);</li>
+          <li>transparent analytics appeared for every source and day;</li>
+          <li>production grew, and our work expanded from one store to three.</li>
+        </ul>
+        <div class="highlight">
+          <div class="mini">Main project result</div>
+          <div class="big">€500 000+</div>
+          <p>in revenue in one month across three stores with about €30,000 in ad spend. Peak result was reached in April 2026.</p>
         </div>
-      </div>
+        <div class="media filled">
+          <button class="media-zoom" type="button" data-lightbox-src="../pools-sales.webp" aria-label="Open screenshot larger">
+            <div class="media-frame">
+              <img
+                src="../pools-sales.webp"
+                alt="Peak April screenshot: revenue and ad spend across three stores"
+                width="1445"
+                height="468"
+                loading="lazy"
+                decoding="async"
+              >
+            </div>
+          </button>
+        </div>
 
-      <section class="section reveal">
+        <h3>Why this result cannot be explained by budget growth alone</h3>
+        <p>Ad spend did grow. But sales grew more than 13× at the same time, AOV rose 40%, and the business got a system where every channel’s contribution is visible and scaling is managed from actual revenue.</p>
         <div class="callout">
           <h3>What became the main lever</h3>
           <p><strong>Correct data → right campaign structure → personalized funnel → daily economic control.</strong> Not one “secret setting”, but a connected marketing and sales system.</p>
