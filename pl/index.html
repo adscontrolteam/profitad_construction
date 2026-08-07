@@ -27,8 +27,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="image" href="../video-poster.jpg" fetchpriority="high">
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
 
   <style>
     :root{
@@ -50,6 +50,8 @@
     html{scroll-behavior:auto;overflow-x:hidden;scroll-padding-top:92px}
     body{
       font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      font-weight:400;
+      letter-spacing:-.011em;
       background:
         radial-gradient(circle at 10% 0%,rgba(255,255,255,.95),transparent 28%),
         radial-gradient(circle at 90% 18%,rgba(215,220,226,.45),transparent 32%),
@@ -278,9 +280,9 @@
     .hero h1{
       max-width:980px;
       margin:0 auto 24px;
-      font-family:Manrope,Inter,sans-serif;
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       font-size:clamp(46px,7vw,96px);
-      font-weight:700;
+      font-weight:650;
       line-height:.94;
       letter-spacing:-.065em;
       text-wrap:balance;
@@ -349,11 +351,11 @@
 
     section{padding:110px 0}
     .section-head{text-align:center;margin-bottom:54px}
-    .section-kicker{font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#858a91;margin-bottom:18px}
+    .section-kicker{font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#858a91;margin-bottom:18px}
     .section-title{
-      font-family:Manrope,Inter,sans-serif;
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       font-size:clamp(38px,5vw,66px);
-      font-weight:700;
+      font-weight:650;
       line-height:.98;
       letter-spacing:-.055em;
       max-width:900px;
@@ -367,7 +369,7 @@
     .more-cases{
       margin:38px auto 0;
       text-align:center;
-      font-family:Manrope,Inter,sans-serif;
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       font-size:clamp(24px,3vw,38px);
       font-weight:650;
       letter-spacing:-.045em;
@@ -408,7 +410,7 @@
       background:rgba(185,239,28,.96);
       color:#0a0c05;
       font-size:12px;
-      font-weight:850;
+      font-weight:700;
       letter-spacing:.01em;
       box-shadow:0 10px 28px rgba(0,0,0,.18);
       transition:transform .3s ease,box-shadow .3s ease,background .3s ease;
@@ -426,7 +428,7 @@
     }
     .case-top{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;margin-bottom:20px;min-height:132px}
     .case-label{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#858585}
-    .case-title{font-family:Manrope,Inter,sans-serif;font-size:clamp(25px,3.2vw,40px);line-height:1.05;letter-spacing:-.045em;font-weight:600;margin-top:9px;min-height:calc(2 * 1.05em)}
+    .case-title{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:clamp(25px,3.2vw,40px);line-height:1.05;letter-spacing:-.045em;font-weight:600;margin-top:9px;min-height:calc(2 * 1.05em)}
     .case-market{margin-top:9px;color:#858585;font-size:14px;line-height:1.4;font-weight:600;min-height:1.4em}
     .case-growth{
       min-width:122px;
@@ -437,8 +439,8 @@
       padding:14px 16px;
       text-align:left;
     }
-    .case-growth span{display:block;font-size:12px;font-weight:800;text-transform:uppercase;margin-bottom:4px}
-    .case-growth strong{display:block;font-family:Manrope,Inter,sans-serif;font-size:clamp(32px,3.6vw,48px);line-height:.95;letter-spacing:-.06em}
+    .case-growth span{display:block;font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px}
+    .case-growth strong{display:block;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:clamp(32px,3.6vw,48px);line-height:.95;letter-spacing:-.06em;font-weight:800}
 
     .case-media{
       border-radius:18px;
@@ -505,9 +507,9 @@
       gap:6px;
       color:var(--acid);
       font-size:clamp(9px,1.05vw,11px);
-      font-weight:700;
+      font-weight:600;
       text-transform:uppercase;
-      letter-spacing:.02em;
+      letter-spacing:.08em;
       line-height:1.25;
       white-space:nowrap;
       padding:0 0 12px;
@@ -526,7 +528,7 @@
     .metric-b .metric-head{
       color:var(--acid);
       border-bottom-color:rgba(185,239,28,.55);
-      font-weight:850;
+      font-weight:700;
       font-size:clamp(9.5px,1.1vw,12px);
     }
     .metric-head span{
@@ -540,7 +542,7 @@
     .metric-head span:last-child{flex:0 1 auto;text-align:right}
     .metric strong{
       display:block;
-      font-family:Manrope,Inter,sans-serif;
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       font-size:clamp(26px,2.8vw,40px);
       line-height:1;
       margin-top:16px;
@@ -554,13 +556,13 @@
     }
     .metric-a strong{
       font-size:clamp(22px,2.35vw,32px);
-      font-weight:500;
+      font-weight:600;
       color:#c4c7cc;
       margin-top:14px;
     }
     .metric-b strong{
       font-size:clamp(28px,3.05vw,44px);
-      font-weight:750;
+      font-weight:800;
       color:#fff;
       margin-top:15px;
       text-shadow:0 0 24px rgba(185,239,28,.12);
@@ -607,7 +609,7 @@
       filter:blur(34px);
       pointer-events:none;
     }
-    .fit-copy h3{position:relative;z-index:1;font-family:Manrope,Inter,sans-serif;font-size:clamp(32px,4vw,50px);line-height:1.02;letter-spacing:-.05em;font-weight:650;margin-bottom:20px;color:#fff}
+    .fit-copy h3{position:relative;z-index:1;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:clamp(32px,4vw,50px);line-height:1.02;letter-spacing:-.05em;font-weight:650;margin-bottom:20px;color:#fff}
     .fit-copy p{position:relative;z-index:1;color:#a8adb5;font-size:18px;line-height:1.65;margin-bottom:30px}
     .fit-copy .btn{position:relative;z-index:1;background:#fff;color:#111;border-color:#fff;box-shadow:0 14px 34px rgba(0,0,0,.22)}
     .fit-copy .btn:hover{box-shadow:0 18px 42px rgba(0,0,0,.30)}
@@ -642,7 +644,7 @@
     .diagnostic-media{border-radius:32px;overflow:hidden;background:#101010;min-height:420px}
     .diagnostic-video{width:100%;height:100%;object-fit:cover}
     .diagnostic-box{padding:42px;display:flex;flex-direction:column;justify-content:center}
-    .diagnostic-box h3{font-family:Manrope,Inter,sans-serif;font-size:clamp(30px,4vw,46px);line-height:1.03;letter-spacing:-.045em;margin-bottom:24px;font-weight:650}
+    .diagnostic-box h3{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:clamp(30px,4vw,46px);line-height:1.03;letter-spacing:-.045em;margin-bottom:24px;font-weight:650}
     .diagnostic-box ol{padding-left:22px;color:#535860;font-size:18px;line-height:1.9}
     .diagnostic-box .btn{margin-top:30px;align-self:flex-start}
 
@@ -707,7 +709,7 @@
       place-items:center;
       background:linear-gradient(145deg,#1a1a1a,#111);
       color:var(--acid);
-      font-family:Manrope,Inter,sans-serif;
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       font-size:12px;
       font-weight:800;
       letter-spacing:.02em;
@@ -721,7 +723,7 @@
       padding-right:2px;
     }
     .contact-name{
-      font-family:Manrope,Inter,sans-serif;
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       font-size:13px;
       font-weight:700;
       letter-spacing:-.02em;
@@ -767,7 +769,7 @@
       filter:blur(80px);
       opacity:.16;
     }
-    .cta-box h2{font-family:Manrope,Inter,sans-serif;font-size:clamp(38px,5vw,68px);line-height:.98;letter-spacing:-.055em;font-weight:650;max-width:840px;margin:0 auto 20px}
+    .cta-box h2{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:clamp(38px,5vw,68px);line-height:.98;letter-spacing:-.055em;font-weight:650;max-width:840px;margin:0 auto 20px}
     .cta-box p{color:#a5a5a5;font-size:18px;line-height:1.6;max-width:680px;margin:0 auto 30px}
 
     footer{padding:28px 0 38px;border-top:1px solid rgba(17,18,20,.07);color:#747981;font-size:13px;font-weight:600}
@@ -938,7 +940,7 @@
     }
     .analytics-float strong{
       display:block;
-      font-family:Manrope,Inter,sans-serif;
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       font-size:38px;
       line-height:1;
       color:#111;
@@ -1492,7 +1494,7 @@
 
           <a class="case-link reveal" href="../case-pools/pl/" aria-label="Otwórz pełny case Baseny">
             <article class="case-card">
-              <div class="case-top"><div><div class="case-label">Case 03 / Production</div><h3 class="case-title">Baseny</h3><div class="case-market">Niemcy</div></div><div class="case-growth"><span>Przychód</span><strong>×17</strong></div></div>
+              <div class="case-top"><div><div class="case-label"></div><h3 class="case-title">Бассейны в Германии</h3><div class="case-market"></div></div><div class="case-growth"><span>Przychód</span><strong>×17</strong></div></div>
               <div class="case-media case-dark"><img src="../pool-image.webp" alt="Case produkcji basenów" loading="lazy" decoding="async"></div>
               <div class="case-numbers"><div class="metric metric-a"><div class="metric-head"><span>Punkt A</span><span>Przychód</span></div><strong>€58 000</strong><small></small></div><div class="metric metric-b"><div class="metric-head"><span>Punkt B</span><span>Przychód</span></div><strong>€1MLN+</strong><small></small></div></div>
               <span class="case-cta" aria-hidden="true"></span>
