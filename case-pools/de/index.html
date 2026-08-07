@@ -273,6 +273,123 @@
     .reveal{opacity:0;transform:translateY(18px);transition:.6s ease}
     .reveal.visible{opacity:1;transform:none}
 
+    /* Full-bleed dark bands */
+    .band-dark{
+      --band-ink:#f2f2f0;
+      --band-muted:#9aa0a8;
+      --band-card:#141416;
+      --band-line:rgba(255,255,255,.1);
+      width:100vw;
+      max-width:100vw;
+      margin:56px 0 0;
+      margin-left:calc(50% - 50vw);
+      padding:72px 0 84px;
+      background:
+        radial-gradient(circle at 12% 0%,rgba(185,239,28,.08),transparent 34%),
+        radial-gradient(circle at 88% 18%,rgba(255,255,255,.04),transparent 30%),
+        linear-gradient(180deg,#0c0c0e 0%,#080809 100%);
+      color:var(--band-ink);
+      position:relative;
+      overflow:clip;
+    }
+    .band-dark + .section,
+    .band-dark + .band-dark{margin-top:0}
+    .band-dark + .band-dark{
+      margin-top:0;
+      border-top:1px solid rgba(255,255,255,.06);
+    }
+    .band-inner{
+      width:min(1180px,calc(100% - 56px));
+      max-width:100%;
+      margin:0 auto;
+    }
+    .band-dark .section-in-band{padding-top:72px}
+    .band-dark .section-in-band:first-child{padding-top:0}
+    .band-dark .section>h2,
+    .band-dark .section h3,
+    .band-dark .callout h2,
+    .band-dark .callout h3{color:#fff}
+    .band-dark .section .subtitle{color:#e8e8e6}
+    .band-dark .section>p,
+    .band-dark .section p,
+    .band-dark .section li{color:var(--band-muted)}
+    .band-dark .section li strong,
+    .band-dark .section p strong{color:#fff}
+    .band-dark .callout{
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.1);
+      box-shadow:none;
+      color:var(--band-ink);
+    }
+    .band-dark .callout p{color:var(--band-muted)}
+    .band-dark .stat{
+      background:var(--band-card);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.04);
+    }
+    .band-dark .stat:first-child{background:var(--acid);color:#111}
+    .band-dark .stat .label{color:#a7abb2}
+    .band-dark .stat:first-child .label{color:#333}
+    .band-dark .point{
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.1);
+      box-shadow:none;
+    }
+    .band-dark .point.before{
+      color:#a0a4ab;
+      background:rgba(255,255,255,.03);
+    }
+    .band-dark .point.before .flag{color:#d0d2d6}
+    .band-dark .point.before dt{color:#7d828a}
+    .band-dark .point.before .row{border-color:rgba(255,255,255,.08)}
+    .band-dark .point.after{
+      background:#161618;
+      border:1px solid rgba(185,239,28,.28);
+      box-shadow:0 24px 60px rgba(0,0,0,.35);
+      color:#fff;
+    }
+    .band-dark .media.filled,
+    .band-dark .media.video{
+      border-color:rgba(255,255,255,.28);
+      box-shadow:0 16px 40px rgba(0,0,0,.35);
+      background:transparent;
+    }
+    .band-dark .media:not(.filled):not(.video):not(.after-card){
+      background:rgba(255,255,255,.03);
+      border-color:rgba(255,255,255,.18);
+      color:#9aa0a8;
+    }
+    .band-dark .media strong{color:#e8e8e6}
+    .band-dark .media.video strong{color:var(--acid)}
+    .band-dark .media.after-card{
+      background:#161618;
+      box-shadow:0 24px 60px rgba(0,0,0,.4);
+    }
+    .band-dark .problem{
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.1);
+    }
+    .band-dark .problem .index{
+      background:var(--acid);
+      color:#111;
+    }
+    .band-dark .problem h3{color:#fff}
+    .band-dark .problem p,
+    .band-dark .problem li{color:var(--band-muted)}
+    .band-dark .quote{
+      background:#161618;
+      border:1px solid rgba(185,239,28,.22);
+      box-shadow:0 18px 40px rgba(0,0,0,.28);
+    }
+    .band-dark .highlight{
+      background:#161618;
+      border:1px solid rgba(185,239,28,.22);
+      box-shadow:0 24px 60px rgba(0,0,0,.35);
+    }
+    .band-dark .note{
+      color:#8b9098;
+      border-left-color:var(--acid);
+    }
+
     @media (max-width:900px){
       .stats,.comparison,.solution-list{grid-template-columns:1fr}
       .point.before{transform:none}
@@ -283,6 +400,9 @@
       body{font-size:16px;overflow-x:clip}
       body:before{display:none}
       .page{padding:54px 16px 64px;width:100%;max-width:100%}
+      .band-dark{padding:48px 0 56px;margin-top:36px}
+      .band-inner{width:min(100% - 32px,1180px)}
+      .band-dark .section-in-band{padding-top:48px}
       .topbar-inner{min-height:64px;padding:0 14px;gap:10px}
       .brand img{width:84px;height:48px}
       .topbar-actions{gap:8px}
@@ -404,110 +524,119 @@
           <span class="pill">Zeitraum: 12 Monate</span>
           <span class="pill">WordPress + WooCommerce</span>
         </div>
-        <div class="callout">
-          <h2>📌 Ergebnis-Spoiler</h2>
-          <p>Vor uns hatte das Business 13 Verkäufe und etwa €60.000 Umsatz im Jahr. In den folgenden 12 Monaten gemeinsamer Arbeit — <strong>170 Käufe und über €1 Mio. Umsatz</strong>.</p>
-        </div>
-        <div class="stats">
-          <div class="stat"><div class="num">€60k → €1 Mio.</div><div class="label">Umsatz im Zeitraum</div></div>
-          <div class="stat"><div class="num">13 → 170</div><div class="label">Verkäufe</div></div>
-          <div class="stat"><div class="num">€4,5k → €6,3k</div><div class="label">Durchschnittsbon</div></div>
-        </div>
-        <div class="media filled">
-          <button class="media-zoom" type="button" data-lightbox-src="../pool-image.webp" aria-label="Cover größer öffnen">
-            <div class="media-frame">
-              <img
-                src="../pool-image.webp"
-                alt="Projektfoto: Poolproduktion"
-                width="1600"
-                height="900"
-                loading="eager"
-                decoding="async"
-                fetchpriority="high"
-              >
-            </div>
-          </button>
-        </div>
       </section>
 
-      <section class="section reveal" id="before-after">
-        <h2>🚩 Punkt A → 🏆 Punkt B</h2>
-        <p>Wir vergleichen zwei identische 12-Monats-Zeiträume: Arbeit mit dem vorherigen Spezialisten und Arbeit mit unserem Team.</p>
-        <div class="comparison">
-          <div class="point before">
-            <div class="flag">🚩 Punkt A — vor PROFITAD</div>
-            <dl>
-              <div class="row"><dt>Kanäle</dt><dd>Facebook + eBay</dd></div>
-              <div class="row"><dt>Werbung</dt><dd>$1 800 / Monat</dd></div>
-              <div class="row"><dt>Dienstleistungen</dt><dd>$500 / Monat</dd></div>
-              <div class="row"><dt>Verkäufe</dt><dd>13</dd></div>
-              <div class="row"><dt>Durchschnittsbon</dt><dd>€4 500</dd></div>
-              <div class="row"><dt>Umsatz</dt><dd>≈ €58 500</dd></div>
-              <div class="row"><dt>ROMI</dt><dd>≈ 112%</dd></div>
-            </dl>
+      <div class="band band-dark reveal">
+        <div class="band-inner">
+          <div class="callout">
+            <h2>📌 Ergebnis-Spoiler</h2>
+            <p>Vor uns hatte das Business 13 Verkäufe und etwa €60.000 Umsatz im Jahr. In den folgenden 12 Monaten gemeinsamer Arbeit — <strong>170 Käufe und über €1 Mio. Umsatz</strong>.</p>
           </div>
-          <div class="point after">
-            <div class="flag">🏆 Punkt B — mit PROFITAD</div>
-            <dl>
-              <div class="row"><dt>Kanäle</dt><dd>Google + Meta Ads</dd></div>
-              <div class="row"><dt>Werbung</dt><dd>€5 500 / Monat</dd></div>
-              <div class="row"><dt>Arbeitsmodell</dt><dd>$1.000 + % vom Umsatz</dd></div>
-              <div class="row"><dt>Verkäufe</dt><dd>170</dd></div>
-              <div class="row"><dt>Durchschnittsbon</dt><dd>€6 300</dd></div>
-              <div class="row"><dt>Umsatz</dt><dd>≈ €1,06 Mio.</dd></div>
-              <div class="row"><dt>ROMI</dt><dd>≈ 1 209%*</dd></div>
-            </dl>
+          <div class="stats">
+            <div class="stat"><div class="num">€60k → €1 Mio.</div><div class="label">Umsatz im Zeitraum</div></div>
+            <div class="stat"><div class="num">13 → 170</div><div class="label">Verkäufe</div></div>
+            <div class="stat"><div class="num">€4,5k → €6,3k</div><div class="label">Durchschnittsbon</div></div>
           </div>
-        </div>
-        <p class="note"></p>
-        <div class="media after-card">
-          <button class="media-zoom" type="button" data-lightbox-src="../sales-compare-grafic.webp" aria-label="Periodenvergleich größer öffnen">
-            <div class="media-frame">
-              <img
-                src="../sales-compare-grafic.webp"
-                alt="Periodenvergleich: Verkäufe, Bon, Umsatz und Ausgaben vorher/nachher"
-                width="1672"
-                height="941"
-                loading="lazy"
-                decoding="async"
-              >
-            </div>
-          </button>
-        </div>
-      </section>
+          <div class="media filled">
+            <button class="media-zoom" type="button" data-lightbox-src="../pool-image.webp" aria-label="Cover größer öffnen">
+              <div class="media-frame">
+                <img
+                  src="../pool-image.webp"
+                  alt="Projektfoto: Poolproduktion"
+                  width="1600"
+                  height="900"
+                  loading="eager"
+                  decoding="async"
+                  fetchpriority="high"
+                >
+              </div>
+            </button>
+          </div>
 
-      <section class="section reveal" id="diagnostics">
-        <h2>🔎 Was die Diagnosesession zeigte</h2>
-        <p>Wir starteten nicht mit neuen Kampagnen, sondern mit einem Audit des Business und der gesamten Datenkette: vom Anzeigenklick bis zum tatsächlichen Kauf. Wir fanden drei systemische Engpässe.</p>
-        <div class="problem">
-          <div class="index">01</div>
-          <div>
-            <h3>Es gab kein einheitliches Steuerungssystem</h3>
-            <p>Das Team sah nicht, aus welcher Quelle ein konkreter Verkauf kam und was er wirklich kostete. Es fehlten transparente Reports, End-to-End-Analytics und ein CRM, das Marketing mit Sales verband.</p>
-            <ul>
-              <li>Kein einheitlicher Report zu Ausgaben, Anfragen und Verkäufen;</li>
-              <li>Keine klare Verantwortung für jeden Funnel-Abschnitt;</li>
-              <li>Budget ließ sich nicht sicher skalieren.</li>
-            </ul>
-          </div>
+          <section class="section section-in-band" id="before-after">
+            <h2>🚩 Punkt A → 🏆 Punkt B</h2>
+            <p>Wir vergleichen zwei identische 12-Monats-Zeiträume: Arbeit mit dem vorherigen Spezialisten und Arbeit mit unserem Team.</p>
+            <div class="comparison">
+              <div class="point before">
+                <div class="flag">🚩 Punkt A — vor PROFITAD</div>
+                <dl>
+                  <div class="row"><dt>Kanäle</dt><dd>Facebook + eBay</dd></div>
+                  <div class="row"><dt>Werbung</dt><dd>$1 800 / Monat</dd></div>
+                  <div class="row"><dt>Dienstleistungen</dt><dd>$500 / Monat</dd></div>
+                  <div class="row"><dt>Verkäufe</dt><dd>13</dd></div>
+                  <div class="row"><dt>Durchschnittsbon</dt><dd>€4 500</dd></div>
+                  <div class="row"><dt>Umsatz</dt><dd>≈ €58 500</dd></div>
+                  <div class="row"><dt>ROMI</dt><dd>≈ 112%</dd></div>
+                </dl>
+              </div>
+              <div class="point after">
+                <div class="flag">🏆 Punkt B — mit PROFITAD</div>
+                <dl>
+                  <div class="row"><dt>Kanäle</dt><dd>Google + Meta Ads</dd></div>
+                  <div class="row"><dt>Werbung</dt><dd>€5 500 / Monat</dd></div>
+                  <div class="row"><dt>Arbeitsmodell</dt><dd>$1.000 + % vom Umsatz</dd></div>
+                  <div class="row"><dt>Verkäufe</dt><dd>170</dd></div>
+                  <div class="row"><dt>Durchschnittsbon</dt><dd>€6 300</dd></div>
+                  <div class="row"><dt>Umsatz</dt><dd>≈ €1,06 Mio.</dd></div>
+                  <div class="row"><dt>ROMI</dt><dd>≈ 1 209%*</dd></div>
+                </dl>
+              </div>
+            </div>
+            <p class="note"></p>
+            <div class="media after-card">
+              <button class="media-zoom" type="button" data-lightbox-src="../sales-compare-grafic.webp" aria-label="Periodenvergleich größer öffnen">
+                <div class="media-frame">
+                  <img
+                    src="../sales-compare-grafic.webp"
+                    alt="Periodenvergleich: Verkäufe, Bon, Umsatz und Ausgaben vorher/nachher"
+                    width="1672"
+                    height="941"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                </div>
+              </button>
+            </div>
+          </section>
         </div>
-        <div class="problem">
-          <div class="index">02</div>
-          <div>
-            <h3>Falsche Budgetverteilung</h3>
-            <p>Google Ads war als Traffic-Quelle ausgeschlossen; das Budget lief über Facebook und eBay. Ausgaben und Verkäufe aus eBay ließen sich nicht korrekt zuordnen. Die reale Kundenkosten blieben unbekannt, die meisten Verkäufe kamen organisch.</p>
-          </div>
+      </div>
+
+      <div class="band band-dark reveal">
+        <div class="band-inner">
+          <section class="section section-in-band" id="diagnostics">
+            <h2>🔎 Was die Diagnosesession zeigte</h2>
+            <p>Wir starteten nicht mit neuen Kampagnen, sondern mit einem Audit des Business und der gesamten Datenkette: vom Anzeigenklick bis zum tatsächlichen Kauf. Wir fanden drei systemische Engpässe.</p>
+            <div class="problem">
+              <div class="index">01</div>
+              <div>
+                <h3>Es gab kein einheitliches Steuerungssystem</h3>
+                <p>Das Team sah nicht, aus welcher Quelle ein konkreter Verkauf kam und was er wirklich kostete. Es fehlten transparente Reports, End-to-End-Analytics und ein CRM, das Marketing mit Sales verband.</p>
+                <ul>
+                  <li>Kein einheitlicher Report zu Ausgaben, Anfragen und Verkäufen;</li>
+                  <li>Keine klare Verantwortung für jeden Funnel-Abschnitt;</li>
+                  <li>Budget ließ sich nicht sicher skalieren.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="problem">
+              <div class="index">02</div>
+              <div>
+                <h3>Falsche Budgetverteilung</h3>
+                <p>Google Ads war als Traffic-Quelle ausgeschlossen; das Budget lief über Facebook und eBay. Ausgaben und Verkäufe aus eBay ließen sich nicht korrekt zuordnen. Die reale Kundenkosten blieben unbekannt, die meisten Verkäufe kamen organisch.</p>
+              </div>
+            </div>
+            <div class="problem">
+              <div class="index">03</div>
+              <div>
+                <h3>Google Ads und Analytics lieferten unvollständige Daten — oder gar keine</h3>
+                <p>Ein Teil des Budgets floss in Kampagnen ohne klares Ergebnis. Gleichzeitig konnten genau diese Kampagnen an Schlüsselverkäufen beteiligt sein. Bis Datenübertragung und Conversion-Tracking gefixt waren, wäre jede Optimierung Blindflug gewesen.</p>
+                <blockquote class="quote">Man kann nicht skalieren, was ein Business nicht präzise messen kann.</blockquote>
+              </div>
+            </div>
+            <div class="media"><div><strong>SCREENSHOT #2 — AUDIT / ALTE STRUKTUR</strong><small>Altes Werbekonto, Analytics-Fehler oder Datenfluss vor dem Fix</small></div></div>
+          </section>
         </div>
-        <div class="problem">
-          <div class="index">03</div>
-          <div>
-            <h3>Google Ads und Analytics lieferten unvollständige Daten — oder gar keine</h3>
-            <p>Ein Teil des Budgets floss in Kampagnen ohne klares Ergebnis. Gleichzeitig konnten genau diese Kampagnen an Schlüsselverkäufen beteiligt sein. Bis Datenübertragung und Conversion-Tracking gefixt waren, wäre jede Optimierung Blindflug gewesen.</p>
-            <blockquote class="quote">Man kann nicht skalieren, was ein Business nicht präzise messen kann.</blockquote>
-          </div>
-        </div>
-        <div class="media"><div><strong>SCREENSHOT #2 — AUDIT / ALTE STRUKTUR</strong><small>Altes Werbekonto, Analytics-Fehler oder Datenfluss vor dem Fix</small></div></div>
-      </section>
+      </div>
 
       <section class="section reveal" id="work">
         <h2>🛠 Was wir vorgeschlagen haben</h2>
@@ -579,37 +708,44 @@
         <div class="media"><div><strong>SCREENSHOT #5 — CRM / ANRUFE / BESTELLUNGEN</strong><small>Anonymisierte Liste von Deals, Anrufen oder WooCommerce-Bestellungen</small></div></div>
       </section>
 
-      <section class="section reveal" id="result">
-        <h2>🏆 Was wir in 12 Monaten erreicht haben</h2>
-        <ul>
-          <li><strong>170 Käufe</strong> (13× Wachstum)</li>
-          <li>Durchschnittsbon stieg von <strong>€4.500 auf €6.300</strong>;</li>
-          <li>Umsatz wuchs etwa 17× (von <strong>€60.000 auf über €1 Mio.</strong>);</li>
-          <li>transparente Analytics pro Quelle und Tag;</li>
-          <li>Produktion wuchs, unsere Arbeit erweiterte sich von einem Shop auf drei.</li>
-        </ul>
-        <div class="highlight">
-          <div class="mini">Hauptergebnis des Projekts</div>
-          <div class="big">€500 000+</div>
-          <p>Umsatz in einem Monat über drei Shops bei etwa €30.000 Werbeausgaben. Peak im April 2026.</p>
-        </div>
-        <div class="media filled">
-          <button class="media-zoom" type="button" data-lightbox-src="../pools-sales.webp" aria-label="Screenshot größer öffnen">
-            <div class="media-frame">
-              <img
-                src="../pools-sales.webp"
-                alt="Peak-April-Screenshot: Umsatz und Werbeausgaben über drei Shops"
-                width="1445"
-                height="468"
-                loading="lazy"
-                decoding="async"
-              >
+      <div class="band band-dark reveal">
+        <div class="band-inner">
+          <section class="section section-in-band" id="result">
+            <h2>🏆 Was wir in 12 Monaten erreicht haben</h2>
+            <ul>
+              <li><strong>170 Käufe</strong> (13× Wachstum)</li>
+              <li>Durchschnittsbon stieg von <strong>€4.500 auf €6.300</strong>;</li>
+              <li>Umsatz wuchs etwa 17× (von <strong>€60.000 auf über €1 Mio.</strong>);</li>
+              <li>transparente Analytics pro Quelle und Tag;</li>
+              <li>Produktion wuchs, unsere Arbeit erweiterte sich von einem Shop auf drei.</li>
+            </ul>
+            <div class="highlight">
+              <div class="mini">Hauptergebnis des Projekts</div>
+              <div class="big">€500 000+</div>
+              <p>Umsatz in einem Monat über drei Shops bei etwa €30.000 Werbeausgaben. Peak im April 2026.</p>
             </div>
-          </button>
-        </div>
+            <div class="media filled">
+              <button class="media-zoom" type="button" data-lightbox-src="../pools-sales.webp" aria-label="Screenshot größer öffnen">
+                <div class="media-frame">
+                  <img
+                    src="../pools-sales.webp"
+                    alt="Peak-April-Screenshot: Umsatz und Werbeausgaben über drei Shops"
+                    width="1445"
+                    height="468"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                </div>
+              </button>
+            </div>
 
-        <h3>Warum dieses Ergebnis nicht nur durch mehr Budget erklärbar ist</h3>
-        <p>Die Werbeausgaben stiegen tatsächlich. Gleichzeitig wuchsen die Verkäufe um mehr als das 13-Fache, der Bon um 40 %, und das Business erhielt ein System, in dem der Beitrag jedes Kanals sichtbar ist und Skalierung auf Basis realer Umsätze gesteuert wird.</p>
+            <h3>Warum dieses Ergebnis nicht nur durch mehr Budget erklärbar ist</h3>
+            <p>Die Werbeausgaben stiegen tatsächlich. Gleichzeitig wuchsen die Verkäufe um mehr als das 13-Fache, der Bon um 40 %, und das Business erhielt ein System, in dem der Beitrag jedes Kanals sichtbar ist und Skalierung auf Basis realer Umsätze gesteuert wird.</p>
+          </section>
+        </div>
+      </div>
+
+      <section class="section reveal">
         <div class="callout">
           <h3>Was der Haupthebel wurde</h3>
           <p><strong>Korrekte Daten → richtige Kampagnenstruktur → personalisierter Funnel → tägliche Wirtschaftlichkeitskontrolle.</strong> Keine einzelne „Geheim-Einstellung“, sondern ein verbundenes Marketing- und Sales-System.</p>

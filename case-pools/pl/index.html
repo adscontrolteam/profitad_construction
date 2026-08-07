@@ -273,6 +273,123 @@
     .reveal{opacity:0;transform:translateY(18px);transition:.6s ease}
     .reveal.visible{opacity:1;transform:none}
 
+    /* Full-bleed dark bands */
+    .band-dark{
+      --band-ink:#f2f2f0;
+      --band-muted:#9aa0a8;
+      --band-card:#141416;
+      --band-line:rgba(255,255,255,.1);
+      width:100vw;
+      max-width:100vw;
+      margin:56px 0 0;
+      margin-left:calc(50% - 50vw);
+      padding:72px 0 84px;
+      background:
+        radial-gradient(circle at 12% 0%,rgba(185,239,28,.08),transparent 34%),
+        radial-gradient(circle at 88% 18%,rgba(255,255,255,.04),transparent 30%),
+        linear-gradient(180deg,#0c0c0e 0%,#080809 100%);
+      color:var(--band-ink);
+      position:relative;
+      overflow:clip;
+    }
+    .band-dark + .section,
+    .band-dark + .band-dark{margin-top:0}
+    .band-dark + .band-dark{
+      margin-top:0;
+      border-top:1px solid rgba(255,255,255,.06);
+    }
+    .band-inner{
+      width:min(1180px,calc(100% - 56px));
+      max-width:100%;
+      margin:0 auto;
+    }
+    .band-dark .section-in-band{padding-top:72px}
+    .band-dark .section-in-band:first-child{padding-top:0}
+    .band-dark .section>h2,
+    .band-dark .section h3,
+    .band-dark .callout h2,
+    .band-dark .callout h3{color:#fff}
+    .band-dark .section .subtitle{color:#e8e8e6}
+    .band-dark .section>p,
+    .band-dark .section p,
+    .band-dark .section li{color:var(--band-muted)}
+    .band-dark .section li strong,
+    .band-dark .section p strong{color:#fff}
+    .band-dark .callout{
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.1);
+      box-shadow:none;
+      color:var(--band-ink);
+    }
+    .band-dark .callout p{color:var(--band-muted)}
+    .band-dark .stat{
+      background:var(--band-card);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.04);
+    }
+    .band-dark .stat:first-child{background:var(--acid);color:#111}
+    .band-dark .stat .label{color:#a7abb2}
+    .band-dark .stat:first-child .label{color:#333}
+    .band-dark .point{
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.1);
+      box-shadow:none;
+    }
+    .band-dark .point.before{
+      color:#a0a4ab;
+      background:rgba(255,255,255,.03);
+    }
+    .band-dark .point.before .flag{color:#d0d2d6}
+    .band-dark .point.before dt{color:#7d828a}
+    .band-dark .point.before .row{border-color:rgba(255,255,255,.08)}
+    .band-dark .point.after{
+      background:#161618;
+      border:1px solid rgba(185,239,28,.28);
+      box-shadow:0 24px 60px rgba(0,0,0,.35);
+      color:#fff;
+    }
+    .band-dark .media.filled,
+    .band-dark .media.video{
+      border-color:rgba(255,255,255,.28);
+      box-shadow:0 16px 40px rgba(0,0,0,.35);
+      background:transparent;
+    }
+    .band-dark .media:not(.filled):not(.video):not(.after-card){
+      background:rgba(255,255,255,.03);
+      border-color:rgba(255,255,255,.18);
+      color:#9aa0a8;
+    }
+    .band-dark .media strong{color:#e8e8e6}
+    .band-dark .media.video strong{color:var(--acid)}
+    .band-dark .media.after-card{
+      background:#161618;
+      box-shadow:0 24px 60px rgba(0,0,0,.4);
+    }
+    .band-dark .problem{
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.1);
+    }
+    .band-dark .problem .index{
+      background:var(--acid);
+      color:#111;
+    }
+    .band-dark .problem h3{color:#fff}
+    .band-dark .problem p,
+    .band-dark .problem li{color:var(--band-muted)}
+    .band-dark .quote{
+      background:#161618;
+      border:1px solid rgba(185,239,28,.22);
+      box-shadow:0 18px 40px rgba(0,0,0,.28);
+    }
+    .band-dark .highlight{
+      background:#161618;
+      border:1px solid rgba(185,239,28,.22);
+      box-shadow:0 24px 60px rgba(0,0,0,.35);
+    }
+    .band-dark .note{
+      color:#8b9098;
+      border-left-color:var(--acid);
+    }
+
     @media (max-width:900px){
       .stats,.comparison,.solution-list{grid-template-columns:1fr}
       .point.before{transform:none}
@@ -283,6 +400,9 @@
       body{font-size:16px;overflow-x:clip}
       body:before{display:none}
       .page{padding:54px 16px 64px;width:100%;max-width:100%}
+      .band-dark{padding:48px 0 56px;margin-top:36px}
+      .band-inner{width:min(100% - 32px,1180px)}
+      .band-dark .section-in-band{padding-top:48px}
       .topbar-inner{min-height:64px;padding:0 14px;gap:10px}
       .brand img{width:84px;height:48px}
       .topbar-actions{gap:8px}
@@ -404,110 +524,119 @@
           <span class="pill">Okres: 12 miesięcy</span>
           <span class="pill">WordPress + WooCommerce</span>
         </div>
-        <div class="callout">
-          <h2>📌 Spoiler wyników</h2>
-          <p>Przed nami biznes miał 13 sprzedaży i około €60 000 przychodu rocznie. Przez kolejne 12 miesięcy wspólnej pracy — <strong>170 zakupów i ponad €1 mln przychodu</strong>.</p>
-        </div>
-        <div class="stats">
-          <div class="stat"><div class="num">€60k → €1 mln</div><div class="label">przychód w okresie</div></div>
-          <div class="stat"><div class="num">13 → 170</div><div class="label">sprzedaże</div></div>
-          <div class="stat"><div class="num">€4,5k → €6,3k</div><div class="label">średni koszyk</div></div>
-        </div>
-        <div class="media filled">
-          <button class="media-zoom" type="button" data-lightbox-src="../pool-image.webp" aria-label="Otwórz okładkę większą">
-            <div class="media-frame">
-              <img
-                src="../pool-image.webp"
-                alt="Zdjęcie projektu: produkcja basenów"
-                width="1600"
-                height="900"
-                loading="eager"
-                decoding="async"
-                fetchpriority="high"
-              >
-            </div>
-          </button>
-        </div>
       </section>
 
-      <section class="section reveal" id="before-after">
-        <h2>🚩 Punkt A → 🏆 Punkt B</h2>
-        <p>Porównujemy dwa identyczne okresy po 12 miesięcy: pracę z poprzednim specjalistą i pracę z naszym zespołem.</p>
-        <div class="comparison">
-          <div class="point before">
-            <div class="flag">🚩 Punkt A — przed PROFITAD</div>
-            <dl>
-              <div class="row"><dt>Kanały</dt><dd>Facebook + eBay</dd></div>
-              <div class="row"><dt>Reklama</dt><dd>$1 800 / miesiąc</dd></div>
-              <div class="row"><dt>Usługi</dt><dd>$500 / miesiąc</dd></div>
-              <div class="row"><dt>Sprzedaże</dt><dd>13</dd></div>
-              <div class="row"><dt>Średni koszyk</dt><dd>€4 500</dd></div>
-              <div class="row"><dt>Przychód</dt><dd>≈ €58 500</dd></div>
-              <div class="row"><dt>ROMI</dt><dd>≈ 112%</dd></div>
-            </dl>
+      <div class="band band-dark reveal">
+        <div class="band-inner">
+          <div class="callout">
+            <h2>📌 Spoiler wyników</h2>
+            <p>Przed nami biznes miał 13 sprzedaży i około €60 000 przychodu rocznie. Przez kolejne 12 miesięcy wspólnej pracy — <strong>170 zakupów i ponad €1 mln przychodu</strong>.</p>
           </div>
-          <div class="point after">
-            <div class="flag">🏆 Punkt B — z PROFITAD</div>
-            <dl>
-              <div class="row"><dt>Kanały</dt><dd>Google + Meta Ads</dd></div>
-              <div class="row"><dt>Reklama</dt><dd>€5 500 / miesiąc</dd></div>
-              <div class="row"><dt>Model współpracy</dt><dd>$1 000 + % od przychodu</dd></div>
-              <div class="row"><dt>Sprzedaże</dt><dd>170</dd></div>
-              <div class="row"><dt>Średni koszyk</dt><dd>€6 300</dd></div>
-              <div class="row"><dt>Przychód</dt><dd>≈ €1,06 mln</dd></div>
-              <div class="row"><dt>ROMI</dt><dd>≈ 1 209%*</dd></div>
-            </dl>
+          <div class="stats">
+            <div class="stat"><div class="num">€60k → €1 mln</div><div class="label">przychód w okresie</div></div>
+            <div class="stat"><div class="num">13 → 170</div><div class="label">sprzedaże</div></div>
+            <div class="stat"><div class="num">€4,5k → €6,3k</div><div class="label">średni koszyk</div></div>
           </div>
-        </div>
-        <p class="note"></p>
-        <div class="media after-card">
-          <button class="media-zoom" type="button" data-lightbox-src="../sales-compare-grafic.webp" aria-label="Otwórz porównanie okresów większe">
-            <div class="media-frame">
-              <img
-                src="../sales-compare-grafic.webp"
-                alt="Porównanie okresów: sprzedaż, koszyk, przychód i koszty przed/po"
-                width="1672"
-                height="941"
-                loading="lazy"
-                decoding="async"
-              >
-            </div>
-          </button>
-        </div>
-      </section>
+          <div class="media filled">
+            <button class="media-zoom" type="button" data-lightbox-src="../pool-image.webp" aria-label="Otwórz okładkę większą">
+              <div class="media-frame">
+                <img
+                  src="../pool-image.webp"
+                  alt="Zdjęcie projektu: produkcja basenów"
+                  width="1600"
+                  height="900"
+                  loading="eager"
+                  decoding="async"
+                  fetchpriority="high"
+                >
+              </div>
+            </button>
+          </div>
 
-      <section class="section reveal" id="diagnostics">
-        <h2>🔎 Co pokazała sesja diagnostyczna</h2>
-        <p>Nie zaczęliśmy od nowych kampanii, tylko od audytu biznesu i całego łańcucha danych: od kliknięcia w reklamę do realnego zakupu. Znaleźliśmy trzy systemowe ograniczenia.</p>
-        <div class="problem">
-          <div class="index">01</div>
-          <div>
-            <h3>Nie było jednolitego systemu zarządzania</h3>
-            <p>Zespół nie widział, z jakiego źródła pochodzi konkretna sprzedaż i ile naprawdę kosztowała. Brakowało transparentnego raportowania, analityki end-to-end oraz CRM łączącego marketing ze sprzedażą.</p>
-            <ul>
-              <li>Brak jednego raportu kosztów, leadów i sprzedaży;</li>
-              <li>Brak jasnej odpowiedzialności za każdy etap lejka;</li>
-              <li>Niemożliwe bezpieczne skalowanie budżetu.</li>
-            </ul>
-          </div>
+          <section class="section section-in-band" id="before-after">
+            <h2>🚩 Punkt A → 🏆 Punkt B</h2>
+            <p>Porównujemy dwa identyczne okresy po 12 miesięcy: pracę z poprzednim specjalistą i pracę z naszym zespołem.</p>
+            <div class="comparison">
+              <div class="point before">
+                <div class="flag">🚩 Punkt A — przed PROFITAD</div>
+                <dl>
+                  <div class="row"><dt>Kanały</dt><dd>Facebook + eBay</dd></div>
+                  <div class="row"><dt>Reklama</dt><dd>$1 800 / miesiąc</dd></div>
+                  <div class="row"><dt>Usługi</dt><dd>$500 / miesiąc</dd></div>
+                  <div class="row"><dt>Sprzedaże</dt><dd>13</dd></div>
+                  <div class="row"><dt>Średni koszyk</dt><dd>€4 500</dd></div>
+                  <div class="row"><dt>Przychód</dt><dd>≈ €58 500</dd></div>
+                  <div class="row"><dt>ROMI</dt><dd>≈ 112%</dd></div>
+                </dl>
+              </div>
+              <div class="point after">
+                <div class="flag">🏆 Punkt B — z PROFITAD</div>
+                <dl>
+                  <div class="row"><dt>Kanały</dt><dd>Google + Meta Ads</dd></div>
+                  <div class="row"><dt>Reklama</dt><dd>€5 500 / miesiąc</dd></div>
+                  <div class="row"><dt>Model współpracy</dt><dd>$1 000 + % od przychodu</dd></div>
+                  <div class="row"><dt>Sprzedaże</dt><dd>170</dd></div>
+                  <div class="row"><dt>Średni koszyk</dt><dd>€6 300</dd></div>
+                  <div class="row"><dt>Przychód</dt><dd>≈ €1,06 mln</dd></div>
+                  <div class="row"><dt>ROMI</dt><dd>≈ 1 209%*</dd></div>
+                </dl>
+              </div>
+            </div>
+            <p class="note"></p>
+            <div class="media after-card">
+              <button class="media-zoom" type="button" data-lightbox-src="../sales-compare-grafic.webp" aria-label="Otwórz porównanie okresów większe">
+                <div class="media-frame">
+                  <img
+                    src="../sales-compare-grafic.webp"
+                    alt="Porównanie okresów: sprzedaż, koszyk, przychód i koszty przed/po"
+                    width="1672"
+                    height="941"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                </div>
+              </button>
+            </div>
+          </section>
         </div>
-        <div class="problem">
-          <div class="index">02</div>
-          <div>
-            <h3>Nieprawidłowy podział budżetu</h3>
-            <p>Google Ads był wykluczony jako źródło ruchu; budżet dzielono między Facebook i eBay. Kosztów i sprzedaży z eBay nie dało się poprawnie zestawić. Realny koszt klienta był nieznany, a większość sprzedaży przychodziła organicznie.</p>
-          </div>
+      </div>
+
+      <div class="band band-dark reveal">
+        <div class="band-inner">
+          <section class="section section-in-band" id="diagnostics">
+            <h2>🔎 Co pokazała sesja diagnostyczna</h2>
+            <p>Nie zaczęliśmy od nowych kampanii, tylko od audytu biznesu i całego łańcucha danych: od kliknięcia w reklamę do realnego zakupu. Znaleźliśmy trzy systemowe ograniczenia.</p>
+            <div class="problem">
+              <div class="index">01</div>
+              <div>
+                <h3>Nie było jednolitego systemu zarządzania</h3>
+                <p>Zespół nie widział, z jakiego źródła pochodzi konkretna sprzedaż i ile naprawdę kosztowała. Brakowało transparentnego raportowania, analityki end-to-end oraz CRM łączącego marketing ze sprzedażą.</p>
+                <ul>
+                  <li>Brak jednego raportu kosztów, leadów i sprzedaży;</li>
+                  <li>Brak jasnej odpowiedzialności za każdy etap lejka;</li>
+                  <li>Niemożliwe bezpieczne skalowanie budżetu.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="problem">
+              <div class="index">02</div>
+              <div>
+                <h3>Nieprawidłowy podział budżetu</h3>
+                <p>Google Ads był wykluczony jako źródło ruchu; budżet dzielono między Facebook i eBay. Kosztów i sprzedaży z eBay nie dało się poprawnie zestawić. Realny koszt klienta był nieznany, a większość sprzedaży przychodziła organicznie.</p>
+              </div>
+            </div>
+            <div class="problem">
+              <div class="index">03</div>
+              <div>
+                <h3>Google Ads i analityka przekazywały niepełne dane — albo wcale</h3>
+                <p>Część budżetu szła w kampanie bez jasnego wyniku. Jednocześnie właśnie one mogły brać udział w kluczowych sprzedażach. Dopóki nie naprawiono przekazywania danych i śledzenia konwersji, każda optymalizacja byłaby działaniem w ciemno.</p>
+                <blockquote class="quote">Nie da się skalować tego, czego biznes nie potrafi precyzyjnie mierzyć.</blockquote>
+              </div>
+            </div>
+            <div class="media"><div><strong>SCREENSHOT #2 — AUDYT / STARA STRUKTURA</strong><small>Stare konto reklamowe, błędy analityki lub schemat przekazywania danych przed poprawką</small></div></div>
+          </section>
         </div>
-        <div class="problem">
-          <div class="index">03</div>
-          <div>
-            <h3>Google Ads i analityka przekazywały niepełne dane — albo wcale</h3>
-            <p>Część budżetu szła w kampanie bez jasnego wyniku. Jednocześnie właśnie one mogły brać udział w kluczowych sprzedażach. Dopóki nie naprawiono przekazywania danych i śledzenia konwersji, każda optymalizacja byłaby działaniem w ciemno.</p>
-            <blockquote class="quote">Nie da się skalować tego, czego biznes nie potrafi precyzyjnie mierzyć.</blockquote>
-          </div>
-        </div>
-        <div class="media"><div><strong>SCREENSHOT #2 — AUDYT / STARA STRUKTURA</strong><small>Stare konto reklamowe, błędy analityki lub schemat przekazywania danych przed poprawką</small></div></div>
-      </section>
+      </div>
 
       <section class="section reveal" id="work">
         <h2>🛠 Co zaproponowaliśmy</h2>
@@ -579,37 +708,44 @@
         <div class="media"><div><strong>SCREENSHOT #5 — CRM / ROZMOWY / ZAMÓWIENIA</strong><small>Zanonimizowana lista dealów, rozmów lub zamówień WooCommerce</small></div></div>
       </section>
 
-      <section class="section reveal" id="result">
-        <h2>🏆 Co osiągnęliśmy w 12 miesięcy</h2>
-        <ul>
-          <li><strong>170 zakupów</strong> (wzrost 13×)</li>
-          <li>średni koszyk wzrósł z <strong>€4 500 do €6 300</strong>;</li>
-          <li>przychód wzrósł ok. 17× (z <strong>€60 000 do ponad €1 mln</strong>);</li>
-          <li>pojawiła się transparentna analityka per źródło i dzień;</li>
-          <li>produkcja wzrosła, a nasza praca rozszerzyła się z jednego sklepu do trzech.</li>
-        </ul>
-        <div class="highlight">
-          <div class="mini">Główny wynik projektu</div>
-          <div class="big">€500 000+</div>
-          <p>przychodu w jeden miesiąc z trzech sklepów przy wydatkach reklamowych około €30 000. Peak w kwietniu 2026.</p>
-        </div>
-        <div class="media filled">
-          <button class="media-zoom" type="button" data-lightbox-src="../pools-sales.webp" aria-label="Otwórz screenshot większy">
-            <div class="media-frame">
-              <img
-                src="../pools-sales.webp"
-                alt="Screenshot peakowego kwietnia: przychód i koszty reklamowe w trzech sklepach"
-                width="1445"
-                height="468"
-                loading="lazy"
-                decoding="async"
-              >
+      <div class="band band-dark reveal">
+        <div class="band-inner">
+          <section class="section section-in-band" id="result">
+            <h2>🏆 Co osiągnęliśmy w 12 miesięcy</h2>
+            <ul>
+              <li><strong>170 zakupów</strong> (wzrost 13×)</li>
+              <li>średni koszyk wzrósł z <strong>€4 500 do €6 300</strong>;</li>
+              <li>przychód wzrósł ok. 17× (z <strong>€60 000 do ponad €1 mln</strong>);</li>
+              <li>pojawiła się transparentna analityka per źródło i dzień;</li>
+              <li>produkcja wzrosła, a nasza praca rozszerzyła się z jednego sklepu do trzech.</li>
+            </ul>
+            <div class="highlight">
+              <div class="mini">Główny wynik projektu</div>
+              <div class="big">€500 000+</div>
+              <p>przychodu w jeden miesiąc z trzech sklepów przy wydatkach reklamowych około €30 000. Peak w kwietniu 2026.</p>
             </div>
-          </button>
-        </div>
+            <div class="media filled">
+              <button class="media-zoom" type="button" data-lightbox-src="../pools-sales.webp" aria-label="Otwórz screenshot większy">
+                <div class="media-frame">
+                  <img
+                    src="../pools-sales.webp"
+                    alt="Screenshot peakowego kwietnia: przychód i koszty reklamowe w trzech sklepach"
+                    width="1445"
+                    height="468"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                </div>
+              </button>
+            </div>
 
-        <h3>Dlaczego tego wyniku nie da się wyjaśnić samym wzrostem budżetu</h3>
-        <p>Wydatki reklamowe rzeczywiście wzrosły. Jednocześnie sprzedaż wzrosła ponad 13×, średni koszyk o 40%, a biznes dostał system, w którym widać wkład każdego kanału i skalowanie opiera się na realnym przychodzie.</p>
+            <h3>Dlaczego tego wyniku nie da się wyjaśnić samym wzrostem budżetu</h3>
+            <p>Wydatki reklamowe rzeczywiście wzrosły. Jednocześnie sprzedaż wzrosła ponad 13×, średni koszyk o 40%, a biznes dostał system, w którym widać wkład każdego kanału i skalowanie opiera się na realnym przychodzie.</p>
+          </section>
+        </div>
+      </div>
+
+      <section class="section reveal">
         <div class="callout">
           <h3>Co stało się główną dźwignią</h3>
           <p><strong>Poprawne dane → właściwa struktura kampanii → spersonalizowany lejek → codzienny kontroling ekonomii.</strong> Nie jedna „tajemna ustawienie”, tylko spójny system marketingu i sprzedaży.</p>
