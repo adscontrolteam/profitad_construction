@@ -23,7 +23,7 @@ ASSET_FIXES = [
     ('src="alex-romanov.webp"', 'src="../alex-romanov.webp"'),
     ('src="image(6).png"', 'src="../image(6).png"'),
     ('src="image(2).png"', 'src="../image(2).png"'),
-    ('src="image(3).png"', 'src="../image(3).png"'),
+    ('src="pool-image.webp"', 'src="../pool-image.webp"'),
     ('src="image(5).png"', 'src="../image(5).png"'),
     ('src="image.png"', 'src="../image.png"'),
     ('src="image(1).png"', 'src="../image(1).png"'),
