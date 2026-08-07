@@ -20,6 +20,7 @@ ASSET_FIXES = [
     ('src="review1.jpeg"', 'src="../review1.jpeg"'),
     ('src="review2.jpeg"', 'src="../review2.jpeg"'),
     ('src="review3.jpeg"', 'src="../review3.jpeg"'),
+    ('src="alex-romanov.webp"', 'src="../alex-romanov.webp"'),
     ('src="image(6).png"', 'src="../image(6).png"'),
     ('src="image(2).png"', 'src="../image(2).png"'),
     ('src="image(3).png"', 'src="../image(3).png"'),
@@ -129,12 +130,11 @@ TRANSLATIONS = {
         "review_alt1": "Client review 1",
         "review_alt2": "Client review 2",
         "review_alt3": "Client review 3",
-        "r1_name": "Maria Koval",
-        "r1_role": "CEO · Home & Living",
-        "r2_name": "Dmitry Petrenko",
-        "r2_role": "Founder · E-commerce EU",
-        "r3_name": "Anna Sokolova",
-        "r3_role": "Marketing Director",
+
+
+
+
+
         "cta_h2": "How do you scale revenue in your business?",
         "cta_p": "Leave a request and we’ll review growth opportunities for your case.",
         "support": "Telegram support",
@@ -238,12 +238,11 @@ TRANSLATIONS = {
         "review_alt1": "Kundenbewertung 1",
         "review_alt2": "Kundenbewertung 2",
         "review_alt3": "Kundenbewertung 3",
-        "r1_name": "Maria Koval",
-        "r1_role": "CEO · Home & Living",
-        "r2_name": "Dmitry Petrenko",
-        "r2_role": "Founder · E-commerce EU",
-        "r3_name": "Anna Sokolova",
-        "r3_role": "Marketing Director",
+
+
+
+
+
         "cta_h2": "Wie skalieren Sie den Umsatz in Ihrem Business?",
         "cta_p": "Hinterlassen Sie eine Anfrage — wir prüfen Wachstumschancen in Ihrem Fall.",
         "support": "Telegram-Support",
@@ -347,12 +346,11 @@ TRANSLATIONS = {
         "review_alt1": "Opinia klienta 1",
         "review_alt2": "Opinia klienta 2",
         "review_alt3": "Opinia klienta 3",
-        "r1_name": "Maria Koval",
-        "r1_role": "CEO · Home & Living",
-        "r2_name": "Dmitry Petrenko",
-        "r2_role": "Founder · E-commerce EU",
-        "r3_name": "Anna Sokolova",
-        "r3_role": "Marketing Director",
+
+
+
+
+
         "cta_h2": "Jak skalować przychód w Twoim biznesie?",
         "cta_p": "Zostaw zgłoszenie, a my przeanalizujemy możliwości wzrostu właśnie w Twoim przypadku",
         "support": "Wsparcie Telegram",
@@ -546,12 +544,7 @@ def translate(html: str, t: dict, code: str) -> str:
         ('alt="Отзыв клиента 1"', f'alt="{t["review_alt1"]}"'),
         ('alt="Отзыв клиента 2"', f'alt="{t["review_alt2"]}"'),
         ('alt="Отзыв клиента 3"', f'alt="{t["review_alt3"]}"'),
-        (">Мария Коваль<", f'>{t["r1_name"]}<'),
-        (">CEO · Home & Living<", f'>{t["r1_role"]}<'),
-        (">Дмитрий Петренко<", f'>{t["r2_name"]}<'),
-        (">Founder · E-commerce EU<", f'>{t["r2_role"]}<'),
-        (">Анна Соколова<", f'>{t["r3_name"]}<'),
-        (">Marketing Director<", f'>{t["r3_role"]}<'),
+        # Review plate names/roles stay in the original language on all locales
         (
             "<h2>Как масштабировать выручку у Вас в бизнесе?</h2>",
             f'<h2>{t["cta_h2"]}</h2>',
