@@ -10,13 +10,11 @@ SRC = ROOT / "index.html"
 # Asset / page refs that need ../ prefix in locale folders
 ASSET_FIXES = [
     ('src="logo.webp"', 'src="../logo.webp"'),
-    ('src="logo.png"', 'src="../logo.png"'),
     ('href="video-poster.webp"', 'href="../video-poster.webp"'),
     ('href="video-poster.jpg"', 'href="../video-poster.jpg"'),
     ('poster="video-poster.webp"', 'poster="../video-poster.webp"'),
     ('poster="video-poster.jpg"', 'poster="../video-poster.jpg"'),
     ('poster="logo.webp"', 'poster="../logo.webp"'),
-    ('poster="logo.png"', 'poster="../logo.png"'),
     ('data-src="main-video.mp4"', 'data-src="../main-video.mp4"'),
     ('data-src-mobile="main-video-mobile.mp4"', 'data-src-mobile="../main-video-mobile.mp4"'),
     ('data-src="diagnostic.MP4"', 'data-src="../diagnostic.MP4"'),

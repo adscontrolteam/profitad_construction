@@ -8,7 +8,6 @@ SRC = ROOT / "index.html"
 
 ASSET_FIXES = [
     ('src="logo.webp"', 'src="../logo.webp"'),
-    ('src="logo.png"', 'src="../logo.png"'),
     ('src="pool-image.webp"', 'src="../pool-image.webp"'),
     ('src="pools-sales.webp"', 'src="../pools-sales.webp"'),
     ('src="dashbord-pools.webp"', 'src="../dashbord-pools.webp"'),
