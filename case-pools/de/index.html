@@ -149,7 +149,6 @@
       position:relative;
     }
     .comparison-track{display:contents}
-    .compare-hint{display:none}
     .point{
       border:1px solid #fff;border-radius:var(--radius);padding:34px;
       background:rgba(255,255,255,.58);box-shadow:0 18px 50px rgba(16,20,28,.05);min-width:0;
@@ -372,7 +371,7 @@
 
       .comparison{
         display:block;
-        margin:28px -16px 32px;
+        margin:28px -16px 24px;
         padding:0;
       }
       .comparison-track{
@@ -381,91 +380,37 @@
         gap:12px;
         overflow-x:auto;
         overflow-y:visible;
-        scroll-snap-type:x mandatory;
+        scroll-snap-type:x proximity;
         scroll-padding-inline:16px;
         -webkit-overflow-scrolling:touch;
         overscroll-behavior-x:contain;
-        padding:10px 16px 36px;
+        padding:8px 16px 12px;
         scrollbar-width:none;
-        touch-action:pan-x;
+        touch-action:pan-x pan-y;
       }
       .comparison-track::-webkit-scrollbar{display:none}
       .comparison .point{
         flex:0 0 auto;
         scroll-snap-align:start;
         min-width:0;
-        transition:transform .45s cubic-bezier(.22,1,.36,1),box-shadow .45s ease;
       }
       .comparison .point.before{
         width:min(58vw,230px);
         padding:18px 14px;
-        transform:scale(.96);
-        transform-origin:center center;
+        transform:scale(.97);
+        transform-origin:left center;
       }
       .comparison .point.after{
         width:min(82vw,340px);
         padding:22px 18px;
         scroll-snap-align:center;
-      }
-      .comparison.is-after .point.before{
-        transform:scale(.9);
-        opacity:.88;
-      }
-      .comparison.is-after .point.after{
-        transform:scale(1.02);
-        box-shadow:0 34px 70px rgba(17,17,17,.28);
+        box-shadow:0 28px 60px rgba(17,17,17,.2);
       }
       .comparison .point .flag{font-size:14px;margin-bottom:10px;line-height:1.25}
       .comparison .point dd{font-size:15px}
       .comparison .point.after dd{font-size:16px}
       .comparison .point dt{font-size:11px;letter-spacing:.08em}
       .comparison .point .row{padding:10px 0}
-      .compare-hint{
-        display:inline-flex;
-        align-items:center;
-        justify-content:center;
-        gap:10px;
-        position:absolute;
-        left:50%;
-        bottom:0;
-        transform:translateX(-50%);
-        z-index:2;
-        border:0;
-        padding:10px 16px;
-        border-radius:999px;
-        background:rgba(17,17,17,.92);
-        color:#fff;
-        font:650 12px/1 Inter,system-ui,sans-serif;
-        letter-spacing:.04em;
-        text-transform:uppercase;
-        cursor:pointer;
-        box-shadow:0 12px 30px rgba(0,0,0,.22);
-        transition:opacity .35s ease,transform .35s ease;
-      }
-      .compare-hint__arrow{
-        display:inline-grid;
-        place-items:center;
-        width:22px;height:22px;
-        border-radius:50%;
-        background:var(--acid);
-        color:#111;
-        font-size:14px;
-        animation:compareNudge 1.4s ease-in-out infinite;
-      }
-      .comparison.is-after .compare-hint,
-      .comparison.is-hint-hidden .compare-hint{
-        opacity:0;
-        pointer-events:none;
-        transform:translateX(-50%) translateY(8px);
-      }
-      @keyframes compareNudge{
-        0%,100%{transform:translateX(0)}
-        50%{transform:translateX(5px)}
-      }
-      @media (prefers-reduced-motion:reduce){
-        .compare-hint__arrow{animation:none}
-        .comparison .point{transition:none}
-      }
     }
 
     @media (max-width:760px){
@@ -643,10 +588,6 @@
               </dl>
             </div>
           </div>
-          <button class="compare-hint" type="button" aria-controls="compare-slider" aria-label="Punkt B ansehen">
-            <span>Ergebnis ansehen</span>
-            <span class="compare-hint__arrow" aria-hidden="true">→</span>
-          </button>
         </div>
         <p class="note"></p>
         <div class="media after-card">
@@ -908,33 +849,6 @@
     addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
     });
-
-    const compareRoot = document.getElementById('compare-slider');
-    if (compareRoot) {
-      const track = compareRoot.querySelector('.comparison-track');
-      const afterCard = compareRoot.querySelector('.point.after');
-      const hint = compareRoot.querySelector('.compare-hint');
-      const mq = window.matchMedia('(max-width:900px)');
-      const syncCompare = () => {
-        if (!mq.matches || !track || !afterCard) {
-          compareRoot.classList.remove('is-after', 'is-hint-hidden');
-          return;
-        }
-        const max = track.scrollWidth - track.clientWidth;
-        const progressed = max > 8 && track.scrollLeft > max * 0.28;
-        compareRoot.classList.toggle('is-after', progressed);
-        if (progressed) compareRoot.classList.add('is-hint-hidden');
-      };
-      const goToAfter = () => {
-        if (!afterCard || !mq.matches) return;
-        afterCard.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', inline: 'center', block: 'nearest' });
-        compareRoot.classList.add('is-hint-hidden', 'is-after');
-      };
-      track.addEventListener('scroll', syncCompare, { passive: true });
-      if (hint) hint.addEventListener('click', goToAfter);
-      mq.addEventListener('change', syncCompare);
-      syncCompare();
-    }
   </script>
 </body>
 </html>
