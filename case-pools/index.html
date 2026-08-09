@@ -342,9 +342,31 @@
     .result-card--acid .result-card__label{color:#333}
     .note{font-size:13px;color:#73767c;border-left:3px solid var(--acid);padding-left:15px;margin-top:18px}
     .quote{
-      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:clamp(22px,3vw,30px);font-weight:700;
-      line-height:1.35;letter-spacing:-.035em;margin:38px 0;padding:28px 30px;
-      background:#111;color:#fff;border-radius:24px;overflow-wrap:anywhere;
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      font-size:clamp(18px,2.2vw,24px);
+      font-weight:650;
+      line-height:1.4;
+      letter-spacing:-.03em;
+      margin:28px auto 10px;
+      padding:18px 22px 18px 26px;
+      max-width:720px;
+      color:var(--ink);
+      background:transparent;
+      border:0;
+      border-left:3px solid var(--acid);
+      border-radius:0;
+      text-align:left;
+      overflow-wrap:anywhere;
+      quotes:none;
+    }
+    .quote:before{
+      content:"“";
+      color:var(--acid);
+      font-size:1.35em;
+      font-weight:800;
+      line-height:0;
+      margin-right:.12em;
+      vertical-align:-.12em;
     }
     .cta{margin-top:120px;background:var(--acid);border-radius:38px;padding:62px;text-align:center}
     .cta h2{
@@ -529,7 +551,7 @@
       .problem .index{width:40px;height:40px;font-size:12px}
       .solution-list{gap:10px;margin:20px 0}
       .solution{padding:18px 16px;border-radius:18px}
-      .quote{font-size:18px;padding:18px 16px;margin:22px 0;border-radius:18px}
+      .quote{font-size:16px;padding:14px 14px 14px 18px;margin:20px auto 6px}
       .highlight{padding:28px 18px;margin:32px 0;border-radius:24px}
       .highlight:after{font-size:42px;right:14px;top:10px;opacity:.55}
       .highlight .big{font-size:clamp(36px,12vw,52px);margin:12px 0}
@@ -712,9 +734,9 @@
           <div>
             <h3>Google Ads и аналитика передавали неполные данные, или вовсе не передавали</h3>
             <p>Часть бюджета уходила в кампании без понятного результата. При этом нельзя было исключить, что именно они участвовали в ключевых продажах. До исправления работы передачи данных, отслеживания конверсий, любая оптимизация была бы работой вслепую.</p>
-            <blockquote class="quote">Нельзя масштабировать то, что бизнес не умеет точно измерять.</blockquote>
           </div>
         </div>
+        <blockquote class="quote">Нельзя масштабировать то, что бизнес не умеет точно измерять.</blockquote>
         <div class="media"><div><strong>СКРИНШОТ №2 — АУДИТ / СТАРАЯ СТРУКТУРА</strong><small>Старый рекламный кабинет, ошибки аналитики или схема передачи данных до исправления</small></div></div>
       </section>
 
