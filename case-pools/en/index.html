@@ -364,9 +364,11 @@
 
     @media (max-width:900px){
       .stats,.solution-list{grid-template-columns:1fr}
-      .result-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .result-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
       .result-card,.result-card--wide{grid-column:span 1}
-      .result-card:last-child{grid-column:1 / -1}
+      .result-card:nth-child(3){order:4}
+      .result-card:nth-child(4){order:3}
+      .result-card:last-child{grid-column:1 / -1;order:5}
       .point.before{transform:none}
 
       .comparison{
@@ -446,9 +448,17 @@
       .section h3{font-size:20px;margin:28px 0 10px}
       .section ul{padding-left:20px}
       .result-grid{gap:10px;margin:4px 0 24px}
-      .result-card{min-height:128px;padding:20px 16px;border-radius:22px}
-      .result-card__value{font-size:clamp(24px,7vw,32px)}
-      .result-card__label{font-size:13px}
+      .result-card{min-height:122px;padding:16px 12px;border-radius:22px}
+      .result-card__value{
+        font-size:clamp(17px,4.5vw,21px);
+        letter-spacing:-.045em;
+        line-height:1.12;
+      }
+      .result-card--wide .result-card__value{
+        font-size:clamp(15px,4vw,19px);
+        letter-spacing:-.04em;
+      }
+      .result-card__label{font-size:12px;line-height:1.35}
       .comparison{margin:24px -16px 28px}
       .media{
         margin:22px 0 8px;
