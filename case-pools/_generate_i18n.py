@@ -15,7 +15,6 @@ ASSET_FIXES = [
     ('src="sales-compare-grafic.webp"', 'src="../sales-compare-grafic.webp"'),
     ('src="GTM.webp"', 'src="../GTM.webp"'),
     ('src="google-ads-statics.webp"', 'src="../google-ads-statics.webp"'),
-    ('src="ai-funnel.webp"', 'src="../ai-funnel.webp"'),
     ('src="ai-funnel.gif"', 'src="../ai-funnel.gif"'),
     ('data-lightbox-src="pool-image.webp"', 'data-lightbox-src="../pool-image.webp"'),
     ('data-lightbox-src="pools-sales.webp"', 'data-lightbox-src="../pools-sales.webp"'),
@@ -23,7 +22,6 @@ ASSET_FIXES = [
     ('data-lightbox-src="sales-compare-grafic.webp"', 'data-lightbox-src="../sales-compare-grafic.webp"'),
     ('data-lightbox-src="GTM.webp"', 'data-lightbox-src="../GTM.webp"'),
     ('data-lightbox-src="google-ads-statics.webp"', 'data-lightbox-src="../google-ads-statics.webp"'),
-    ('data-lightbox-src="ai-funnel.webp"', 'data-lightbox-src="../ai-funnel.webp"'),
     ('data-lightbox-src="ai-funnel.gif"', 'data-lightbox-src="../ai-funnel.gif"'),
     ('<a class="brand" href="../"', '<a class="brand" href="../../"'),
 ]
