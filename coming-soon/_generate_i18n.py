@@ -65,8 +65,8 @@ def translate(html: str, t: dict) -> str:
     # Title stays "Coming soon..." for all languages
     pairs = [
         (
-            '<a class="brand" href="../" aria-label="PROFITAD — на главную">\n        <img src="logo.png" alt="PROFITAD" width="112" height="72" decoding="async" fetchpriority="high">\n      </a>',
-            f'<a class="brand" href="{t["home_href"]}" aria-label="{t["brand_aria"]}">\n        <img src="../logo.png" alt="PROFITAD" width="112" height="72" decoding="async" fetchpriority="high">\n      </a>',
+            '<a class="brand" href="../" aria-label="PROFITAD — на главную">\n        <img src="logo.webp" alt="PROFITAD" width="112" height="72" decoding="async" fetchpriority="high">\n      </a>',
+            f'<a class="brand" href="{t["home_href"]}" aria-label="{t["brand_aria"]}">\n        <img src="../logo.webp" alt="PROFITAD" width="112" height="72" decoding="async" fetchpriority="high">\n      </a>',
         ),
         (
             '<a class="back-link" href="../">← На главную</a>',

@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <!-- Meta Pixel Code -->
+  <!-- Meta Pixel Code: deferred to avoid blocking first paint -->
   <script>
-    !function(f,b,e,v,n,t,s){
-      if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)
-    }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1683649462959481');
-    fbq('track', 'PageView');
+    window.addEventListener('load', function () {
+      const loadPixel = function () {
+        !function(f,b,e,v,n,t,s){
+          if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+          n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+          if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+          n.queue=[];t=b.createElement(e);t.async=!0;
+          t.src=v;s=b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t,s)
+        }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1683649462959481');
+        fbq('track', 'PageView');
+      };
+      if ('requestIdleCallback' in window) requestIdleCallback(loadPixel, {timeout: 2500});
+      else setTimeout(loadPixel, 900);
+    }, {once:true});
   </script>
   <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=1683649462959481&ev=PageView&noscript=1"
@@ -26,9 +32,9 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="image" href="../video-poster.jpg" fetchpriority="high">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+  <link rel="preload" as="image" href="../video-poster.webp" fetchpriority="high">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"></noscript>
 
   <style>
     :root{
@@ -764,6 +770,9 @@
     .support-btn svg{width:17px;height:17px}
 
     @media(max-width:980px){
+      /* perf: reduce paint cost on mobile */
+      .ambient-shape,.ambient-ring,.ambient-glow{animation:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+      .ambient-shape{opacity:.1}
       .menu{display:none}
       .cases{grid-template-columns:1fr;max-width:680px;margin:0 auto}
       .fit-grid,.diagnostic{grid-template-columns:1fr}
@@ -1374,7 +1383,7 @@
   <header>
     <div class="container nav">
       <a href="#top" aria-label="PROFITAD">
-        <img src="../logo.png" class="logo-img" alt="PROFITAD" width="112" height="72" decoding="async" fetchpriority="high">
+        <img src="../logo.webp" class="logo-img" alt="PROFITAD" width="112" height="72" decoding="async" fetchpriority="high">
       </a>
 
       <nav class="menu" aria-label="Nawigacja">
@@ -1423,7 +1432,7 @@
               controls
               playsinline
               preload="metadata"
-              poster="../video-poster.jpg"
+              poster="../video-poster.webp"
               data-src="../main-video.mp4"
               data-src-mobile="../main-video-mobile.mp4"
             ></video>
@@ -1573,7 +1582,7 @@
               loop
               playsinline
               preload="none"
-              poster="../logo.png"
+              poster="../logo.webp"
               data-src="../diagnostic.MP4"
             ></video>
           </div>
@@ -1692,10 +1701,14 @@
         revealItems.forEach(el => el.classList.add('is-visible'));
       }
 
+      let headerOffset = 0;
       const getHeaderOffset = () => {
+        if (headerOffset) return headerOffset;
         const header = document.querySelector('header');
-        return header ? Math.ceil(header.getBoundingClientRect().height) + 8 : 80;
+        headerOffset = header ? Math.ceil(header.getBoundingClientRect().height) + 8 : 80;
+        return headerOffset;
       };
+      addEventListener('resize', () => { headerOffset = 0; }, { passive: true });
 
       const easeInOutCubic = (t) => (t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
@@ -1803,8 +1816,7 @@
         cy += (ty - cy) * .045;
         layers.forEach(layer => {
           const depth = Number(layer.dataset.depth || .1);
-          layer.style.marginLeft = `${cx * 28 * depth}px`;
-          layer.style.marginTop = `${cy * 24 * depth}px`;
+          layer.style.transform = `translate3d(${(cx * 28 * depth).toFixed(2)}px, ${(cy * 24 * depth).toFixed(2)}px, 0)`;
         });
         requestAnimationFrame(animate);
       }

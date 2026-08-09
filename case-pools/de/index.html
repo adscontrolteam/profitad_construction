@@ -7,7 +7,8 @@
   <title>PROFITAD Case — über €1 Mio. Umsatz für Poolherstellung</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"></noscript>
   <style>
     :root{
       --ink:#111214;
@@ -590,7 +591,7 @@
   <header class="topbar">
     <div class="topbar-inner">
       <a class="brand" href="../../" aria-label="PROFITAD">
-        <img src="../logo.png" alt="PROFITAD" width="112" height="72" decoding="async" fetchpriority="high">
+        <img src="../logo.webp" alt="PROFITAD" width="112" height="72" decoding="async" fetchpriority="high">
       </a>
       <nav>
         <a href="#before-after">Vorher / Nachher</a>
@@ -794,14 +795,14 @@
         <h3>3. AI-Funnel in Meta gebaut</h3>
         <p>Statt eines Angebots für alle starteten wir ein kurzes Quiz. Nutzer beantworteten einige Fragen, das System empfahl passende Pool-Varianten. Werbung sammelte nicht nur Kontakte — sie half beim ersten Schritt zur Produktwahl.</p>
         <div class="media video filled">
-          <button class="media-zoom" type="button" data-lightbox-src="../ai-funnel.gif" aria-label="AI-Funnel größer öffnen">
+          <button class="media-zoom" type="button" data-lightbox-src="../ai-funnel.webp" aria-label="AI-Funnel größer öffnen">
             <div class="media-frame">
               <img
                 class="funnel-anim"
-                src="../ai-funnel.gif"
+                src="../ai-funnel.webp"
                 alt="Meta-AI-Funnel: Anzeige, Fragen, personalisierte Pool-Empfehlung und Anfrage"
-                width="1280"
-                height="720"
+                width="960"
+                height="540"
                 loading="lazy"
                 decoding="async"
               >
@@ -899,13 +900,25 @@
 
   <script>
     const progress = document.getElementById('progress');
-    const update = () => {
+    let progressMax = 0;
+    let progressTick = false;
+    const measureProgress = () => {
       const h = document.documentElement;
-      const max = h.scrollHeight - h.clientHeight;
-      progress.style.width = (max ? 100 * h.scrollTop / max : 0) + '%';
+      progressMax = h.scrollHeight - h.clientHeight;
     };
+    const paintProgress = () => {
+      progress.style.width = (progressMax ? (100 * document.documentElement.scrollTop / progressMax) : 0) + '%';
+      progressTick = false;
+    };
+    const update = () => {
+      if (progressTick) return;
+      progressTick = true;
+      requestAnimationFrame(paintProgress);
+    };
+    measureProgress();
+    paintProgress();
     addEventListener('scroll', update, { passive: true });
-    update();
+    addEventListener('resize', () => { measureProgress(); paintProgress(); }, { passive: true });
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const revealItems = document.querySelectorAll('.reveal');
@@ -929,7 +942,7 @@
       if (!target) return;
       e.preventDefault();
       const header = document.querySelector('.topbar');
-      const offset = header ? header.getBoundingClientRect().height + 8 : 72;
+      const offset = header ? header.offsetHeight + 8 : 72;
       const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
       window.scrollTo({ top: Math.max(0, top), behavior: reduced ? 'auto' : 'smooth' });
       if (history.pushState) history.pushState(null, '', hash);
