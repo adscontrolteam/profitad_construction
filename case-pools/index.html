@@ -87,10 +87,15 @@
       line-height:.98;letter-spacing:-.065em;margin:0 auto 30px;max-width:1080px;
       font-weight:650;text-wrap:balance;overflow-wrap:anywhere;
     }
-    .hero h1 em{font-style:normal;position:relative}
-    .hero h1 em:after{
-      content:"";position:absolute;left:0;right:0;bottom:.03em;height:.14em;
-      background:var(--acid);border-radius:99px;z-index:-1;
+    .hero h1 em{
+      font-style:normal;
+      box-decoration-break:clone;
+      -webkit-box-decoration-break:clone;
+      background-image:linear-gradient(var(--acid),var(--acid));
+      background-position:left bottom;
+      background-repeat:no-repeat;
+      background-size:100% .14em;
+      padding-bottom:.06em;
     }
     .lead{font-size:clamp(17px,2vw,22px);color:var(--muted);max-width:790px;margin:0 auto 34px}
     .meta{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin:28px 0 50px}
@@ -135,7 +140,16 @@
     }
     .section ul{padding-left:27px;max-width:820px;margin:0 auto 18px}
     .section li{margin:9px 0;text-align:left}
-    .comparison{display:grid;grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);gap:18px;margin:40px 0;align-items:stretch}
+    .comparison{
+      display:grid;
+      grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);
+      gap:18px;
+      margin:40px 0;
+      align-items:stretch;
+      position:relative;
+    }
+    .comparison-track{display:contents}
+    .compare-hint{display:none}
     .point{
       border:1px solid #fff;border-radius:var(--radius);padding:34px;
       background:rgba(255,255,255,.58);box-shadow:0 18px 50px rgba(16,20,28,.05);min-width:0;
@@ -245,6 +259,45 @@
       letter-spacing:-.055em;font-weight:800;margin:18px 0;overflow-wrap:anywhere;
     }
     .highlight p{color:#c7c9cb;font-size:clamp(17px,2vw,21px);margin:0 auto;max-width:720px;position:relative;z-index:1;text-align:center}
+    .result-grid{
+      display:grid;
+      grid-template-columns:repeat(6,minmax(0,1fr));
+      gap:14px;
+      margin:8px 0 34px;
+    }
+    .result-card{
+      grid-column:span 2;
+      border-radius:var(--radius);
+      padding:28px 24px;
+      min-height:148px;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      gap:10px;
+      background:#111;
+      color:#fff;
+      box-shadow:0 18px 50px rgba(16,20,28,.08);
+      overflow-wrap:anywhere;
+    }
+    .result-card--acid{
+      background:var(--acid);
+      color:#111;
+      box-shadow:0 18px 50px rgba(185,239,28,.22);
+    }
+    .result-card--wide{grid-column:span 3}
+    .result-card__value{
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      font-size:clamp(26px,2.8vw,40px);
+      font-weight:800;
+      letter-spacing:-.055em;
+      line-height:1.05;
+    }
+    .result-card__label{
+      font-size:14px;
+      line-height:1.4;
+      color:#bfc1c3;
+    }
+    .result-card--acid .result-card__label{color:#333}
     .note{font-size:13px;color:#73767c;border-left:3px solid var(--acid);padding-left:15px;margin-top:18px}
     .quote{
       font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:clamp(22px,3vw,30px);font-weight:700;
@@ -276,10 +329,7 @@
       margin:56px 0 0;
       margin-left:calc(50% - 50vw);
       padding:72px 0 84px;
-      background:
-        radial-gradient(circle at 14% 0%,rgba(185,239,28,.14),transparent 36%),
-        radial-gradient(circle at 90% 20%,rgba(255,255,255,.07),transparent 34%),
-        linear-gradient(180deg,#2c2d31 0%,#222326 100%);
+      background:#000;
       color:#f4f4f2;
       position:relative;
       overflow:clip;
@@ -314,8 +364,108 @@
     }
 
     @media (max-width:900px){
-      .stats,.comparison,.solution-list{grid-template-columns:1fr}
+      .stats,.solution-list{grid-template-columns:1fr}
+      .result-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .result-card,.result-card--wide{grid-column:span 1}
+      .result-card:last-child{grid-column:1 / -1}
       .point.before{transform:none}
+
+      .comparison{
+        display:block;
+        margin:28px -16px 32px;
+        padding:0;
+      }
+      .comparison-track{
+        display:flex;
+        align-items:stretch;
+        gap:12px;
+        overflow-x:auto;
+        overflow-y:visible;
+        scroll-snap-type:x mandatory;
+        scroll-padding-inline:16px;
+        -webkit-overflow-scrolling:touch;
+        overscroll-behavior-x:contain;
+        padding:10px 16px 36px;
+        scrollbar-width:none;
+        touch-action:pan-x;
+      }
+      .comparison-track::-webkit-scrollbar{display:none}
+      .comparison .point{
+        flex:0 0 auto;
+        scroll-snap-align:start;
+        min-width:0;
+        transition:transform .45s cubic-bezier(.22,1,.36,1),box-shadow .45s ease;
+      }
+      .comparison .point.before{
+        width:min(58vw,230px);
+        padding:18px 14px;
+        transform:scale(.96);
+        transform-origin:center center;
+      }
+      .comparison .point.after{
+        width:min(82vw,340px);
+        padding:22px 18px;
+        scroll-snap-align:center;
+      }
+      .comparison.is-after .point.before{
+        transform:scale(.9);
+        opacity:.88;
+      }
+      .comparison.is-after .point.after{
+        transform:scale(1.02);
+        box-shadow:0 34px 70px rgba(17,17,17,.28);
+      }
+      .comparison .point .flag{font-size:14px;margin-bottom:10px;line-height:1.25}
+      .comparison .point dd{font-size:15px}
+      .comparison .point.after dd{font-size:16px}
+      .comparison .point dt{font-size:11px;letter-spacing:.08em}
+      .comparison .point .row{padding:10px 0}
+      .compare-hint{
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+        gap:10px;
+        position:absolute;
+        left:50%;
+        bottom:0;
+        transform:translateX(-50%);
+        z-index:2;
+        border:0;
+        padding:10px 16px;
+        border-radius:999px;
+        background:rgba(17,17,17,.92);
+        color:#fff;
+        font:650 12px/1 Inter,system-ui,sans-serif;
+        letter-spacing:.04em;
+        text-transform:uppercase;
+        cursor:pointer;
+        box-shadow:0 12px 30px rgba(0,0,0,.22);
+        transition:opacity .35s ease,transform .35s ease;
+      }
+      .compare-hint__arrow{
+        display:inline-grid;
+        place-items:center;
+        width:22px;height:22px;
+        border-radius:50%;
+        background:var(--acid);
+        color:#111;
+        font-size:14px;
+        animation:compareNudge 1.4s ease-in-out infinite;
+      }
+      .comparison.is-after .compare-hint,
+      .comparison.is-hint-hidden .compare-hint{
+        opacity:0;
+        pointer-events:none;
+        transform:translateX(-50%) translateY(8px);
+      }
+      @keyframes compareNudge{
+        0%,100%{transform:translateX(0)}
+        50%{transform:translateX(5px)}
+      }
+      @media (prefers-reduced-motion:reduce){
+        .compare-hint__arrow{animation:none}
+        .comparison .point{transition:none}
+      }
     }
 
     @media (max-width:760px){
@@ -350,12 +500,11 @@
       .section>h2{font-size:clamp(28px,8vw,36px);margin-bottom:16px}
       .section h3{font-size:20px;margin:28px 0 10px}
       .section ul{padding-left:20px}
-      .comparison{gap:12px;margin:24px 0}
-      .point{padding:22px 18px}
-      .point.after{padding:22px 18px}
-      .point .flag{font-size:16px;margin-bottom:12px}
-      .point dd{font-size:17px}
-      .point.after dd{font-size:17px}
+      .result-grid{gap:10px;margin:4px 0 24px}
+      .result-card{min-height:128px;padding:20px 16px;border-radius:22px}
+      .result-card__value{font-size:clamp(24px,7vw,32px)}
+      .result-card__label{font-size:13px}
+      .comparison{margin:24px -16px 28px}
       .media{
         margin:22px 0 8px;
         padding:18px;
@@ -434,7 +583,7 @@
   <main class="page">
     <article>
       <section class="hero reveal">
-        <h1>Масштабировали продажу бассейнов <b>с €60,000</b> <br>до <em>выручки в <b>более <br>€1 млн</b></em> за 12 месяцев</h1>
+        <h1>Масштабировали продажу бассейнов <b>с €60,000</b> <br>до выручки в <em><b>более <br>€1 млн</b></em> за 12 месяцев</h1>
         <p class="lead">Превратили один интернет-магазин в систему роста для трёх магазинов.</p>
         <div class="meta">
           <span class="pill">Ниша: бассейны</span>
@@ -467,31 +616,37 @@
       <section class="section reveal" id="before-after">
         <h2>🚩 Точка А → 🏆 Точка Б</h2>
         <p>Сравниваем два одинаковых периода по 12 месяцев: работу с предыдущим специалистом и работу с нашей командой.</p>
-        <div class="comparison">
-          <div class="point before">
-            <div class="flag">🚩 Точка А — до PROFITAD</div>
-            <dl>
-              <div class="row"><dt>Каналы</dt><dd>Facebook + eBay</dd></div>
-              <div class="row"><dt>Реклама</dt><dd>$1 800 / месяц</dd></div>
-              <div class="row"><dt>Услуги</dt><dd>$500 / месяц</dd></div>
-              <div class="row"><dt>Продажи</dt><dd>13</dd></div>
-              <div class="row"><dt>Средний чек</dt><dd>€4 500</dd></div>
-              <div class="row"><dt>Выручка</dt><dd>≈ €58 500</dd></div>
-              <div class="row"><dt>ROMI</dt><dd>≈ 112%</dd></div>
-            </dl>
+        <div class="comparison" id="compare-slider">
+          <div class="comparison-track">
+            <div class="point before">
+              <div class="flag">🚩 Точка А — до PROFITAD</div>
+              <dl>
+                <div class="row"><dt>Каналы</dt><dd>Facebook + eBay</dd></div>
+                <div class="row"><dt>Реклама</dt><dd>$1 800 / месяц</dd></div>
+                <div class="row"><dt>Услуги</dt><dd>$500 / месяц</dd></div>
+                <div class="row"><dt>Продажи</dt><dd>13</dd></div>
+                <div class="row"><dt>Средний чек</dt><dd>€4 500</dd></div>
+                <div class="row"><dt>Выручка</dt><dd>≈ €58 500</dd></div>
+                <div class="row"><dt>ROMI</dt><dd>≈ 112%</dd></div>
+              </dl>
+            </div>
+            <div class="point after">
+              <div class="flag">🏆 Точка Б — с PROFITAD</div>
+              <dl>
+                <div class="row"><dt>Каналы</dt><dd>Google + Meta Ads</dd></div>
+                <div class="row"><dt>Реклама</dt><dd>€5 500 / месяц</dd></div>
+                <div class="row"><dt>Модель работы</dt><dd>$1 000 + % от выручки</dd></div>
+                <div class="row"><dt>Продажи</dt><dd>170</dd></div>
+                <div class="row"><dt>Средний чек</dt><dd>€6 300</dd></div>
+                <div class="row"><dt>Выручка</dt><dd>≈ €1,06 млн</dd></div>
+                <div class="row"><dt>ROMI</dt><dd>≈ 1 209%*</dd></div>
+              </dl>
+            </div>
           </div>
-          <div class="point after">
-            <div class="flag">🏆 Точка Б — с PROFITAD</div>
-            <dl>
-              <div class="row"><dt>Каналы</dt><dd>Google + Meta Ads</dd></div>
-              <div class="row"><dt>Реклама</dt><dd>€5 500 / месяц</dd></div>
-              <div class="row"><dt>Модель работы</dt><dd>$1 000 + % от выручки</dd></div>
-              <div class="row"><dt>Продажи</dt><dd>170</dd></div>
-              <div class="row"><dt>Средний чек</dt><dd>€6 300</dd></div>
-              <div class="row"><dt>Выручка</dt><dd>≈ €1,06 млн</dd></div>
-              <div class="row"><dt>ROMI</dt><dd>≈ 1 209%*</dd></div>
-            </dl>
-          </div>
+          <button class="compare-hint" type="button" aria-controls="compare-slider" aria-label="Посмотреть Точку Б">
+            <span>Смотри результат</span>
+            <span class="compare-hint__arrow" aria-hidden="true">→</span>
+          </button>
         </div>
         <p class="note"></p>
         <div class="media after-card">
@@ -619,13 +774,28 @@
 
       <section class="section reveal" id="result">
         <h2>🏆 Что получили за 12 месяцев</h2>
-        <ul>
-          <li><strong>170 покупок</strong> (прирост в 13 раз)</li>
-          <li>средний чек вырос с <strong>€4 500 до €6 300</strong>;</li>
-          <li>выручка выросла примерно в 17 раз (с <strong>€60 000 до более €1 млн)</strong>;</li>
-          <li>появилась прозрачная аналитика по каждому источнику и дню;</li>
-          <li>производство выросло, а наша работа расширилась с одного магазина до трёх.</li>
-        </ul>
+        <div class="result-grid">
+          <article class="result-card result-card--acid">
+            <div class="result-card__value">170 покупок</div>
+            <div class="result-card__label">прирост в 13 раз</div>
+          </article>
+          <article class="result-card">
+            <div class="result-card__value">€4 500 → €6 300</div>
+            <div class="result-card__label">рост среднего чека</div>
+          </article>
+          <article class="result-card result-card--acid">
+            <div class="result-card__value">×17 выручка</div>
+            <div class="result-card__label">с €60 000 до более €1 млн</div>
+          </article>
+          <article class="result-card result-card--wide">
+            <div class="result-card__value">Прозрачная аналитика</div>
+            <div class="result-card__label">по каждому источнику и дню</div>
+          </article>
+          <article class="result-card result-card--wide">
+            <div class="result-card__value">1 → 3 магазина</div>
+            <div class="result-card__label">производство выросло, работа расширилась</div>
+          </article>
+        </div>
         <div class="highlight">
           <div class="mini">Главный результат проекта</div>
           <div class="big">€500 000+</div>
@@ -738,6 +908,33 @@
     addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
     });
+
+    const compareRoot = document.getElementById('compare-slider');
+    if (compareRoot) {
+      const track = compareRoot.querySelector('.comparison-track');
+      const afterCard = compareRoot.querySelector('.point.after');
+      const hint = compareRoot.querySelector('.compare-hint');
+      const mq = window.matchMedia('(max-width:900px)');
+      const syncCompare = () => {
+        if (!mq.matches || !track || !afterCard) {
+          compareRoot.classList.remove('is-after', 'is-hint-hidden');
+          return;
+        }
+        const max = track.scrollWidth - track.clientWidth;
+        const progressed = max > 8 && track.scrollLeft > max * 0.28;
+        compareRoot.classList.toggle('is-after', progressed);
+        if (progressed) compareRoot.classList.add('is-hint-hidden');
+      };
+      const goToAfter = () => {
+        if (!afterCard || !mq.matches) return;
+        afterCard.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', inline: 'center', block: 'nearest' });
+        compareRoot.classList.add('is-hint-hidden', 'is-after');
+      };
+      track.addEventListener('scroll', syncCompare, { passive: true });
+      if (hint) hint.addEventListener('click', goToAfter);
+      mq.addEventListener('change', syncCompare);
+      syncCompare();
+    }
   </script>
 </body>
 </html>
